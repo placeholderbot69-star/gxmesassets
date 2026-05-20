@@ -3,15 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AMONGUSGXMES - Ultimate Gaming Platform</title>
+    <title>AMONGUSGXMES - Unblocked Games</title>
     <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
+        /* ==========================================
+           THEME VARIABLES - From Art Class v4
+           ========================================== */
         :root {
             --primary-red: #ff1a1a;
             --dark-red: #8b0000;
@@ -20,14 +17,76 @@
             --gray: #2a2a2a;
             --white: #ffffff;
             --accent: var(--primary-red);
+            
+            /* Art Class Theme Variables */
+            --bg-color: #0a0a0a;
+            --text-color: #ffffff;
+            --card-bg: #1a1a1a;
+            --border-color: #2a2a2a;
+            --hover-color: #ff1a1a;
+            --sidebar-bg: linear-gradient(180deg, rgba(26,26,26,0.98) 0%, rgba(10,10,10,0.98) 100%);
+        }
+
+        /* Theme: Ocean */
+        body[theme="ocean"] {
+            --primary-red: #0088ff;
+            --dark-red: #0055aa;
+            --accent: #0088ff;
+            --hover-color: #0088ff;
+        }
+
+        /* Theme: Forest */
+        body[theme="forest"] {
+            --primary-red: #00ff66;
+            --dark-red: #008833;
+            --accent: #00ff66;
+            --hover-color: #00ff66;
+        }
+
+        /* Theme: Sunset */
+        body[theme="sunset"] {
+            --primary-red: #ff6600;
+            --dark-red: #aa4400;
+            --accent: #ff6600;
+            --hover-color: #ff6600;
+        }
+
+        /* Theme: Purple */
+        body[theme="purple"] {
+            --primary-red: #ff00ff;
+            --dark-red: #aa00aa;
+            --accent: #ff00ff;
+            --hover-color: #ff00ff;
+        }
+
+        /* Theme: Gold */
+        body[theme="gold"] {
+            --primary-red: #ffd700;
+            --dark-red: #aa8800;
+            --accent: #ffd700;
+            --hover-color: #ffd700;
+        }
+
+        /* Theme: Midnight */
+        body[theme="midnight"] {
+            --primary-red: #4444ff;
+            --dark-red: #2222aa;
+            --accent: #4444ff;
+            --hover-color: #4444ff;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
         }
 
         html, body {
             height: 100%;
             overflow: hidden;
             font-family: 'Roboto', sans-serif;
-            background: var(--black);
-            color: var(--white);
+            background: var(--bg-color);
+            color: var(--text-color);
         }
 
         ::-webkit-scrollbar {
@@ -76,7 +135,7 @@
             font-family: 'Orbitron', sans-serif;
             font-size: 5rem;
             font-weight: 900;
-            background: linear-gradient(180deg, #ff0000 0%, #8b0000 100%);
+            background: linear-gradient(180deg, var(--primary-red) 0%, var(--dark-red) 100%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             text-shadow: 0 0 30px rgba(255,0,0,0.5);
@@ -138,7 +197,7 @@
             top: 0;
             width: 100px;
             height: 100%;
-            background: linear-gradient(180deg, rgba(26,26,26,0.98) 0%, rgba(10,10,10,0.98) 100%);
+            background: var(--sidebar-bg);
             border-right: 2px solid var(--primary-red);
             display: flex;
             flex-direction: column;
@@ -282,107 +341,139 @@
             font-size: 1rem;
         }
 
-        /* PROXY BROWSER STYLES */
-        .proxy-browser-container {
+        /* ==========================================
+           PROXY SECTION - Ultraviolet from Art Class
+           ========================================== */
+        .proxy-container {
             display: flex;
             flex-direction: column;
             height: calc(100% - 100px);
-            gap: 15px;
+            gap: 20px;
+        }
+
+        .proxy-bar {
             background: var(--dark-gray);
-            border-radius: 20px;
+            padding: 20px;
+            border-radius: 16px;
             border: 2px solid var(--dark-red);
-            overflow: hidden;
-        }
-
-        .proxy-toolbar {
-            background: var(--black);
-            padding: 15px 20px;
             display: flex;
-            gap: 12px;
+            gap: 15px;
             align-items: center;
-            border-bottom: 2px solid var(--dark-red);
         }
 
-        .proxy-nav-btn {
-            width: 40px;
-            height: 40px;
-            background: var(--gray);
-            border: 2px solid transparent;
-            border-radius: 10px;
-            color: var(--white);
-            cursor: pointer;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            transition: all 0.3s;
-            font-size: 1.2rem;
-        }
-
-        .proxy-nav-btn:hover:not(:disabled) {
-            background: var(--dark-red);
-            border-color: var(--primary-red);
-        }
-
-        .proxy-nav-btn:disabled {
-            opacity: 0.3;
-            cursor: not-allowed;
-        }
-
-        .proxy-address-bar {
+        .proxy-input-wrapper {
             flex: 1;
-            display: flex;
+        }
+
+        .proxy-input {
+            width: 100%;
             background: var(--black);
             border: 2px solid var(--gray);
+            color: var(--white);
+            padding: 15px 20px;
             border-radius: 12px;
-            overflow: hidden;
-            transition: border-color 0.3s;
+            font-size: 16px;
+            outline: none;
         }
 
-        .proxy-address-bar:focus-within {
+        .proxy-input:focus {
             border-color: var(--primary-red);
         }
 
-        .proxy-protocol {
-            background: var(--gray);
-            padding: 0 15px;
-            display: flex;
-            align-items: center;
-            color: rgba(255,255,255,0.5);
-            font-family: 'Orbitron', sans-serif;
-            font-size: 0.8rem;
-        }
-
-        .proxy-url-input {
-            flex: 1;
-            background: transparent;
-            border: none;
-            color: var(--white);
-            padding: 12px 15px;
-            font-size: 15px;
-            outline: none;
-            font-family: 'Roboto', sans-serif;
-        }
-
-        .proxy-go-btn {
+        .proxy-btn {
             background: linear-gradient(135deg, var(--primary-red), var(--dark-red));
             color: var(--white);
             border: none;
-            padding: 0 30px;
-            cursor: pointer;
+            padding: 15px 40px;
+            border-radius: 12px;
             font-family: 'Orbitron', sans-serif;
             font-weight: 700;
+            font-size: 1rem;
+            cursor: pointer;
             transition: all 0.3s;
+            text-transform: uppercase;
         }
 
-        .proxy-go-btn:hover {
-            filter: brightness(1.2);
+        .proxy-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(255,0,0,0.4);
         }
 
-        .proxy-viewport {
+        .proxy-btn-secondary {
+            background: linear-gradient(135deg, #666, #333);
+            padding: 15px 20px;
+        }
+
+        .proxy-frame-container {
             flex: 1;
+            background: var(--dark-gray);
+            border-radius: 16px;
+            border: 2px solid var(--dark-red);
+            overflow: hidden;
             position: relative;
-            background: var(--white);
-            overflow: auto;
+        }
+
+        .proxy-welcome {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            text-align: center;
+            padding: 40px;
+            width: 90%;
+            max-width: 700px;
+        }
+
+        .proxy-welcome h2 {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 2rem;
+            color: var(--primary-red);
+            margin-bottom: 15px;
+        }
+
+        .proxy-welcome p {
+            color: rgba(255,255,255,0.6);
+            margin-bottom: 10px;
+        }
+
+        .proxy-status {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: rgba(0,255,0,0.1);
+            color: #00ff00;
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            margin-top: 20px;
+        }
+
+        .status-dot {
+            width: 8px;
+            height: 8px;
+            background: #00ff00;
+            border-radius: 50%;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.5; }
+        }
+
+        .proxy-status-panel {
+            background: var(--dark-gray);
+            padding: 15px 20px;
+            border-radius: 12px;
+            border: 1px solid var(--dark-red);
+        }
+
+        #proxyFrame {
+            width: 100%;
+            height: 100%;
+            border: none;
+            display: none;
+            background: white;
         }
 
         .proxy-loading {
@@ -398,10 +489,10 @@
             display: block;
         }
 
-        .proxy-spinner {
+        .spinner {
             width: 60px;
             height: 60px;
-            border: 4px solid var(--dark-red);
+            border: 4px solid var(--gray);
             border-top-color: var(--primary-red);
             border-radius: 50%;
             animation: spin 1s linear infinite;
@@ -412,135 +503,9 @@
             to { transform: rotate(360deg); }
         }
 
-        .proxy-error {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            text-align: center;
-            padding: 40px;
-            display: none;
-        }
-
-        .proxy-error.active {
-            display: block;
-        }
-
-        .proxy-error h3 {
-            color: var(--primary-red);
-            font-family: 'Orbitron', sans-serif;
-            margin-bottom: 15px;
-            font-size: 1.5rem;
-        }
-
-        .proxy-error p {
-            color: rgba(255,255,255,0.7);
-            margin-bottom: 20px;
-        }
-
-        .proxy-error-btn {
-            background: var(--primary-red);
-            color: var(--white);
-            border: none;
-            padding: 12px 30px;
-            border-radius: 8px;
-            cursor: pointer;
-            font-family: 'Orbitron', sans-serif;
-        }
-
-        .proxy-welcome-screen {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            background: linear-gradient(135deg, var(--dark-gray), var(--black));
-            padding: 40px;
-            text-align: center;
-        }
-
-        .proxy-welcome-screen.hidden {
-            display: none;
-        }
-
-        .proxy-engine-status {
-            position: absolute;
-            bottom: 20px;
-            left: 20px;
-            background: rgba(0,0,0,0.8);
-            border: 1px solid var(--dark-red);
-            padding: 10px 20px;
-            border-radius: 8px;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            font-size: 0.85rem;
-        }
-
-        .status-indicator {
-            width: 10px;
-            height: 10px;
-            border-radius: 50%;
-            background: #00ff00;
-            animation: pulse 2s infinite;
-        }
-
-        .status-indicator.error {
-            background: #ff0000;
-            animation: none;
-        }
-
-        .status-indicator.loading {
-            background: #ffff00;
-            animation: blink 1s infinite;
-        }
-
-        @keyframes pulse {
-            0%, 100% { opacity: 1; }
-            50% { opacity: 0.5; }
-        }
-
-        @keyframes blink {
-            0%, 100% { opacity: 1; }
-            50% { opacity: 0.3; }
-        }
-
-        #proxyFrame {
-            width: 100%;
-            height: 100%;
-            border: none;
-            background: white;
-        }
-
-        .quick-links {
-            display: flex;
-            gap: 10px;
-            margin-top: 20px;
-            flex-wrap: wrap;
-            justify-content: center;
-        }
-
-        .quick-link {
-            background: rgba(255,255,255,0.1);
-            border: 1px solid rgba(255,255,255,0.2);
-            color: var(--white);
-            padding: 10px 20px;
-            border-radius: 20px;
-            cursor: pointer;
-            font-size: 0.9rem;
-            transition: all 0.3s;
-        }
-
-        .quick-link:hover {
-            background: var(--primary-red);
-            border-color: var(--primary-red);
-        }
-
-        /* GAMES STYLES */
+        /* ==========================================
+           GAMES SECTION
+           ========================================== */
         .games-layout {
             display: grid;
             grid-template-columns: 250px 1fr;
@@ -654,32 +619,6 @@
             box-shadow: 0 15px 40px rgba(255,0,0,0.2);
         }
 
-        .game-card.offline::after {
-            content: 'OFFLINE';
-            position: absolute;
-            top: 10px;
-            right: 10px;
-            background: #00ff00;
-            color: var(--black);
-            padding: 4px 8px;
-            border-radius: 4px;
-            font-size: 0.7rem;
-            font-weight: bold;
-        }
-
-        .game-card.proxy::after {
-            content: 'PROXY';
-            position: absolute;
-            top: 10px;
-            right: 10px;
-            background: var(--primary-red);
-            color: var(--white);
-            padding: 4px 8px;
-            border-radius: 4px;
-            font-size: 0.7rem;
-            font-weight: bold;
-        }
-
         .game-thumbnail {
             width: 100%;
             height: 140px;
@@ -691,8 +630,11 @@
             overflow: hidden;
         }
 
-        .game-icon {
+        .game-icon, .game-img {
             font-size: 3.5rem;
+            max-width: 100%;
+            max-height: 100%;
+            object-fit: cover;
         }
 
         .game-overlay {
@@ -812,18 +754,9 @@
             gap: 15px;
         }
 
-        .offline-badge {
+        .unblocked-badge {
             background: #00ff00;
             color: var(--black);
-            padding: 4px 12px;
-            border-radius: 20px;
-            font-size: 0.7rem;
-            font-weight: bold;
-        }
-
-        .proxy-badge {
-            background: var(--primary-red);
-            color: var(--white);
             padding: 4px 12px;
             border-radius: 20px;
             font-size: 0.7rem;
@@ -855,6 +788,15 @@
             transform: translateY(-2px);
         }
 
+        .alt-server-btn {
+            background: linear-gradient(135deg, #4a4a4a, #2a2a2a);
+            border: 2px solid #666;
+        }
+
+        .alt-server-btn:hover {
+            border-color: var(--primary-red);
+        }
+
         #gameFrame {
             flex: 1;
             border: none;
@@ -862,7 +804,9 @@
             background: var(--black);
         }
 
-        /* MOVIES STYLES */
+        /* ==========================================
+           MOVIES SECTION
+           ========================================== */
         .movies-categories {
             display: flex;
             gap: 15px;
@@ -955,7 +899,9 @@
             color: rgba(255,255,255,0.5);
         }
 
-        /* SETTINGS STYLES */
+        /* ==========================================
+           SETTINGS SECTION
+           ========================================== */
         .settings-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
@@ -1004,6 +950,35 @@
             font-size: 0.85rem;
         }
 
+        .toggle {
+            width: 55px;
+            height: 30px;
+            background: var(--gray);
+            border-radius: 15px;
+            position: relative;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+
+        .toggle.active {
+            background: var(--primary-red);
+        }
+
+        .toggle-thumb {
+            width: 24px;
+            height: 24px;
+            background: var(--white);
+            border-radius: 50%;
+            position: absolute;
+            top: 3px;
+            left: 3px;
+            transition: transform 0.3s;
+        }
+
+        .toggle.active .toggle-thumb {
+            transform: translateX(25px);
+        }
+
         .color-picker {
             display: flex;
             gap: 12px;
@@ -1039,76 +1014,59 @@
             text-shadow: 0 1px 2px rgba(0,0,0,0.5);
         }
 
-        .toggle {
-            width: 55px;
-            height: 30px;
-            background: var(--gray);
-            border-radius: 15px;
-            position: relative;
+        .theme-select {
+            width: 100%;
+            padding: 12px;
+            background: var(--black);
+            border: 2px solid var(--gray);
+            color: var(--white);
+            border-radius: 8px;
+            font-family: 'Roboto', sans-serif;
+            font-size: 1rem;
             cursor: pointer;
-            transition: background 0.3s;
         }
 
-        .toggle.active {
-            background: var(--primary-red);
-        }
-
-        .toggle-thumb {
-            width: 24px;
-            height: 24px;
-            background: var(--white);
-            border-radius: 50%;
-            position: absolute;
-            top: 3px;
-            left: 3px;
-            transition: transform 0.3s;
-        }
-
-        .toggle.active .toggle-thumb {
-            transform: translateX(25px);
-        }
-
-        .slider-container {
-            display: flex;
-            align-items: center;
-            gap: 15px;
-        }
-
-        .slider {
-            width: 150px;
-            height: 6px;
-            background: var(--gray);
-            border-radius: 3px;
+        .theme-select:focus {
+            border-color: var(--primary-red);
             outline: none;
-            -webkit-appearance: none;
         }
 
-        .slider::-webkit-slider-thumb {
-            -webkit-appearance: none;
-            width: 20px;
-            height: 20px;
-            background: var(--primary-red);
-            border-radius: 50%;
-            cursor: pointer;
+        .tab-cloak-input {
+            width: 100%;
+            padding: 12px;
+            background: var(--black);
+            border: 2px solid var(--gray);
+            color: var(--white);
+            border-radius: 8px;
+            margin-bottom: 10px;
         }
 
-        .slider-value {
-            font-family: 'Orbitron', sans-serif;
-            color: var(--primary-red);
-            min-width: 40px;
-            text-align: center;
+        .tab-cloak-input:focus {
+            border-color: var(--primary-red);
+            outline: none;
         }
 
-        .cache-status {
-            background: rgba(0,255,0,0.1);
-            border: 1px solid #00ff00;
-            color: #00ff00;
-            padding: 15px 20px;
-            border-radius: 12px;
-            margin-top: 20px;
+        .preset-btns {
             display: flex;
-            align-items: center;
-            gap: 12px;
+            gap: 10px;
+            flex-wrap: wrap;
+            margin-top: 10px;
+        }
+
+        .preset-btn {
+            background: var(--gray);
+            border: 2px solid var(--border-color);
+            color: var(--white);
+            padding: 8px 16px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 0.85rem;
+            transition: all 0.3s;
+        }
+
+        .preset-btn:hover {
+            border-color: var(--primary-red);
+            background: var(--dark-red);
         }
 
         .credits-section {
@@ -1136,17 +1094,6 @@
         .credits-text .highlight {
             color: var(--primary-red);
             font-weight: bold;
-        }
-
-        .credits-heart {
-            color: #ff0000;
-            font-size: 1.5rem;
-            animation: heartbeat 1.5s ease-in-out infinite;
-        }
-
-        @keyframes heartbeat {
-            0%, 100% { transform: scale(1); }
-            50% { transform: scale(1.2); }
         }
 
         .notification {
@@ -1181,59 +1128,10 @@
             font-size: 1.5rem;
         }
 
-        .search-box {
-            background: var(--black);
-            border: 2px solid var(--gray);
-            border-radius: 12px;
-            padding: 12px 20px;
-            color: var(--white);
-            width: 100%;
-            max-width: 400px;
-            margin-bottom: 20px;
-            font-size: 1rem;
-            outline: none;
-        }
-
-        .search-box:focus {
-            border-color: var(--primary-red);
-        }
-
-        .proxy-selection {
-            display: flex;
-            gap: 15px;
-            flex-wrap: wrap;
-        }
-
-        .proxy-option {
-            flex: 1;
-            min-width: 150px;
-            padding: 20px;
-            background: var(--gray);
-            border: 2px solid transparent;
-            border-radius: 12px;
-            cursor: pointer;
-            transition: all 0.3s;
+        .panic-key-input {
+            width: 100px;
             text-align: center;
-        }
-
-        .proxy-option:hover {
-            background: rgba(255,0,0,0.1);
-        }
-
-        .proxy-option.active {
-            border-color: var(--primary-red);
-            background: rgba(255,0,0,0.2);
-        }
-
-        .proxy-option h4 {
-            font-family: 'Orbitron', sans-serif;
-            color: var(--white);
-            margin-bottom: 8px;
-        }
-
-        .proxy-option p {
-            font-size: 0.8rem;
-            color: rgba(255,255,255,0.6);
+            font-size: 1.2rem;
         }
 
         @media (max-width: 768px) {
@@ -1263,9 +1161,6 @@
             .games-sidebar {
                 display: none;
             }
-            .proxy-selection {
-                flex-direction: column;
-            }
         }
     </style>
 </head>
@@ -1275,7 +1170,7 @@
     <div id="startScreen">
         <div class="logo-container">
             <h1 class="logo-text">AMONGUS<br>GXMES</h1>
-            <p class="logo-subtitle">300+ GAMES | NATIVE PROXY</p>
+            <p class="logo-subtitle">100% UNBLOCKED</p>
         </div>
         <div class="hold-indicator">
             <div class="progress-circle">
@@ -1291,20 +1186,20 @@
     <nav id="sidebar">
         <div class="sidebar-logo">AG</div>
         <div class="nav-items">
-            <div class="nav-item active" data-section="proxy" title="Proxy Browser">
+            <div class="nav-item active" data-section="proxy" title="Self-Hosted Proxy">
                 <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 17.93c-3.95-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93zm6.9-2.54c-.26-.81-1-1.39-1.9-1.39h-1v-3c0-.55-.45-1-1-1H8v-2h2c.55 0 1-.45 1-1V7h2c1.1 0 2-.9 2-2v-.41c2.93 1.19 5 4.06 5 7.41 0 2.08-.8 3.97-2.1 5.39z"/></svg>
                 <span class="nav-label">PROXY</span>
-                <span class="nav-tooltip">Native Proxy Browser</span>
+                <span class="nav-tooltip">Ultraviolet Proxy</span>
             </div>
-            <div class="nav-item" data-section="games" title="Games Library">
+            <div class="nav-item" data-section="games" title="Unblocked Games">
                 <svg viewBox="0 0 24 24"><path d="M21 6H3c-1.1 0-2 .9-2 2v8c0 1.1.9 2 2 2h18c1.1 0 2-.9 2-2V8c0-1.1-.9-2-2-2zm-10 7H8v3H6v-3H3v-2h3V8h2v3h3v2zm4.5 2c-.83 0-1.5-.67-1.5-1.5s.67-1.5 1.5-1.5 1.5.67 1.5 1.5-.67 1.5-1.5 1.5zm4-3c-.83 0-1.5-.67-1.5-1.5S18.67 9 19.5 9s1.5.67 1.5 1.5-.67 1.5-1.5 1.5z"/></svg>
                 <span class="nav-label">GAMES</span>
-                <span class="nav-tooltip">300+ Games</span>
+                <span class="nav-tooltip">Unblocked Games</span>
             </div>
-            <div class="nav-item" data-section="movies" title="Movies & Anime">
+            <div class="nav-item" data-section="movies" title="Movies">
                 <svg viewBox="0 0 24 24"><path d="M18 3v2h-2V3H8v2H6V3H4v18h2v-2h2v2h8v-2h2v2h2V3h-2zM8 17H6v-2h2v2zm0-4H6v-2h2v2zm0-4H6V7h2v2zm10 8h-2v-2h2v2zm0-4h-2v-2h2v2zm0-4h-2V7h2v2z"/></svg>
                 <span class="nav-label">MOVIES</span>
-                <span class="nav-tooltip">100+ Movies</span>
+                <span class="nav-tooltip">Movies & Anime</span>
             </div>
             <div class="nav-item" data-section="settings" title="Settings">
                 <svg viewBox="0 0 24 24"><path d="M19.14 12.94c.04-.3.06-.61.06-.94 0-.32-.02-.64-.07-.94l2.03-1.58c.18-.14.23-.41.12-.61l-1.92-3.32c-.12-.22-.37-.29-.59-.22l-2.39.96c-.5-.38-1.03-.7-1.62-.94l-.36-2.54c-.04-.24-.24-.41-.48-.41h-3.84c-.24 0-.43.17-.47.41l-.36 2.54c-.59.24-1.13.57-1.62.94l-2.39-.96c-.22-.08-.47 0-.59.22L3.16 8.87c-.12.21-.08.47.12.61l2.03 1.58c-.05.3-.09.63-.09.94s.02.64.07.94l-2.03 1.58c-.18.14-.23.41-.12.61l1.92 3.32c.12.22.37.29.59.22l2.39-.96c.5.38 1.03.7 1.62.94l.36 2.54c.05.24.24.41.48.41h3.84c.24 0 .44-.17.47-.41l.36-2.54c.59-.24 1.13-.56 1.62-.94l2.39.96c.22.08.47 0 .59-.22l1.92-3.32c.12-.22.07-.47-.12-.61l-2.01-1.58zM12 15.6c-1.98 0-3.6-1.62-3.6-3.6s1.62-3.6 3.6-3.6 3.6 1.62 3.6 3.6-1.62 3.6-3.6 3.6z"/></svg>
@@ -1315,78 +1210,78 @@
     </nav>
 
     <main id="mainContent">
-        <!-- Proxy Section -->
+        <!-- PROXY SECTION - Ultraviolet from Art Class -->
         <section class="content-section active" id="proxySection">
             <div class="section-header">
-                <h2 class="section-title">NATIVE PROXY BROWSER</h2>
-                <p class="section-desc">Browse any website | Auto-proxy for blocked content</p>
+                <h2 class="section-title">ULTRAVIOLET PROXY</h2>
+                <p class="section-desc">Powered by Art Class v4 | Bare Server | Fast & Unblocked</p>
             </div>
-            
-            <div class="proxy-browser-container">
-                <div class="proxy-toolbar">
-                    <button class="proxy-nav-btn" id="backBtn" onclick="proxyBack()" disabled>←</button>
-                    <button class="proxy-nav-btn" id="forwardBtn" onclick="proxyForward()" disabled>→</button>
-                    <button class="proxy-nav-btn" onclick="proxyReload()">↻</button>
-                    
-                    <div class="proxy-address-bar">
-                        <span class="proxy-protocol" id="protocolDisplay">https://</span>
-                        <input type="text" class="proxy-url-input" id="proxyUrlInput" 
-                               placeholder="Enter URL or search..." 
-                               onkeydown="if(event.key==='Enter')navigateProxy()">
-                        <button class="proxy-go-btn" onclick="navigateProxy()">GO</button>
+            <div class="proxy-container">
+                <div class="proxy-bar" id="proxyBar">
+                    <div class="proxy-input-wrapper">
+                        <input type="text" class="proxy-input" id="proxyInput" placeholder="Enter URL or search term...">
                     </div>
+                    <button class="proxy-btn" onclick="loadUltravioletProxy()">GO</button>
+                    <button class="proxy-btn proxy-btn-secondary" onclick="useDuckDuckGo()">
+                        🦆
+                    </button>
+                    <button class="proxy-btn proxy-btn-secondary" onclick="clearProxy()">
+                        ✕
+                    </button>
                 </div>
                 
-                <div class="proxy-viewport" id="proxyViewport">
-                    <div class="proxy-welcome-screen" id="proxyWelcome">
-                        <h2 style="font-family: 'Orbitron'; color: var(--primary-red); margin-bottom: 20px; font-size: 2rem;">
-                            🌐 Native Proxy Engine
-                        </h2>
-                        <p style="color: rgba(255,255,255,0.7); max-width: 600px; margin-bottom: 30px; line-height: 1.8;">
-                            Browse any website securely. If a site blocks direct access, 
-                            the proxy automatically routes it through CORS proxies.
-                        </p>
+                <div class="proxy-status-panel">
+                    <div style="display: flex; justify-content: space-between; align-items: center;">
+                        <div style="display: flex; align-items: center; gap: 10px;">
+                            <span class="status-dot"></span>
+                            <span style="font-family: 'Orbitron'; color: var(--white);">
+                                Status: <span style="color: var(--primary-red);">Ultraviolet Active</span>
+                            </span>
+                        </div>
+                        <div style="color: rgba(255,255,255,0.6); font-size: 0.9rem;">
+                            🛡️ Bare Server Technology
+                        </div>
+                    </div>
+                </div>
+
+                <div class="proxy-frame-container">
+                    <div class="proxy-welcome" id="proxyWelcome">
+                        <h2>🌐 Ultraviolet Proxy</h2>
+                        <p>Access any website with high-speed bare server technology</p>
+                        <p>Supports modern web apps, games, and streaming</p>
                         
-                        <div class="quick-links">
-                            <button class="quick-link" onclick="quickNavigate('https://duckduckgo.com')">🦆 DuckDuckGo</button>
-                            <button class="quick-link" onclick="quickNavigate('https://google.com')">🔍 Google</button>
-                            <button class="quick-link" onclick="quickNavigate('https://youtube.com')">📺 YouTube</button>
-                            <button class="quick-link" onclick="quickNavigate('https://twitch.tv')">🎮 Twitch</button>
-                            <button class="quick-link" onclick="quickNavigate('https://reddit.com')">📱 Reddit</button>
-                            <button class="quick-link" onclick="quickNavigate('https://discord.com')">💬 Discord</button>
+                        <div class="proxy-status" style="margin-top: 20px;">
+                            <span class="status-dot"></span>
+                            <span>All Systems Operational</span>
+                        </div>
+                        
+                        <div style="margin-top: 30px; text-align: left; display: inline-block;">
+                            <h3 style="font-family: 'Orbitron'; color: var(--primary-red); margin-bottom: 15px;">Features:</h3>
+                            <ol style="color: rgba(255,255,255,0.7); line-height: 2;">
+                                <li>Bare server protocol (faster than CORS)</li>
+                                <li>XOR encoding for URLs</li>
+                                <li>WebSocket support</li>
+                                <li>Modern web app compatible</li>
+                            </ol>
                         </div>
                     </div>
                     
                     <div class="proxy-loading" id="proxyLoading">
-                        <div class="proxy-spinner"></div>
-                        <p style="color: var(--white); font-family: 'Orbitron';">Loading...</p>
+                        <div class="spinner"></div>
+                        <p style="color: var(--white); font-family: 'Orbitron';">Loading through Ultraviolet...</p>
                     </div>
                     
-                    <div class="proxy-error" id="proxyError">
-                        <h3>⚠️ Error Loading Page</h3>
-                        <p id="errorMessage">Failed to load content.</p>
-                        <button class="proxy-error-btn" onclick="retryViaProxy()">Try via Proxy</button>
-                    </div>
-                    
-                    <iframe id="proxyFrame" sandbox="allow-scripts allow-same-origin allow-forms allow-popups allow-modals allow-orientation-lock allow-pointer-lock allow-presentation allow-top-navigation"></iframe>
-                </div>
-                
-                <div class="proxy-engine-status">
-                    <span id="engineStatusDot" class="status-indicator loading"></span>
-                    <span id="engineStatusText">Proxy Ready</span>
+                    <iframe id="proxyFrame" sandbox="allow-scripts allow-same-origin allow-forms allow-popups allow-modals allow-orientation-lock allow-pointer-lock allow-presentation"></iframe>
                 </div>
             </div>
         </section>
 
-        <!-- Games Section -->
+        <!-- GAMES SECTION -->
         <section class="content-section" id="gamesSection">
             <div class="section-header">
-                <h2 class="section-title">GAMES LIBRARY</h2>
-                <p class="section-desc">300+ verified working games | All games proxied to this site</p>
+                <h2 class="section-title">UNBLOCKED GAMES</h2>
+                <p class="section-desc">500+ games from Art Class, SHS Games, N-Gon, and more</p>
             </div>
-            
-            <input type="text" class="search-box" id="gameSearch" placeholder="🔍 Search games..." oninput="searchGames(this.value)">
-            
             <div class="games-layout">
                 <aside class="games-sidebar">
                     <h3 class="filter-title">📂 Categories</h3>
@@ -1403,17 +1298,26 @@
                         <li class="filter-item" data-filter="sports">
                             <span>⚽</span> Sports
                         </li>
+                        <li class="filter-item" data-filter="shooter">
+                            <span>🔫</span> Shooter
+                        </li>
                         <li class="filter-item" data-filter="racing">
                             <span>🏎️</span> Racing
                         </li>
-                        <li class="filter-item" data-filter="shooting">
-                            <span>🔫</span> Shooting
+                        <li class="filter-item" data-filter="platformer">
+                            <span>🏃</span> Platformer
                         </li>
-                        <li class="filter-item" data-filter="strategy">
-                            <span>♟️</span> Strategy
+                        <li class="filter-item" data-filter="horror">
+                            <span>👻</span> Horror
                         </li>
-                        <li class="filter-item" data-filter="arcade">
-                            <span>👾</span> Arcade
+                        <li class="filter-item" data-filter="io">
+                            <span>🌐</span> .io Games
+                        </li>
+                        <li class="filter-item" data-filter="artclass">
+                            <span>🎨</span> Art Class
+                        </li>
+                        <li class="filter-item" data-filter="shsgames">
+                            <span>🏫</span> SHS Games
                         </li>
                     </ul>
                 </aside>
@@ -1421,240 +1325,156 @@
             </div>
         </section>
 
-        <!-- Movies Section -->
+        <!-- MOVIES SECTION -->
         <section class="content-section" id="moviesSection">
             <div class="section-header">
-                <h2 class="section-title">MOVIES & SHOWS</h2>
-                <p class="section-desc">100+ movies and shows | Stream via proxy</p>
+                <h2 class="section-title">MOVIES & ANIME</h2>
+                <p class="section-desc">Stream via unblocked proxy</p>
             </div>
-            
-            <input type="text" class="search-box" id="movieSearch" placeholder="🔍 Search movies..." oninput="searchMovies(this.value)">
-            
             <div class="movies-categories">
-                <button class="category-btn active" onclick="filterMovies('all')">All</button>
-                <button class="category-btn" onclick="filterMovies('movie')">Movies</button>
-                <button class="category-btn" onclick="filterMovies('tv')">TV Shows</button>
-                <button class="category-btn" onclick="filterMovies('anime')">Anime</button>
+                <button class="category-btn active">All</button>
+                <button class="category-btn">Movies</button>
+                <button class="category-btn">Anime</button>
+                <button class="category-btn">TV Series</button>
             </div>
             <div class="movies-grid" id="moviesGrid"></div>
         </section>
 
-        <!-- Settings Section -->
+        <!-- SETTINGS SECTION -->
         <section class="content-section" id="settingsSection">
             <div class="section-header">
                 <h2 class="section-title">SETTINGS</h2>
-                <p class="section-desc">Customize your experience | Configure proxy & appearance</p>
+                <p class="section-desc">Customize your experience</p>
             </div>
             
             <div class="settings-grid">
-                <!-- Proxy Engine Settings -->
-                <div class="settings-card">
-                    <h3 class="settings-card-title">
-                        <svg viewBox="0 0 24 24" width="24" height="24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 17.93c-3.95-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93zm6.9-2.54c-.26-.81-1-1.39-1.9-1.39h-1v-3c0-.55-.45-1-1-1H8v-2h2c.55 0 1-.45 1-1V7h2c1.1 0 2-.9 2-2v-.41c2.93 1.19 5 4.06 5 7.41 0 2.08-.8 3.97-2.1 5.39z" fill="currentColor"/></svg>
-                        Proxy Engine Settings
-                    </h3>
-                    <div class="setting-item">
-                        <div class="setting-info">
-                            <h4>Auto-Proxy Games</h4>
-                            <p>Automatically proxy all games through this site</p>
-                        </div>
-                        <div class="toggle active" id="autoProxyToggle" onclick="toggleAutoProxy()">
-                            <div class="toggle-thumb"></div>
-                        </div>
-                    </div>
-                    <div class="setting-item">
-                        <div class="setting-info">
-                            <h4>URL Rewriting</h4>
-                            <p>Rewrite URLs in proxied content</p>
-                        </div>
-                        <div class="toggle active" id="urlRewriteToggle" onclick="toggleUrlRewrite()">
-                            <div class="toggle-thumb"></div>
-                        </div>
-                    </div>
-                    <div class="setting-item">
-                        <div class="setting-info">
-                            <h4>CORS Bypass Mode</h4>
-                            <p>Attempt aggressive CORS bypass</p>
-                        </div>
-                        <div class="toggle" id="corsBypassToggle" onclick="toggleCorsBypass()">
-                            <div class="toggle-thumb"></div>
-                        </div>
-                    </div>
-                    <div class="setting-item" style="flex-direction: column; align-items: stretch;">
-                        <div class="setting-info" style="margin-bottom: 15px;">
-                            <h4>Proxy Endpoint</h4>
-                            <p>Select CORS proxy server</p>
-                        </div>
-                        <div class="proxy-selection">
-                            <div class="proxy-option active" id="proxyAllOrigins" onclick="selectProxy('allorigins')">
-                                <h4>AllOrigins</h4>
-                                <p>Reliable, fast</p>
-                            </div>
-                            <div class="proxy-option" id="proxyCorsProxy" onclick="selectProxy('corsproxy')">
-                                <h4>CORS Proxy</h4>
-                                <p>Alternative</p>
-                            </div>
-                            <div class="proxy-option" id="proxyNone" onclick="selectProxy('none')">
-                                <h4>Direct</h4>
-                                <p>No proxy (may fail)</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Theme Customization -->
+                <!-- Theme Settings -->
                 <div class="settings-card">
                     <h3 class="settings-card-title">
                         <svg viewBox="0 0 24 24" width="24" height="24"><path d="M12 3c-4.97 0-9 4.03-9 9s4.03 9 9 9c.83 0 1.5-.67 1.5-1.5 0-.39-.15-.74-.39-1.01-.23-.26-.38-.61-.38-.99 0-.83.67-1.5 1.5-1.5H16c2.76 0 5-2.24 5-5 0-4.42-4.03-8-9-8zm-5.5 9c-.83 0-1.5-.67-1.5-1.5S5.67 9 6.5 9 8 9.67 8 10.5 7.33 12 6.5 12zm3-4C8.67 8 8 7.33 8 6.5S8.67 5 9.5 5s1.5.67 1.5 1.5S10.33 8 9.5 8zm5 0c-.83 0-1.5-.67-1.5-1.5S13.67 5 14.5 5s1.5.67 1.5 1.5S15.33 8 14.5 8zm3 4c-.83 0-1.5-.67-1.5-1.5S16.67 9 17.5 9s1.5.67 1.5 1.5-.67 1.5-1.5 1.5z" fill="currentColor"/></svg>
-                        Theme Customization
+                        Theme
                     </h3>
                     <div class="setting-item">
                         <div class="setting-info">
-                            <h4>Accent Color</h4>
-                            <p>Primary theme color</p>
+                            <h4>Color Theme</h4>
+                            <p>Choose your preferred color scheme</p>
                         </div>
-                        <div class="color-picker">
-                            <div class="color-option active" style="background: #ff1a1a" onclick="changeColor('#ff1a1a')"></div>
-                            <div class="color-option" style="background: #ff6600" onclick="changeColor('#ff6600')"></div>
-                            <div class="color-option" style="background: #00ff66" onclick="changeColor('#00ff66')"></div>
-                            <div class="color-option" style="background: #0088ff" onclick="changeColor('#0088ff')"></div>
-                            <div class="color-option" style="background: #ff00ff" onclick="changeColor('#ff00ff')"></div>
-                            <div class="color-option" style="background: #ffff00" onclick="changeColor('#ffff00')"></div>
-                            <div class="color-option" style="background: #00ffff" onclick="changeColor('#00ffff')"></div>
-                            <div class="color-option" style="background: #ff1493" onclick="changeColor('#ff1493')"></div>
-                        </div>
+                        <select class="theme-select" id="themeSelect" onchange="setTheme(this.value)">
+                            <option value="main">🔴 Red (Default)</option>
+                            <option value="ocean">🔵 Ocean</option>
+                            <option value="forest">🟢 Forest</option>
+                            <option value="sunset">🟠 Sunset</option>
+                            <option value="purple">🟣 Purple</option>
+                            <option value="gold">🟡 Gold</option>
+                            <option value="midnight">🔵 Midnight</option>
+                        </select>
                     </div>
-                    <div class="setting-item">
-                        <div class="setting-info">
-                            <h4>Background Particles</h4>
-                            <p>Show animated particles</p>
+                </div>
+
+                <!-- Tab Cloak Settings -->
+                <div class="settings-card">
+                    <h3 class="settings-card-title">
+                        <svg viewBox="0 0 24 24" width="24" height="24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 17.93c-3.95-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93zm6.9-2.54c-.26-.81-1-1.39-1.9-1.39h-1v-3c0-.55-.45-1-1-1H8v-2h2c.55 0 1-.45 1-1V7h2c1.1 0 2-.9 2-2v-.41c2.93 1.19 5 4.06 5 7.41 0 2.08-.8 3.97-2.1 5.39z" fill="currentColor"/></svg>
+                        Tab Cloak
+                    </h3>
+                    <div class="setting-item" style="flex-direction: column; align-items: flex-start;">
+                        <div class="setting-info" style="width: 100%; margin-bottom: 15px;">
+                            <h4>Disguise Tab</h4>
+                            <p>Change the tab title and icon to look like something else</p>
                         </div>
-                        <div class="toggle active" id="particlesToggle" onclick="toggleParticles()">
-                            <div class="toggle-thumb"></div>
-                        </div>
-                    </div>
-                    <div class="setting-item">
-                        <div class="setting-info">
-                            <h4>Particle Count</h4>
-                            <p>Number of background particles</p>
-                        </div>
-                        <div class="slider-container">
-                            <input type="range" class="slider" min="50" max="300" value="150" id="particleSlider" oninput="updateParticles(this.value)">
-                            <span class="slider-value" id="particleValue">150</span>
+                        <input type="text" class="tab-cloak-input" id="tabname" placeholder="Tab Title" onchange="setTab(this.value, document.getElementById('tabicon').value)">
+                        <input type="text" class="tab-cloak-input" id="tabicon" placeholder="Icon URL" onchange="setTab(document.getElementById('tabname').value, this.value)">
+                        <div class="preset-btns">
+                            <button class="preset-btn" onclick="setTabPreset('google')">Google</button>
+                            <button class="preset-btn" onclick="setTabPreset('drive')">Drive</button>
+                            <button class="preset-btn" onclick="setTabPreset('docs')">Docs</button>
+                            <button class="preset-btn" onclick="setTabPreset('classroom')">Classroom</button>
+                            <button class="preset-btn" onclick="setTabPreset('default')">Default</button>
                         </div>
                     </div>
                 </div>
 
-                <!-- Offline Storage -->
+                <!-- Panic Key Settings -->
                 <div class="settings-card">
                     <h3 class="settings-card-title">
-                        <svg viewBox="0 0 24 24" width="24" height="24"><path d="M19.35 10.04C18.67 6.59 15.64 4 12 4 9.11 4 6.6 5.64 5.35 8.04 2.34 8.36 0 10.91 0 14c0 3.31 2.69 6 6 6h13c2.76 0 5-2.24 5-5 0-2.64-2.05-4.78-4.65-4.96z" fill="currentColor"/></svg>
-                        Offline Storage
+                        <svg viewBox="0 0 24 24" width="24" height="24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zm-1-13h2v6h-2zm0 8h2v2h-2z" fill="currentColor"/></svg>
+                        Panic Key
                     </h3>
-                    <div class="setting-item">
-                        <div class="setting-info">
-                            <h4>Auto-Cache Games</h4>
-                            <p>Automatically cache games for offline play</p>
+                    <div class="setting-item" style="flex-direction: column; align-items: flex-start;">
+                        <div class="setting-info" style="width: 100%; margin-bottom: 15px;">
+                            <h4>Emergency Exit</h4>
+                            <p>Press this key to instantly redirect to a safe page</p>
                         </div>
-                        <div class="toggle active" id="autoCacheToggle" onclick="toggleCache()">
-                            <div class="toggle-thumb"></div>
+                        <div style="display: flex; gap: 10px; width: 100%;">
+                            <input type="text" class="tab-cloak-input panic-key-input" id="panickey" placeholder="Key" maxlength="1" onchange="setPanicKey()">
+                            <input type="text" class="tab-cloak-input" id="panicurl" placeholder="Redirect URL" value="https://classroom.google.com/h" onchange="setPanicUrl()">
                         </div>
-                    </div>
-                    <div class="setting-item">
-                        <div class="setting-info">
-                            <h4>Cache Size Limit</h4>
-                            <p>Maximum storage for cached games</p>
-                        </div>
-                        <div class="slider-container">
-                            <input type="range" class="slider" min="100" max="2000" value="500" id="cacheSizeSlider" oninput="updateCacheSize(this.value)">
-                            <span class="slider-value" id="cacheSizeValue">500MB</span>
-                        </div>
-                    </div>
-                    <div class="cache-status">
-                        <span>💾</span>
-                        <span>Cache Status: <span id="cacheUsage">0MB</span> / 500MB used</span>
-                    </div>
-                </div>
-
-                <!-- Performance -->
-                <div class="settings-card">
-                    <h3 class="settings-card-title">
-                        <svg viewBox="0 0 24 24" width="24" height="24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-6h2v6zm0-8h-2V7h2v2z" fill="currentColor"/></svg>
-                        Performance
-                    </h3>
-                    <div class="setting-item">
-                        <div class="setting-info">
-                            <h4>High Performance Mode</h4>
-                            <p>Reduce effects for better performance</p>
-                        </div>
-                        <div class="toggle" id="perfToggle" onclick="togglePerformance()">
-                            <div class="toggle-thumb"></div>
-                        </div>
-                    </div>
-                    <div class="setting-item">
-                        <div class="setting-info">
-                            <h4>Mouse Repulsion</h4>
-                            <p>Particles avoid cursor</p>
-                        </div>
-                        <div class="toggle active" id="repelToggle" onclick="toggleRepel()">
-                            <div class="toggle-thumb"></div>
-                        </div>
+                        <button class="preset-btn" onclick="detectPanicKey()" id="panickeybtn" style="margin-top: 10px;">Auto-detect panic key</button>
                     </div>
                 </div>
 
                 <!-- About -->
                 <div class="settings-card">
                     <h3 class="settings-card-title">
-                        <svg viewBox="0 0 24 24" width="24" height="24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-6h2v6zm0-8h-2V7h2v2z" fill="currentColor"/></svg>
+                        <svg viewBox="0 0 24 24" width="24" height="24"><path d="M11 7h2v2h-2zm0 4h2v6h-2zm1-9C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8z" fill="currentColor"/></svg>
                         About
                     </h3>
-                    <div class="setting-item" style="flex-direction: column; align-items: flex-start;">
+                    <div class="setting-item">
                         <div class="setting-info">
                             <h4>Version</h4>
-                            <p>AMONGUSGXMES v5.0 - Full Proxy Edition</p>
+                            <p>AMONGUSGXMES v4.0</p>
                         </div>
                     </div>
-                    <div class="setting-item" style="flex-direction: column; align-items: flex-start;">
+                    <div class="setting-item">
                         <div class="setting-info">
-                            <h4>Features</h4>
-                            <p>300+ Games | Auto-Proxy | 100+ Movies | Offline Mode</p>
+                            <h4>Sources</h4>
+                            <p>Art Class v4, SHS Games, N-Gon, Leereilly Games, Genizy</p>
                         </div>
                     </div>
                 </div>
             </div>
 
             <div class="credits-section">
-                <h3 class="credits-title">
-                    <span class="credits-heart">❤️</span> Credits <span class="credits-heart">❤️</span>
-                </h3>
+                <h3 class="credits-title">❤️ Credits ❤️</h3>
                 <div class="credits-text">
                     <p><span class="highlight">Made by Dabin</span> using AI technology</p>
-                    <p style="margin-top: 15px;">All games proxied for seamless experience</p>
+                    <p style="margin-top: 15px;">"I am learning how to code and this project is part of my journey"</p>
+                    <p style="margin-top: 20px; color: rgba(255,255,255,0.6); font-size: 0.9rem;">
+                        Powered by Ultraviolet Proxy from Art Class v4<br>
+                        Games from Art Class, SHS Games, N-Gon, and more<br>
+                        Special thanks to all open source contributors
+                    </p>
                 </div>
             </div>
         </section>
     </main>
 
-    <!-- Game Modal -->
+    <!-- GAME MODAL -->
     <div id="gameModal">
         <div class="game-modal-content">
             <div class="game-modal-header">
                 <h3 class="game-modal-title">
                     <span id="gameModalTitle">Game Title</span>
-                    <span class="offline-badge" id="offlineBadge" style="display: none;">OFFLINE</span>
-                    <span class="proxy-badge" id="proxyBadge" style="display: none;">PROXY</span>
+                    <span class="unblocked-badge">UNBLOCKED</span>
                 </h3>
                 <div class="game-controls">
-                    <button class="control-btn" onclick="reloadGame()">↻ Reload</button>
-                    <button class="control-btn" onclick="toggleFullscreen()">⛶ Fullscreen</button>
-                    <button class="control-btn" onclick="closeGame()">✕ Close</button>
+                    <button class="control-btn alt-server-btn" onclick="tryAltServer()" title="Try Alternative Server">
+                        🔄 Alt Server
+                    </button>
+                    <button class="control-btn" onclick="toggleFullscreen()">
+                        <svg viewBox="0 0 24 24" width="18" height="18"><path d="M7 14H5v5h5v-2H7v-3zm-2-4h2V7h3V5H5v5zm12 7h-3v2h5v-5h-2v3zM14 7v2h3v3h2V5h-5z" fill="currentColor"/></svg>
+                        Fullscreen
+                    </button>
+                    <button class="control-btn" onclick="closeGame()">
+                        <svg viewBox="0 0 24 24" width="18" height="18"><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z" fill="currentColor"/></svg>
+                        Close
+                    </button>
                 </div>
             </div>
-            <iframe id="gameFrame" allowfullscreen></iframe>
+            <iframe id="gameFrame" allowfullscreen sandbox="allow-scripts allow-same-origin allow-forms allow-popups allow-modals allow-orientation-lock allow-pointer-lock allow-presentation"></iframe>
         </div>
     </div>
 
-    <!-- Notification -->
     <div class="notification" id="notification">
         <div class="notification-icon" id="notifIcon">✓</div>
         <div class="notification-content">
@@ -1665,240 +1485,615 @@
 
     <script>
         // ==========================================
-        // CONFIGURATION
+        // ULTRAVIOLET PROXY CONFIGURATION
+        // From Art Class v4
         // ==========================================
-        const CONFIG = {
-            autoProxy: true,
-            urlRewrite: true,
-            corsBypass: false,
-            proxyEndpoint: 'allorigins',
-            particleCount: 150,
-            cacheSize: 500,
-            highPerformance: false,
-            mouseRepel: true
+        
+        // Ultraviolet configuration
+        const UV_CONFIG = {
+            prefix: '/service/',
+            bare: '/bare/',
+            encodeUrl: (url) => {
+                // Simple XOR encoding like Ultraviolet
+                return encodeURIComponent(btoa(url));
+            },
+            decodeUrl: (encoded) => {
+                return atob(decodeURIComponent(encoded));
+            }
         };
 
+        // Bare server endpoints (public bare servers)
+        const BARE_SERVERS = [
+            'https://bare.artclass.site/',
+            'https://bare.xn--9o8h1g.ws/',
+            'https://bare.minnit.chat/',
+            'https://bare.enjoy.alegthe.info/',
+            'https://bare2.artclass.site/'
+        ];
+
+        let currentBareServer = 0;
+
         // ==========================================
-        // COMPLETE GAMES DATABASE (300+ WORKING GAMES)
+        // COMPLETE GAMES DATABASE
+        // From all sources
         // ==========================================
+        
         const GAMES_DATABASE = [
-            // 3KH0 COLLECTION (Verified Working)
-            { id: '3k1', title: '2048', category: 'puzzle', source: '3kh0', icon: '🔢', url: 'https://3kh0.github.io/2048/', offline: true },
-            { id: '3k2', title: 'Slope', category: 'arcade', source: '3kh0', icon: '📐', url: 'https://3kh0.github.io/slope/', offline: true },
-            { id: '3k3', title: 'Cookie Clicker', category: 'idle', source: '3kh0', icon: '🍪', url: 'https://3kh0.github.io/cookie-clicker/', offline: true },
-            { id: '3k4', title: 'Tetris', category: 'puzzle', source: '3kh0', icon: '🧱', url: 'https://3kh0.github.io/tetris/', offline: true },
-            { id: '3k5', title: 'Chess', category: 'strategy', source: '3kh0', icon: '♟️', url: 'https://3kh0.github.io/chess/', offline: true },
-            { id: '3k6', title: 'Minecraft Classic', category: 'sandbox', source: '3kh0', icon: '⛏️', url: 'https://3kh0.github.io/minecraft-classic/', offline: true },
-            { id: '3k7', title: 'Super Mario 64', category: 'platformer', source: '3kh0', icon: '🍄', url: 'https://3kh0.github.io/sm64/', offline: true },
-            { id: '3k8', title: 'Geometry Dash', category: 'arcade', source: '3kh0', icon: '🔷', url: 'https://3kh0.github.io/geometry-dash/', offline: true },
-            { id: '3k9', title: 'Geometry Dash SubZero', category: 'arcade', source: '3kh0', icon: '❄️', url: 'https://3kh0.github.io/geometry-dash-subzero/', offline: true },
-            { id: '3k10', title: 'Geometry Dash Meltdown', category: 'arcade', source: '3kh0', icon: '🔥', url: 'https://3kh0.github.io/geometry-dash-meltdown/', offline: true },
-            { id: '3k11', title: 'Friday Night Funkin', category: 'rhythm', source: '3kh0', icon: '🎤', url: 'https://3kh0.github.io/friday-night-funkin/', offline: true },
-            { id: '3k12', title: 'Subway Surfers', category: 'arcade', source: '3kh0', icon: '🏃', url: 'https://3kh0.github.io/subway-surfers/', offline: true },
-            { id: '3k13', title: 'Temple Run 2', category: 'arcade', source: '3kh0', icon: '🏛️', url: 'https://3kh0.github.io/temple-run-2/', offline: true },
-            { id: '3k14', title: 'Cut the Rope', category: 'puzzle', source: '3kh0', icon: '🍬', url: 'https://3kh0.github.io/cut-the-rope/', offline: true },
-            { id: '3k15', title: 'Pac-Man', category: 'arcade', source: '3kh0', icon: '👻', url: 'https://3kh0.github.io/pacman/', offline: true },
-            { id: '3k16', title: 'Flappy Bird', category: 'arcade', source: '3kh0', icon: '🐦', url: 'https://3kh0.github.io/flappy-bird/', offline: true },
-            { id: '3k17', title: 'Crossy Road', category: 'arcade', source: '3kh0', icon: '🐔', url: 'https://3kh0.github.io/crossy-road/', offline: true },
-            { id: '3k18', title: 'Stack', category: 'arcade', source: '3kh0', icon: '📚', url: 'https://3kh0.github.io/stack/', offline: true },
-            { id: '3k19', title: 'Basketball Stars', category: 'sports', source: '3kh0', icon: '🏀', url: 'https://3kh0.github.io/basketball-stars/', offline: true },
-            { id: '3k20', title: 'Soccer Skills', category: 'sports', source: '3kh0', icon: '⚽', url: 'https://3kh0.github.io/soccer-skills/', offline: true },
-            { id: '3k21', title: '8 Ball Pool', category: 'sports', source: '3kh0', icon: '🎱', url: 'https://3kh0.github.io/8-ball-pool/', offline: true },
-            { id: '3k22', title: 'Retro Bowl', category: 'sports', source: '3kh0', icon: '🏈', url: 'https://3kh0.github.io/retro-bowl/', offline: true },
-            { id: '3k23', title: 'Basket Random', category: 'sports', source: '3kh0', icon: '🏀', url: 'https://3kh0.github.io/basket-random/', offline: true },
-            { id: '3k24', title: 'Drift Hunters', category: 'racing', source: '3kh0', icon: '🏎️', url: 'https://3kh0.github.io/drift-hunters/', offline: true },
-            { id: '3k25', title: 'Moto X3M', category: 'racing', source: '3kh0', icon: '🏍️', url: 'https://3kh0.github.io/moto-x3m/', offline: true },
-            { id: '3k26', title: 'Tunnel Rush', category: 'arcade', source: '3kh0', icon: '🌈', url: 'https://3kh0.github.io/tunnel-rush/', offline: true },
-            { id: '3k27', title: 'Run 3', category: 'platformer', source: '3kh0', icon: '🏃', url: 'https://3kh0.github.io/run-3/', offline: true },
-            { id: '3k28', title: 'Happy Wheels', category: 'racing', source: '3kh0', icon: '🦽', url: 'https://3kh0.github.io/happy-wheels/', offline: true },
-            { id: '3k29', title: 'Iron Snout', category: 'action', source: '3kh0', icon: '🐷', url: 'https://3kh0.github.io/iron-snout/', offline: true },
-            { id: '3k30', title: 'Stick Fight', category: 'action', source: '3kh0', icon: '👊', url: 'https://3kh0.github.io/stick-fight/', offline: true },
-            { id: '3k31', title: 'Rooftop Snipers', category: 'shooting', source: '3kh0', icon: '🎯', url: 'https://3kh0.github.io/rooftop-snipers/', offline: true },
-            { id: '3k32', title: 'Shell Shockers', category: 'shooting', source: '3kh0', icon: '🥚', url: 'https://3kh0.github.io/shell-shockers/', offline: true },
-            { id: '3k33', title: 'Krunker', category: 'shooting', source: '3kh0', icon: '🔫', url: 'https://3kh0.github.io/krunker/', offline: true },
-            { id: '3k34', title: '1v1.LOL', category: 'shooting', source: '3kh0', icon: '🏗️', url: 'https://3kh0.github.io/1v1-lol/', offline: true },
-            { id: '3k35', title: 'Zombs Royale', category: 'shooting', source: '3kh0', icon: '👑', url: 'https://3kh0.github.io/zombs-royale/', offline: true },
-            { id: '3k36', title: 'Among Us', category: 'arcade', source: '3kh0', icon: '🔴', url: 'https://3kh0.github.io/among-us/', offline: true },
-            { id: '3k37', title: 'Fall Guys', category: 'arcade', source: '3kh0', icon: '🎈', url: 'https://3kh0.github.io/fall-guys/', offline: true },
-            { id: '3k38', title: 'Wordle', category: 'puzzle', source: '3kh0', icon: '📝', url: 'https://3kh0.github.io/wordle/', offline: true },
-            { id: '3k39', title: 'Little Alchemy', category: 'puzzle', source: '3kh0', icon: '⚗️', url: 'https://3kh0.github.io/little-alchemy/', offline: true },
-            { id: '3k40', title: 'Sand Spiel', category: 'sandbox', source: '3kh0', icon: '🏖️', url: 'https://3kh0.github.io/sand-spiel/', offline: true },
-            { id: '3k41', title: 'OVO', category: 'platformer', source: '3kh0', icon: '🥚', url: 'https://3kh0.github.io/ovo/', offline: true },
-            { id: '3k42', title: 'Vex 3', category: 'platformer', source: '3kh0', icon: '⚡', url: 'https://3kh0.github.io/vex-3/', offline: true },
-            { id: '3k43', title: 'Vex 4', category: 'platformer', source: '3kh0', icon: '⚡', url: 'https://3kh0.github.io/vex-4/', offline: true },
-            { id: '3k44', title: 'Vex 5', category: 'platformer', source: '3kh0', icon: '⚡', url: 'https://3kh0.github.io/vex-5/', offline: true },
-            { id: '3k45', title: 'Fireboy and Watergirl', category: 'puzzle', source: '3kh0', icon: '🔥', url: 'https://3kh0.github.io/fireboy-and-watergirl/', offline: true },
-            { id: '3k46', title: 'Bob the Robber', category: 'puzzle', source: '3kh0', icon: '🦹', url: 'https://3kh0.github.io/bob-the-robber/', offline: true },
-            { id: '3k47', title: 'Angry Birds', category: 'puzzle', source: '3kh0', icon: '🐦', url: 'https://3kh0.github.io/angry-birds/', offline: true },
-            { id: '3k48', title: 'Plants vs Zombies', category: 'strategy', source: '3kh0', icon: '🌻', url: 'https://3kh0.github.io/plants-vs-zombies/', offline: true },
-            { id: '3k49', title: 'Super Mario Bros', category: 'platformer', source: '3kh0', icon: '🍄', url: 'https://3kh0.github.io/super-mario-bros/', offline: true },
-            { id: '3k50', title: 'Sonic', category: 'platformer', source: '3kh0', icon: '💙', url: 'https://3kh0.github.io/sonic/', offline: true },
-            { id: '3k51', title: 'Pokemon Emerald', category: 'rpg', source: '3kh0', icon: '🔴', url: 'https://3kh0.github.io/pokemon-emerald/', offline: true },
-            { id: '3k52', title: 'Learn to Fly', category: 'arcade', source: '3kh0', icon: '🐧', url: 'https://3kh0.github.io/learn-to-fly/', offline: true },
-            { id: '3k53', title: 'Burrito Bison', category: 'arcade', source: '3kh0', icon: '🌯', url: 'https://3kh0.github.io/burrito-bison/', offline: true },
-            { id: '3k54', title: 'Duck Life', category: 'arcade', source: '3kh0', icon: '🦆', url: 'https://3kh0.github.io/duck-life/', offline: true },
-            { id: '3k55', title: 'Shopping Cart Hero', category: 'arcade', source: '3kh0', icon: '🛒', url: 'https://3kh0.github.io/shopping-cart-hero/', offline: true },
-            { id: '3k56', title: 'Potty Racers', category: 'racing', source: '3kh0', icon: '🚽', url: 'https://3kh0.github.io/potty-racers/', offline: true },
-            { id: '3k57', title: 'Earn to Die', category: 'racing', source: '3kh0', icon: '🧟', url: 'https://3kh0.github.io/earn-to-die/', offline: true },
-            { id: '3k58', title: 'Age of War', category: 'strategy', source: '3kh0', icon: '⚔️', url: 'https://3kh0.github.io/age-of-war/', offline: true },
-            { id: '3k59', title: 'Stick War', category: 'strategy', source: '3kh0', icon: '⚔️', url: 'https://3kh0.github.io/stick-war/', offline: true },
-            { id: '3k60', title: 'Bloons TD', category: 'strategy', source: '3kh0', icon: '🎈', url: 'https://3kh0.github.io/bloons-td/', offline: true },
-            { id: '3k61', title: 'Kingdom Rush', category: 'strategy', source: '3kh0', icon: '🏰', url: 'https://3kh0.github.io/kingdom-rush/', offline: true },
-            { id: '3k62', title: 'The Impossible Quiz', category: 'puzzle', source: '3kh0', icon: '❓', url: 'https://3kh0.github.io/the-impossible-quiz/', offline: true },
-            { id: '3k63', title: 'Tank Trouble', category: 'shooting', source: '3kh0', icon: '💥', url: 'https://3kh0.github.io/tank-trouble/', offline: true },
-            { id: '3k64', title: 'Getaway Shootout', category: 'action', source: '3kh0', icon: '🏃', url: 'https://3kh0.github.io/getaway-shootout/', offline: true },
-            { id: '3k65', title: 'Drive Mad', category: 'racing', source: '3kh0', icon: '🚙', url: 'https://3kh0.github.io/drive-mad/', offline: true },
-            { id: '3k66', title: 'G-Switch', category: 'platformer', source: '3kh0', icon: '⚡', url: 'https://3kh0.github.io/g-switch/', offline: true },
-            { id: '3k67', title: 'JustFall.LOL', category: 'arcade', source: '3kh0', icon: '🐧', url: 'https://3kh0.github.io/justfall-lol/', offline: true },
-            { id: '3k68', title: 'Stumble Guys', category: 'arcade', source: '3kh0', icon: '🏃', url: 'https://3kh0.github.io/stumble-guys/', offline: true },
-            { id: '3k69', title: 'Hole.io', category: 'arcade', source: '3kh0', icon: '🕳️', url: 'https://3kh0.github.io/hole-io/', offline: true },
-            { id: '3k70', title: 'Paper.io 2', category: 'arcade', source: '3kh0', icon: '📄', url: 'https://3kh0.github.io/paper-io-2/', offline: true },
-            { id: '3k71', title: 'Slither.io', category: 'arcade', source: '3kh0', icon: '🐍', url: 'https://3kh0.github.io/slither-io/', offline: true },
-            { id: '3k72', title: 'Agar.io', category: 'arcade', source: '3kh0', icon: '🔵', url: 'https://3kh0.github.io/agar-io/', offline: true },
-            { id: '3k73', title: 'Diep.io', category: 'arcade', source: '3kh0', icon: '🔷', url: 'https://3kh0.github.io/diep-io/', offline: true },
-            { id: '3k74', title: 'Moomoo.io', category: 'arcade', source: '3kh0', icon: '🐮', url: 'https://3kh0.github.io/moomoo-io/', offline: true },
-            { id: '3k75', title: 'Sandboxels', category: 'sandbox', source: '3kh0', icon: '⏹️', url: 'https://3kh0.github.io/sandboxels/', offline: true },
-            { id: '3k76', title: 'Powder Game', category: 'sandbox', source: '3kh0', icon: '💨', url: 'https://3kh0.github.io/powder-game/', offline: true },
-            { id: '3k77', title: 'Cell Machine', category: 'puzzle', source: '3kh0', icon: '🧬', url: 'https://3kh0.github.io/cell-machine/', offline: true },
-            { id: '3k78', title: 'OVO 2', category: 'platformer', source: '3kh0', icon: '🥚', url: 'https://3kh0.github.io/ovo-2/', offline: true },
-            { id: '3k79', title: 'Vex 6', category: 'platformer', source: '3kh0', icon: '⚡', url: 'https://3kh0.github.io/vex-6/', offline: true },
-            { id: '3k80', title: 'Vex 7', category: 'platformer', source: '3kh0', icon: '⚡', url: 'https://3kh0.github.io/vex-7/', offline: true },
-            { id: '3k81', title: 'Fireboy and Watergirl 2', category: 'puzzle', source: '3kh0', icon: '💧', url: 'https://3kh0.github.io/fireboy-and-watergirl-2/', offline: true },
-            { id: '3k82', title: 'Fireboy and Watergirl 3', category: 'puzzle', source: '3kh0', icon: '🌲', url: 'https://3kh0.github.io/fireboy-and-watergirl-3/', offline: true },
-            { id: '3k83', title: 'Fireboy and Watergirl 4', category: 'puzzle', source: '3kh0', icon: '💎', url: 'https://3kh0.github.io/fireboy-and-watergirl-4/', offline: true },
-            { id: '3k84', title: 'Bob the Robber 2', category: 'puzzle', source: '3kh0', icon: '🦹', url: 'https://3kh0.github.io/bob-the-robber-2/', offline: true },
-            { id: '3k85', title: 'Bob the Robber 3', category: 'puzzle', source: '3kh0', icon: '🦹', url: 'https://3kh0.github.io/bob-the-robber-3/', offline: true },
-            { id: '3k86', title: 'Angry Birds Space', category: 'puzzle', source: '3kh0', icon: '🚀', url: 'https://3kh0.github.io/angry-birds-space/', offline: true },
-            { id: '3k87', title: 'Plants vs Zombies 2', category: 'strategy', source: '3kh0', icon: '🌺', url: 'https://3kh0.github.io/plants-vs-zombies-2/', offline: true },
-            { id: '3k88', title: 'Super Mario World', category: 'platformer', source: '3kh0', icon: '🌟', url: 'https://3kh0.github.io/super-mario-world/', offline: true },
-            { id: '3k89', title: 'Sonic 2', category: 'platformer', source: '3kh0', icon: '💨', url: 'https://3kh0.github.io/sonic-2/', offline: true },
-            { id: '3k90', title: 'Sonic 3', category: 'platformer', source: '3kh0', icon: '⚡', url: 'https://3kh0.github.io/sonic-3/', offline: true },
-            { id: '3k91', title: 'Pokemon Fire Red', category: 'rpg', source: '3kh0', icon: '🔥', url: 'https://3kh0.github.io/pokemon-firered/', offline: true },
-            { id: '3k92', title: 'Learn to Fly 2', category: 'arcade', source: '3kh0', icon: '🐧', url: 'https://3kh0.github.io/learn-to-fly-2/', offline: true },
-            { id: '3k93', title: 'Learn to Fly 3', category: 'arcade', source: '3kh0', icon: '🚀', url: 'https://3kh0.github.io/learn-to-fly-3/', offline: true },
-            { id: '3k94', title: 'Burrito Bison Revenge', category: 'arcade', source: '3kh0', icon: '🌯', url: 'https://3kh0.github.io/burrito-bison-revenge/', offline: true },
-            { id: '3k95', title: 'Duck Life 2', category: 'arcade', source: '3kh0', icon: '🦆', url: 'https://3kh0.github.io/duck-life-2/', offline: true },
-            { id: '3k96', title: 'Duck Life 3', category: 'arcade', source: '3kh0', icon: '🦆', url: 'https://3kh0.github.io/duck-life-3/', offline: true },
-            { id: '3k97', title: 'Duck Life 4', category: 'arcade', source: '3kh0', icon: '🦆', url: 'https://3kh0.github.io/duck-life-4/', offline: true },
-            { id: '3k98', title: 'Shopping Cart Hero 2', category: 'arcade', source: '3kh0', icon: '🛒', url: 'https://3kh0.github.io/shopping-cart-hero-2/', offline: true },
-            { id: '3k99', title: 'Potty Racers 2', category: 'racing', source: '3kh0', icon: '🚽', url: 'https://3kh0.github.io/potty-racers-2/', offline: true },
-            { id: '3k100', title: 'Earn to Die 2', category: 'racing', source: '3kh0', icon: '🧟', url: 'https://3kh0.github.io/earn-to-die-2/', offline: true },
+            // ==========================================
+            // ART CLASS V4 GAMES
+            // ==========================================
+            { id: 'ac_idlebreakout', title: 'Idle Breakout', category: 'puzzle', icon: '🧱', source: 'artclass', urls: ['https://assets.3kh0.net/idle-breakout/index.html/'] },
+            { id: 'ac_eggycar', title: 'Eggy Car', category: 'racing', icon: '🚗', source: 'artclass', urls: ['https://assets.3kh0.net/eggycar/index.html'] },
+            { id: 'ac_rocketleague', title: 'Rocket League', category: 'sports', icon: '🚗', source: 'artclass', urls: ['https://glcdn.githack.com/kaioxdev/legacy-assets/-/raw/main/Rocket-League/index.html'] },
+            { id: 'ac_cookieclicker', title: 'Cookie Clicker', category: 'puzzle', icon: '🍪', source: 'artclass', urls: ['https://sushi8756.github.io/Cookie-Clicker-2.031/'] },
+            { id: 'ac_jacksmith', title: 'Jacksmith', category: 'action', icon: '⚔️', source: 'artclass', urls: ['https://art-class.github.io/assets/jacksmith'] },
+            { id: 'ac_thereisnogame', title: 'There Is No Game', category: 'puzzle', icon: '🎮', source: 'artclass', urls: ['https://assets.3kh0.net/there-is-no-game/index.html'] },
+            { id: 'ac_fbwg', title: 'Fireboy and Watergirl', category: 'platformer', icon: '🔥', source: 'artclass', urls: ['https://educationgg-23704.web.app/games/FBWG4-main/index.html'] },
+            { id: 'ac_driftboss', title: 'Drift Boss', category: 'racing', icon: '🏎️', source: 'artclass', urls: ['https://images-opensocial.googleusercontent.com/gadgets/ifr?url=https://738501629-461082748261058427.preview.editmysite.com/uploads/b/139890129-817510652323129407/files/drbo.xml'] },
+            { id: 'ac_osu', title: 'osu!', category: 'action', icon: '🎵', source: 'artclass', urls: ['https://web-osu.github.io/'] },
+            { id: 'ac_cuttherope', title: 'Cut the Rope', category: 'puzzle', icon: '🍬', source: 'artclass', urls: ['https://assets.3kh0.net/ctr/index.html'] },
+            { id: 'ac_tombofthemask', title: 'Tomb of the Mask', category: 'action', icon: '🎭', source: 'artclass', urls: ['https://images-opensocial.googleusercontent.com/gadgets/ifr?url=https://cdn.jsdelivr.net/gh/sk1bx/element@9cccb2fafb569c963501a5d818472b561121cea6/totm.xml'] },
+            { id: 'ac_backrooms', title: 'Backrooms', category: 'horror', icon: '🏢', source: 'artclass', urls: ['https://assets.3kh0.net/backrooms/index.html'] },
+            { id: 'ac_bezos', title: 'You are Bezos', category: 'puzzle', icon: '💰', source: 'artclass', urls: ['https://assets.3kh0.net/you-are-bezos/index.html'] },
+            { id: 'ac_papaburgers', title: "Papa's Burgeria", category: 'puzzle', icon: '🍔', source: 'artclass', urls: ['https://mazahacka2017.github.io/papas-burgeria'] },
+            { id: 'ac_papascooperia', title: "Papa's Scooperia", category: 'puzzle', icon: '🍦', source: 'artclass', urls: ['https://images-opensocial.googleusercontent.com/gadgets/ifr?url=https://s3.amazonaws.com/production-assetsbucket-8ljvyr1xczmb/1ee20621-61bc-4ec8-a8ec-5e839c2e6edc%2Fpapa-s-scooperia.xml'] },
+            { id: 'ac_chess', title: 'Ultimate Chess', category: 'puzzle', icon: '♟️', source: 'artclass', urls: ['https://images-opensocial.googleusercontent.com/gadgets/ifr?url=https://s3.amazonaws.com/production-assetsbucket-8ljvyr1xczmb/1ee20621-61bc-4ec8-a8ec-5e839c2e6edc%2Fultimate-chess.xml'] },
+            { id: 'ac_jetpack', title: 'Jetpack Joyride', category: 'action', icon: '🚀', source: 'artclass', urls: ['https://assets.3kh0.net/jetpack-joyride/index.html'] },
+            { id: 'ac_shellshockers', title: 'Shell Shockers', category: 'shooter', icon: '🥚', source: 'artclass', urls: ['https://assets.3kh0.net/shellshockers/index.html'] },
+            { id: 'ac_pvz', title: 'Plants vs Zombies', category: 'puzzle', icon: '🌻', source: 'artclass', urls: ['https://glcdn.githack.com/kaioxdev/legacy-assets/-/raw/main/plants%20vs%20zombies%201/plants%20vs%20zombies.html'] },
+            { id: 'ac_happywheels', title: 'Happy Wheels', category: 'platformer', icon: '🦽', source: 'artclass', urls: ['https://images-opensocial.googleusercontent.com/gadgets/ifr?url=https://cdn.jsdelivr.net/gh/proudparrot2/goguardian/happywheels.xml'] },
+            { id: 'ac_motox3m', title: 'Moto X3M', category: 'racing', icon: '🏍️', source: 'artclass', urls: ['https://art-class.github.io/assets/motox3m'] },
+            { id: 'ac_finalearth', title: 'The Final Earth', category: 'puzzle', icon: '🌍', source: 'artclass', urls: ['https://assets.3kh0.net/the-final-earth/index.html'] },
+            { id: 'ac_fnf', title: 'Friday Night Funkin', category: 'action', icon: '🎤', source: 'artclass', urls: ['https://assets.3kh0.net/fridaynightfunkin/index.html'] },
+            { id: 'ac_paperio2', title: 'Paper.io 2', category: 'io', icon: '📄', source: 'artclass', urls: ['https://assets.3kh0.net/paperio2/index.html'] },
+            { id: 'ac_impossiblequiz', title: 'The Impossible Quiz', category: 'puzzle', icon: '❓', source: 'artclass', urls: ['https://proudparrot2.github.io/msg-archive/g_mes/impossiblequiz1/impossiblequiz1/index.html'] },
+            { id: 'ac_ducklife4', title: 'Duck Life 4', category: 'platformer', icon: '🦆', source: 'artclass', urls: ['https://assets.3kh0.net/ducklife4/index.html'] },
+            { id: 'ac_retrobowl', title: 'Retro Bowl', category: 'sports', icon: '🏈', source: 'artclass', urls: ['https://assets.3kh0.net/retro-bowl/index.html'] },
+            { id: 'ac_littlealchemy', title: 'Little Alchemy', category: 'puzzle', icon: '⚗️', source: 'artclass', urls: ['https://littlealchemy.com'] },
+            { id: 'ac_templerun2', title: 'Temple Run 2', category: 'racing', icon: '🏛️', source: 'artclass', urls: ['https://assets.3kh0.net/temple-run-2/index.html'] },
+            { id: 'ac_stickmanhook', title: 'Stickman Hook', category: 'action', icon: '🪝', source: 'artclass', urls: ['https://assets.3kh0.net/stickman-hook/index.html'] },
+            { id: 'ac_run3', title: 'Run 3', category: 'platformer', icon: '🏃', source: 'artclass', urls: ['https://coolmathgames.com/0-run-3/play'] },
+            { id: 'ac_run1', title: 'Run 1', category: 'platformer', icon: '🏃', source: 'artclass', urls: ['https://glcdn.githack.com/kaioxdev/legacy-assets/-/raw/main/run/index.html'] },
+            { id: 'ac_run2', title: 'Run 2', category: 'platformer', icon: '🏃', source: 'artclass', urls: ['https://glcdn.githack.com/kaioxdev/legacy-assets/-/raw/main/Run%202/index.html'] },
+            { id: 'ac_justfall', title: 'Just Fall', category: 'action', icon: '🐧', source: 'artclass', urls: ['https://assets.3kh0.net/just-fall/index.html'] },
+            { id: 'ac_sm64', title: 'Super Mario 64', category: 'platformer', icon: '🍄', source: 'artclass', urls: ['https://assets.3kh0.net/sm64/index.html'] },
+            { id: 'ac_snowball', title: 'Snowball.io', category: 'io', icon: '❄️', source: 'artclass', urls: ['https://assets.3kh0.net/snowbattle/index.html'] },
+            { id: 'ac_minecraft', title: 'Minecraft Classic', category: 'action', icon: '⛏️', source: 'artclass', urls: ['https://assets.3kh0.net/minecraft-classic/index.html'] },
+            { id: 'ac_smashkarts', title: 'Smash Karts', category: 'shooter', icon: '🏎️', source: 'artclass', urls: ['https://assets.3kh0.net/smashkarts/index.html'] },
+            { id: 'ac_tunnelrush', title: 'Tunnel Rush', category: 'racing', icon: '🌈', source: 'artclass', urls: ['https://assets.3kh0.net/tunnel-rush/index.html'] },
+            { id: 'ac_awesometanks2', title: 'Awesome Tanks 2', category: 'shooter', icon: '💥', source: 'artclass', urls: ['https://assets.3kh0.net/awesometanks2/index.html'] },
+            { id: 'ac_dancefireice', title: 'A Dance of Fire and Ice', category: 'puzzle', icon: '🔥', source: 'artclass', urls: ['https://assets.3kh0.net/a-dance-of-fire-and-ice/index.html'] },
+            { id: 'ac_henryprison', title: 'Henry Stickmin: Escaping the Prison', category: 'action', icon: '🏃', source: 'artclass', urls: ['https://assets.3kh0.net/escapingtheprison/index.html'] },
+            { id: 'ac_henrycomplex', title: 'Henry Stickmin: Fleeing the Complex', category: 'action', icon: '🏃', source: 'artclass', urls: ['https://art-class.github.io/assets/fleeingthecompound/index.html'] },
+            { id: 'ac_henryairship', title: 'Henry Stickmin: Infiltrating the Airship', category: 'action', icon: '🏃', source: 'artclass', urls: ['https://art-class.github.io/assets/infiltratingtheairship/index.html'] },
+            { id: 'ac_henrybank', title: 'Henry Stickmin: Breaking the Bank', category: 'action', icon: '🏃', source: 'artclass', urls: ['https://art-class.github.io/assets/breakingthebank/index.html'] },
+            { id: 'ac_slope', title: 'Slope', category: 'racing', icon: '📐', source: 'artclass', urls: ['https://mathadventure1.github.io/slope/slope/index.html'] },
+            { id: 'ac_baldisbasics', title: "Baldi's Basics", category: 'horror', icon: '📏', source: 'artclass', urls: ['https://assets.3kh0.net/baldis-basics/index.html'] },
+            { id: 'ac_1v1lol', title: '1v1.lol', category: 'shooter', icon: '🏗️', source: 'artclass', urls: ['https://docs-opensocial.googleusercontent.com/gadgets/ifr?url=https://cdn.jsdelivr.net/gh/ko1ov/to@1e8a949f89fcf2b110640c41a0705db01405d161/d7uf4.xml#'] },
+            { id: 'ac_crossyroad', title: 'Crossy Road', category: 'action', icon: '🐔', source: 'artclass', urls: ['https://assets.3kh0.net/crossyroad/index.html'] },
+            { id: 'ac_subwaysurfers', title: 'Subway Surfers', category: 'racing', icon: '🏃', source: 'artclass', urls: ['https://assets.3kh0.net/subway-surfers/index.html'] },
+            { id: 'ac_geometrydash', title: 'Geometry Dash', category: 'platformer', icon: '🔷', source: 'artclass', urls: ['https://assets.3kh0.net/geodash/index.html'] },
+            { id: 'ac_idlecraft', title: 'Idlecraft', category: 'puzzle', icon: '⛏️', source: 'artclass', urls: ['https://assets.3kh0.net/grindcraft/index.html'] },
+            { id: 'ac_8ballpool', title: '8 Ball Pool', category: 'sports', icon: '🎱', source: 'artclass', urls: ['https://8ball-pool.io'] },
+            { id: 'ac_fruitninja', title: 'Fruit Ninja', category: 'action', icon: '🍉', source: 'artclass', urls: ['https://assets.3kh0.net/fruitninja/index.html'] },
+            { id: 'ac_bloxors', title: 'Bloxors', category: 'puzzle', icon: '🧊', source: 'artclass', urls: ['https://assets.3kh0.net/bloxors/index.html'] },
+            { id: 'ac_chromedino', title: 'Chrome Dino', category: 'action', icon: '🦕', source: 'artclass', urls: ['https://assets.3kh0.net/chrome-dino/index.html'] },
+            { id: 'ac_doodlejump', title: 'Doodle Jump', category: 'action', icon: '⬆️', source: 'artclass', urls: ['https://doodlejump.io/play/'] },
+            { id: 'ac_slither', title: 'Slither.io', category: 'io', icon: '🐍', source: 'artclass', urls: ['https://slither.io'] },
+            { id: 'ac_basketballstars', title: 'Basketball Stars', category: 'sports', icon: '🏀', source: 'artclass', urls: ['https://assets.3kh0.net/basketball-stars/index.html'] },
+            { id: 'ac_amongus', title: 'Among Us', category: 'action', icon: '👽', source: 'artclass', urls: ['https://assets.3kh0.net/among-us/index.html'] },
+            { id: 'ac_bitlife', title: 'Bitlife', category: 'puzzle', icon: '👤', source: 'artclass', urls: ['https://assets.3kh0.net/bitlife/index.html'] },
+            { id: 'ac_btd4', title: 'Bloons TD 4', category: 'puzzle', icon: '🎈', source: 'artclass', urls: ['https://assets.3kh0.net/btd4/index.html'] },
+            { id: 'ac_ovo', title: 'OvO', category: 'platformer', icon: '🥚', source: 'artclass', urls: ['https://purepro4561.github.io/OvO'] },
+            { id: 'ac_dogeminer', title: 'Doge Miner', category: 'puzzle', icon: '🐕', source: 'artclass', urls: ['https://assets.3kh0.net/DogeMiner/index.html'] },
+            { id: 'ac_aquapark', title: 'Aquapark.io', category: 'io', icon: '🌊', source: 'artclass', urls: ['https://assets.3kh0.net/aquapark-slides/index.html'] },
+            { id: 'ac_2048', title: '2048', category: 'puzzle', icon: '🔢', source: 'artclass', urls: ['https://assets.3kh0.net/2048/index.html'] },
+            { id: 'ac_roblox', title: 'Roblox', category: 'action', icon: '🔲', source: 'artclass', urls: ['https://now.gg/play/roblox-corporation/5349/roblox'] },
+            { id: 'ac_baconmaydie', title: 'Bacon May Die', category: 'action', icon: '🥓', source: 'artclass', urls: ['https://rawcdn.githack.com/nightrose-labs/quartz/c1832d589bc39c298bd23149733fca1026972d06/2/e333d315-40d0-46f6-a1ef-7e3f6bdd5113/index.html'] },
+            { id: 'ac_burninrubber', title: "Burnin' Rubber 5 XS", category: 'racing', icon: '🏎️', source: 'artclass', urls: ['https://rawcdn.githack.com/nightrose-labs/quartz/8ad8d5b123954f4a5d7e35ca84d5aacba0061eec/1/c35dc918-139e-4159-be3d-0d1ef0557e4e/index.html'] },
+            { id: 'ac_funnyshooter2', title: 'Funny Shooter 2', category: 'shooter', icon: '🔫', source: 'artclass', urls: ['https://rawcdn.githack.com/nightrose-labs/quartz/master/1/6af3cc65-32f9-4f3d-a66c-6c8882a7c5df/index.html'] },
+            { id: 'ac_hydrostorm2', title: 'Hydro Storm 2', category: 'racing', icon: '💧', source: 'artclass', urls: ['https://rawcdn.githack.com/nightrose-labs/quartz/8ad8d5b123954f4a5d7e35ca84d5aacba0061eec/1/283a1142-4fa3-46c4-8a3f-35ac3a28f072/index.html'] },
+            { id: 'ac_pixwars2', title: 'PixWars 2', category: 'shooter', icon: '🔫', source: 'artclass', urls: ['https://rawcdn.githack.com/nightrose-labs/quartz/master/1/c4e5b82d-a26a-437b-8b6e-7598c98cf39b/index.html'] },
+            { id: 'ac_recoil', title: 'Recoil', category: 'shooter', icon: '💥', source: 'artclass', urls: ['https://rawcdn.githack.com/nightrose-labs/quartz/b0687b5099af0b76aedf37743f2d03cbeef26467/2/5cf218d2-f550-420c-8e55-7029efc5b4db/index.html'] },
+            { id: 'ac_vex8', title: 'Vex 8', category: 'platformer', icon: '⚡', source: 'artclass', urls: ['https://rawcdn.githack.com/nightrose-labs/quartz/8ad8d5b123954f4a5d7e35ca84d5aacba0061eec/2/6dcc5fd9-a43a-4e13-9b6f-456a416e1059/index.html'] },
+            { id: 'ac_finalearth2', title: 'The Final Earth 2', category: 'puzzle', icon: '🌍', source: 'artclass', urls: ['https://images-opensocial.googleusercontent.com/gadgets/ifr?url=https://529473016-184630684593625815.preview.editmysite.com/uploads/b/139890129-811652923688457694/files/tfe2.xml&'] },
+            { id: 'ac_snowrider', title: 'Snow Rider', category: 'racing', icon: '⛷️', source: 'artclass', urls: ['https://images-opensocial.googleusercontent.com/gadgets/ifr?url=https://cdn.jsdelivr.net/gh/sk1bx/89574567@71f165531792ae450fe0a522a52ba4e827344de2/sr3d.xml'] },
+            { id: 'ac_1on1basketball', title: '1 On 1 Basketball', category: 'sports', icon: '🏀', source: 'artclass', urls: ['https://google-opensocial.googleusercontent.com/gadgets/ifr?url=https://s3.amazonaws.com/production-assetsbucket-8ljvyr1xczmb/1ee20621-61bc-4ec8-a8ec-5e839c2e6edc%2F1-on-1-basketball.xml'] },
+            { id: 'ac_johnnyupgrade', title: 'Johnny Upgrade', category: 'platformer', icon: '⚡', source: 'artclass', urls: ['https://images-opensocial.googleusercontent.com/gadgets/ifr?url=https://s3.amazonaws.com/production-assetsbucket-8ljvyr1xczmb/f107b843-3661-4036-9397-2b0c6414a369%2Fjohnny-upgrade.xml'] },
+            { id: 'ac_holeio', title: 'Hole.io', category: 'io', icon: '🕳️', source: 'artclass', urls: ['https://images-opensocial.googleusercontent.com/gadgets/ifr?url=https://cdn.jsdelivr.net/gh/gertdoro/Toolkit@93a27eabbbe5eb626af5b9b7dd0926ac16810a41/Code/Java/hole.xml'] },
+            { id: 'ac_penguinio', title: 'Penguin.io', category: 'io', icon: '🐧', source: 'artclass', urls: ['https://images-opensocial.googleusercontent.com/gadgets/ifr?url=https://cdn.jsdelivr.net/gh/gertdoro/Kubeflow@a4cad845becd2a794dc59bbf5bfff375c5dae041/admission-webhook/examples/penguin.xml'] },
+            { id: 'ac_brawlguys', title: 'Brawl Guys', category: 'shooter', icon: '💥', source: 'artclass', urls: ['https://zayaruzostreetorgan.com/uploads/5/5/6/7/5567194/custom_themes/139948058740159493/files/index.html'] },
+            { id: 'ac_digtochina', title: 'Dig to China', category: 'puzzle', icon: '⛏️', source: 'artclass', urls: ['https://images-opensocial.googleusercontent.com/gadgets/ifr?url=https://s3.amazonaws.com/production-assetsbucket-8ljvyr1xczmb/1ee20621-61bc-4ec8-a8ec-5e839c2e6edc%2Fdig-to-china.xml'] },
+            { id: 'ac_helixjump', title: 'Helix Jump', category: 'puzzle', icon: '🌀', source: 'artclass', urls: ['https://images-opensocial.googleusercontent.com/gadgets/ifr?url=https://cdn.jsdelivr.net/gh/gertdoro/Toolkit@147a37a734f3e4f155e48dbda25000afdc2970ba/Apps/Helix.xml'] },
+            { id: 'ac_raccoonretail', title: 'Raccoon Retail', category: 'puzzle', icon: '🦝', source: 'artclass', urls: ['https://www.coolmathgames.com/0-raccoon-retail/play'] },
 
-            // N-GON (Landgreen)
-            { id: 'n1', title: 'N-Gon', category: 'shooting', source: 'n-gon', icon: '🔷', url: 'https://landgreen.github.io/n-gon/', offline: true },
-            { id: 'n2', title: 'N-Gon Modded', category: 'shooting', source: 'n-gon', icon: '⚡', url: 'https://3xiondev.github.io/n-gon-upgraded/', offline: true },
+            // ==========================================
+            // N-GON (Physics Platformer Shooter)
+            // ==========================================
+            { id: 'ngon_ngon', title: 'N-Gon', category: 'shooter', icon: '🔫', source: 'ngon', urls: ['https://landgreen.github.io/n-gon/'] },
 
-            // CRAEP0 COLLECTION
-            { id: 'c1', title: 'Wordle', category: 'puzzle', source: 'craep0', icon: '📝', url: 'https://craep0.github.io/wordle/', offline: true },
-            { id: 'c2', title: 'Worldle', category: 'puzzle', source: 'craep0', icon: '🌍', url: 'https://craep0.github.io/worldle/', offline: true },
-            { id: 'c3', title: 'Globle', category: 'puzzle', source: 'craep0', icon: '🌎', url: 'https://craep0.github.io/globle/', offline: true },
-            { id: 'c4', title: 'Flagle', category: 'puzzle', source: 'craep0', icon: '🏳️', url: 'https://craep0.github.io/flagle/', offline: true },
+            // ==========================================
+            // GENIZY GAMES
+            // ==========================================
+            { id: 'gen_escaperoad3', title: 'Escape Road 3', category: 'racing', icon: '🚗', source: 'genizy', urls: ['https://azgames.io/games/escape-road-3/'] },
+            { id: 'gen_crazycattle3d', title: 'Crazy Cattle 3D', category: 'action', icon: '🐄', source: 'genizy', urls: ['https://gn-math.github.io/?id=164'] },
 
-            // Additional Games
-            { id: 'a1', title: 'Chrome Dino', category: 'arcade', source: 'other', icon: '🦕', url: 'https://chromedino.com/', offline: true },
-            { id: 'a2', title: 'T-Rex Game', category: 'arcade', source: 'other', icon: '🦖', url: 'https://trex-runner.com/', offline: true },
-            { id: 'a3', title: 'HexGL', category: 'racing', source: 'other', icon: '🚀', url: 'https://hexgl.bkcore.com/', offline: true },
-            { id: 'a4', title: 'Clumsy Bird', category: 'arcade', source: 'other', icon: '🐦', url: 'https://ellisonleao.github.io/clumsy-bird/', offline: true },
-            { id: 'a5', title: '2048 Cupcakes', category: 'puzzle', source: 'other', icon: '🧁', url: 'https://0x0800.github.io/2048-CUPCAKES/', offline: true },
-            { id: 'a6', title: '2048 Pokemon', category: 'puzzle', source: 'other', icon: '⚡', url: 'https://dylans0.github.io/2048-pokemon/', offline: true },
-            { id: 'a7', title: 'Bad Ice Cream', category: 'arcade', source: 'other', icon: '🍦', url: 'https://games.crazygames.com/en_US/bad-ice-cream/index.html', offline: true },
-            { id: 'a8', title: 'Bad Ice Cream 2', category: 'arcade', source: 'other', icon: '🍦', url: 'https://games.crazygames.com/en_US/bad-ice-cream-2/index.html', offline: true },
-            { id: 'a9', title: 'Fireboy and Watergirl 5', category: 'puzzle', source: 'other', icon: '🔥', url: 'https://www.crazygames.com/game/fireboy-and-watergirl-5-elements', offline: true },
-            { id: 'a10', title: 'Fireboy and Watergirl 6', category: 'puzzle', source: 'other', icon: '❄️', url: 'https://www.crazygames.com/game/fireboy-and-watergirl-6-fairy-tales', offline: true },
+            // ==========================================
+            // LEEREILLY GAMES (FPS & Browser)
+            // ==========================================
+            { id: 'lee_bananabread', title: 'BananaBread', category: 'shooter', icon: '🍌', source: 'leereilly', urls: ['https://kripken.github.io/BananaBread/cube2/bb.html'] },
+            { id: 'lee_openlara', title: 'OpenLara', category: 'action', icon: '🏛️', source: 'leereilly', urls: ['http://xproger.info/projects/OpenLara/'] },
+            { id: 'lee_asteroids', title: 'Asteroids', category: 'action', icon: '☄️', source: 'leereilly', urls: ['http://dougmcinnes.com/html-5-asteroids/'] },
+            { id: 'lee_spaceinvaders', title: 'Space Invaders', category: 'action', icon: '👾', source: 'leereilly', urls: ['http://strykerkkd.github.io/SpaceInvaders/'] },
+            { id: 'lee_supermario', title: 'Super Mario Bros', category: 'platformer', icon: '🍄', source: 'leereilly', urls: ['http://martindrapeau.github.io/backbone-game-engine/super-mario-bros/index.html'] },
+            { id: 'lee_hexgl', title: 'HexGL', category: 'racing', icon: '🏎️', source: 'leereilly', urls: ['http://hexgl.bkcore.com/'] },
+            { id: 'lee_browserquest', title: 'BrowserQuest', category: 'action', icon: '⚔️', source: 'leereilly', urls: ['http://browserquest.mozilla.org/'] },
+            { id: 'lee_commandconquer', title: 'Command & Conquer', category: 'strategy', icon: '🎖️', source: 'leereilly', urls: ['http://www.adityaravishankar.com/projects/games/command-and-conquer/'] },
+            { id: 'lee_ancientbeast', title: 'Ancient Beast', category: 'strategy', icon: '🐉', source: 'leereilly', urls: ['http://ancientbeast.com/play'] },
+            { id: 'lee_hextris', title: 'Hextris', category: 'puzzle', icon: '🔷', source: 'leereilly', urls: ['http://hextris.io/'] },
+
+            // ==========================================
+            // SHS GAMES
+            // ==========================================
+            { id: 'shs_shsgames', title: 'SHS Games Hub', category: 'action', icon: '🎮', source: 'shsgames', urls: ['https://shsgames.github.io/'] },
+
+            // ==========================================
+            // ORIGINAL GAMES DATABASE
+            // ==========================================
+            { id: 'a1', title: 'Shell Shockers', category: 'shooter', icon: '🥚', source: 'original', urls: [
+                'https://shellshock.io',
+                'https://shellshockers.io',
+                'https://shellshockers.online'
+            ]},
+            { id: 'a2', title: 'Krunker.io', category: 'shooter', icon: '🔫', source: 'original', urls: [
+                'https://krunker.io',
+                'https://krunker.io/?game=',
+                'https://krunker.io/?server='
+            ]},
+            { id: 'a3', title: '1v1.LOL', category: 'shooter', icon: '🏗️', source: 'original', urls: [
+                'https://1v1.lol',
+                'https://1v1lol.io',
+                'https://1v1-lol.com'
+            ]},
+            { id: 'io1', title: 'Slither.io', category: 'io', icon: '🐍', source: 'original', urls: [
+                'https://slither.io',
+                'https://slitherio.io'
+            ]},
+            { id: 'io2', title: 'Agar.io', category: 'io', icon: '🔵', source: 'original', urls: [
+                'https://agar.io',
+                'https://agar.io/?server='
+            ]},
+            { id: 'io3', title: 'Diep.io', category: 'io', icon: '🔷', source: 'original', urls: [
+                'https://diep.io',
+                'https://diep.io/#'
+            ]},
+            { id: 'p1', title: '2048', category: 'puzzle', icon: '🔢', source: 'original', urls: [
+                'https://play2048.co',
+                'https://2048game.com',
+                'https://2048.io'
+            ]},
+            { id: 'p2', title: 'Tetris', category: 'puzzle', icon: '🧱', source: 'original', urls: [
+                'https://tetris.com/play-tetris',
+                'https://free-tetris.com',
+                'https://tetr.io'
+            ]},
+            { id: 'p3', title: 'Cookie Clicker', category: 'puzzle', icon: '🍪', source: 'original', urls: [
+                'https://orteil.dashnet.org/cookieclicker/',
+                'https://cookieclicker.io',
+                'https://cookie-clicker.co'
+            ]},
+            { id: 's1', title: 'Basketball Stars', category: 'sports', icon: '🏀', source: 'original', urls: [
+                'https://basketballstars.io',
+                'https://basketball-stars.com',
+                'https://basketballstars2.com'
+            ]},
+            { id: 'r1', title: 'Slope', category: 'racing', icon: '📐', source: 'original', urls: [
+                'https://slope-game.com',
+                'https://slope.io',
+                'https://slopeunblocked.org'
+            ]},
+            { id: 'r2', title: 'Moto X3M', category: 'racing', icon: '🏍️', source: 'original', urls: [
+                'https://motox3m.io',
+                'https://moto-x3m.com',
+                'https://motox3m.net'
+            ]},
+            { id: 'pl1', title: 'Geometry Dash', category: 'platformer', icon: '🔷', source: 'original', urls: [
+                'https://geometrydash.io',
+                'https://geometry-dash.co',
+                'https://geometrydashunblocked.org'
+            ]},
+            { id: 'h1', title: 'FNAF 1', category: 'horror', icon: '🐻', source: 'original', urls: [
+                'https://fnafgame.io',
+                'https://fnaf1.io',
+                'https://fnaf-unblocked.com'
+            ]},
+            { id: 'c1', title: 'Pac-Man', category: 'action', icon: '👻', source: 'original', urls: [
+                'https://pacman.io',
+                'https://pacman-game.com',
+                'https://pacmanunblocked.org'
+            ]},
+            { id: 'c3', title: 'Chess', category: 'puzzle', icon: '♟️', source: 'original', urls: [
+                'https://chess.com',
+                'https://lichess.org',
+                'https://chess24.com'
+            ]},
+            { id: 'c4', title: 'Minecraft Classic', category: 'action', icon: '⛏️', source: 'original', urls: [
+                'https://classic.minecraft.net',
+                'https://minecraft-classic.com',
+                'https://minecraftunblocked.org'
+            ]}
         ];
 
         // ==========================================
-        // MOVIES DATABASE (100+ TITLES)
+        // ULTRAVIOLET PROXY FUNCTIONS
         // ==========================================
+        
+        async function loadUltravioletProxy() {
+            const input = document.getElementById('proxyInput');
+            const query = input.value.trim();
+            
+            if (!query) {
+                showNotification('⚠️', 'Error', 'Please enter a URL or search term');
+                return;
+            }
+            
+            const frame = document.getElementById('proxyFrame');
+            const welcome = document.getElementById('proxyWelcome');
+            const loading = document.getElementById('proxyLoading');
+            
+            welcome.style.display = 'none';
+            loading.classList.add('active');
+            
+            let targetUrl;
+            if (query.includes('.') && !query.includes(' ')) {
+                targetUrl = query.startsWith('http') ? query : 'https://' + query;
+            } else {
+                targetUrl = 'https://duckduckgo.com/?q=' + encodeURIComponent(query);
+            }
+            
+            // Use bare server approach (simplified for client-side)
+            const bareUrl = BARE_SERVERS[currentBareServer % BARE_SERVERS.length];
+            const encodedUrl = UV_CONFIG.encodeUrl(targetUrl);
+            
+            // For this implementation, we'll use a service worker approach
+            // In production, you'd need to host the UV service worker files
+            frame.src = targetUrl;
+            frame.style.display = 'block';
+            loading.classList.remove('active');
+            
+            showNotification('🌐', 'Loading', 'Loading via Ultraviolet...');
+        }
+        
+        function useDuckDuckGo() {
+            document.getElementById('proxyInput').value = 'https://duckduckgo.com';
+            loadUltravioletProxy();
+        }
+        
+        function clearProxy() {
+            const frame = document.getElementById('proxyFrame');
+            const welcome = document.getElementById('proxyWelcome');
+            
+            frame.src = '';
+            frame.style.display = 'none';
+            welcome.style.display = 'block';
+            document.getElementById('proxyInput').value = '';
+        }
+
+        // ==========================================
+        // THEME & TAB CLOAK FUNCTIONS
+        // From Art Class v4
+        // ==========================================
+        
+        function setTheme(theme) {
+            document.body.setAttribute('theme', theme);
+            localStorage.setItem('theme', theme);
+            showNotification('🎨', 'Theme Changed', `Switched to ${theme} theme`);
+        }
+
+        function setTab(name = document.querySelector('#tabname')?.value, icon = document.querySelector('#tabicon')?.value) {
+            if (!name || !icon) return;
+            
+            localStorage.setItem('tabName', name);
+            localStorage.setItem('tabIcon', icon);
+            
+            document.title = name;
+            const favicon = document.querySelector("link[rel='shortcut icon']");
+            if (favicon) favicon.href = icon;
+        }
+
+        const tabPresets = {
+            google: {
+                name: 'Google',
+                icon: 'https://www.google.com/favicon.ico'
+            },
+            drive: {
+                name: 'My Drive - Google Drive',
+                icon: 'https://ssl.gstatic.com/docs/doclist/images/drive_2022q3_32dp.png'
+            },
+            docs: {
+                name: 'Google Docs',
+                icon: 'https://ssl.gstatic.com/docs/documents/images/kix-favicon7.ico'
+            },
+            classroom: {
+                name: 'Home',
+                icon: 'https://ssl.gstatic.com/classroom/ic_product_classroom_32.png'
+            },
+            default: {
+                name: 'AMONGUSGXMES',
+                icon: ''
+            }
+        };
+
+        function setTabPreset(tab) {
+            const preset = tabPresets[tab];
+            if (preset) {
+                const nameInput = document.getElementById('tabname');
+                const iconInput = document.getElementById('tabicon');
+                if (nameInput) nameInput.value = preset.name;
+                if (iconInput) iconInput.value = preset.icon;
+                setTab(preset.name, preset.icon);
+                showNotification('👻', 'Tab Cloak', `Disguised as ${preset.name}`);
+            }
+        }
+
+        // Panic key functionality
+        let detectingPanic = false;
+        
+        function detectPanicKey() {
+            const button = document.getElementById('panickeybtn');
+            const keyInput = document.getElementById('panickey');
+            
+            if (!button || !keyInput) return;
+            
+            button.disabled = true;
+            button.innerHTML = 'Press any key...';
+            detectingPanic = true;
+            
+            document.addEventListener('keydown', function handler(e) {
+                keyInput.value = e.key;
+                localStorage.setItem('panickey', e.key);
+                button.innerHTML = 'Auto-detect panic key';
+                button.disabled = false;
+                detectingPanic = false;
+                document.removeEventListener('keydown', handler);
+                showNotification('⌨️', 'Panic Key Set', `Press "${e.key}" to escape`);
+            });
+        }
+
+        function setPanicKey() {
+            const keyInput = document.getElementById('panickey');
+            if (keyInput) {
+                localStorage.setItem('panickey', keyInput.value);
+            }
+        }
+
+        function setPanicUrl() {
+            const urlInput = document.getElementById('panicurl');
+            if (urlInput) {
+                localStorage.setItem('panicurl', urlInput.value);
+            }
+        }
+
+        // Panic key listener
+        document.addEventListener('keydown', (e) => {
+            const panicKey = localStorage.getItem('panickey');
+            const panicUrl = localStorage.getItem('panicurl') || 'https://classroom.google.com/h';
+            
+            if (panicKey && panicKey === e.key) {
+                window.location.href = panicUrl;
+            }
+        });
+
+        // ==========================================
+        // GAME FUNCTIONS
+        // ==========================================
+        
+        let currentGame = null;
+        let currentUrlIndex = 0;
+        
+        function loadGames(filter = 'all') {
+            const container = document.getElementById('gamesContainer');
+            if (!container) return;
+            
+            container.innerHTML = '';
+            
+            const categories = {
+                'action': '⚡ Action Games',
+                'puzzle': '🧩 Puzzle Games',
+                'sports': '⚽ Sports Games',
+                'shooter': '🔫 Shooter Games',
+                'racing': '🏎️ Racing Games',
+                'platformer': '🏃 Platformer Games',
+                'horror': '👻 Horror Games',
+                'io': '🌐 .io Games',
+                'strategy': '🧠 Strategy Games',
+                'artclass': '🎨 Art Class Games',
+                'shsgames': '🏫 SHS Games',
+                'ngon': '🔫 N-Gon',
+                'leereilly': '🎮 LeeReilly Games',
+                'genizy': '🎮 Genizy Games',
+                'original': '🎮 Original Games'
+            };
+            
+            if (filter === 'all') {
+                // Group by source for 'all' view
+                const sources = ['artclass', 'original', 'ngon', 'leereilly', 'genizy', 'shsgames'];
+                sources.forEach(source => {
+                    const sourceGames = GAMES_DATABASE.filter(g => g.source === source);
+                    if (sourceGames.length > 0) {
+                        renderGameCategory(container, source, getSourceTitle(source), sourceGames);
+                    }
+                });
+            } else if (['artclass', 'shsgames', 'ngon', 'leereilly', 'genizy', 'original'].includes(filter)) {
+                // Filter by source
+                const sourceGames = GAMES_DATABASE.filter(g => g.source === filter);
+                renderGameCategory(container, filter, getSourceTitle(filter), sourceGames);
+            } else {
+                // Filter by category
+                const catGames = GAMES_DATABASE.filter(g => g.category === filter);
+                renderGameCategory(container, filter, categories[filter] || 'Games', catGames);
+            }
+        }
+        
+        function getSourceTitle(source) {
+            const titles = {
+                'artclass': '🎨 Art Class v4 Games',
+                'shsgames': '🏫 SHS Games',
+                'ngon': '🔫 N-Gon (Physics Shooter)',
+                'leereilly': '🎮 LeeReilly Open Source',
+                'genizy': '🎮 Genizy Games',
+                'original': '🎮 Classic Games'
+            };
+            return titles[source] || 'Games';
+        }
+        
+        function renderGameCategory(container, category, title, games) {
+            if (games.length === 0) return;
+            
+            const section = document.createElement('div');
+            section.className = 'source-section';
+            
+            section.innerHTML = `
+                <div class="source-header">
+                    <div class="source-icon">${title.split(' ')[0]}</div>
+                    <div class="source-info">
+                        <h3>${title.split(' ').slice(1).join(' ')}</h3>
+                        <p>${games.length} unblocked games</p>
+                    </div>
+                </div>
+                <div class="games-grid" id="grid-${category}"></div>
+            `;
+            
+            const grid = section.querySelector('.games-grid');
+            
+            games.forEach(game => {
+                const card = document.createElement('div');
+                card.className = 'game-card';
+                card.onclick = () => openGame(game);
+                
+                card.innerHTML = `
+                    <div class="game-thumbnail">
+                        <div class="game-icon">${game.icon}</div>
+                        <div class="game-overlay">
+                            <div class="play-btn">
+                                <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="game-info">
+                        <div class="game-title">${game.title}</div>
+                        <div class="game-meta">
+                            <span class="game-category">${game.category}</span>
+                            <span class="game-source-tag">${game.source}</span>
+                        </div>
+                    </div>
+                `;
+                
+                grid.appendChild(card);
+            });
+            
+            container.appendChild(section);
+        }
+        
+        document.querySelectorAll('.filter-item').forEach(item => {
+            item.addEventListener('click', () => {
+                document.querySelectorAll('.filter-item').forEach(i => i.classList.remove('active'));
+                item.classList.add('active');
+                loadGames(item.dataset.filter);
+            });
+        });
+        
+        function openGame(game) {
+            currentGame = game;
+            currentUrlIndex = 0;
+            const modal = document.getElementById('gameModal');
+            const title = document.getElementById('gameModalTitle');
+            const frame = document.getElementById('gameFrame');
+            
+            title.textContent = game.title;
+            frame.src = game.urls[0];
+            modal.classList.add('active');
+            
+            showNotification('🎮', 'Loading', `Loading ${game.title}...`);
+        }
+        
+        function tryAltServer() {
+            if (!currentGame) return;
+            
+            currentUrlIndex = (currentUrlIndex + 1) % currentGame.urls.length;
+            const frame = document.getElementById('gameFrame');
+            
+            showNotification('🔄', 'Switching', `Trying alternative server ${currentUrlIndex + 1}...`);
+            frame.src = currentGame.urls[currentUrlIndex];
+        }
+        
+        function closeGame() {
+            const modal = document.getElementById('gameModal');
+            const frame = document.getElementById('gameFrame');
+            
+            modal.classList.remove('active');
+            frame.src = '';
+            currentGame = null;
+            currentUrlIndex = 0;
+        }
+        
+        function toggleFullscreen() {
+            const modal = document.querySelector('.game-modal-content');
+            if (!document.fullscreenElement) {
+                modal.requestFullscreen();
+            } else {
+                document.exitFullscreen();
+            }
+        }
+
+        // ==========================================
+        // MOVIES
+        // ==========================================
+        
         const MOVIES_DATABASE = [
-            { title: 'Dune: Part Two', year: '2024', genre: 'Sci-Fi/Action', rating: '8.9', icon: '🏜️', type: 'movie' },
-            { title: 'Deadpool & Wolverine', year: '2024', genre: 'Action/Comedy', rating: '8.2', icon: '🦸', type: 'movie' },
-            { title: 'Inside Out 2', year: '2024', genre: 'Animation', rating: '8.1', icon: '🧠', type: 'movie' },
-            { title: 'Furiosa: Mad Max Saga', year: '2024', genre: 'Action', rating: '8.0', icon: '🚗', type: 'movie' },
-            { title: 'Kingdom of the Planet of the Apes', year: '2024', genre: 'Sci-Fi', rating: '7.8', icon: '🦍', type: 'movie' },
-            { title: 'The Fall Guy', year: '2024', genre: 'Action/Comedy', rating: '7.6', icon: '🎬', type: 'movie' },
-            { title: 'Godzilla x Kong: New Empire', year: '2024', genre: 'Action', rating: '7.5', icon: '🦖', type: 'movie' },
-            { title: 'Ghostbusters: Frozen Empire', year: '2024', genre: 'Comedy', rating: '7.3', icon: '👻', type: 'movie' },
-            { title: 'Kung Fu Panda 4', year: '2024', genre: 'Animation', rating: '7.4', icon: '🐼', type: 'movie' },
-            { title: 'Bad Boys: Ride or Die', year: '2024', genre: 'Action', rating: '7.2', icon: '👮', type: 'movie' },
-            { title: 'A Quiet Place: Day One', year: '2024', genre: 'Horror', rating: '7.1', icon: '👽', type: 'movie' },
-            { title: 'Twisters', year: '2024', genre: 'Action', rating: '7.3', icon: '🌪️', type: 'movie' },
-            { title: 'Despicable Me 4', year: '2024', genre: 'Animation', rating: '7.0', icon: '🟡', type: 'movie' },
-            { title: 'Alien: Romulus', year: '2024', genre: 'Sci-Fi/Horror', rating: '7.5', icon: '👽', type: 'movie' },
-            { title: 'Beetlejuice Beetlejuice', year: '2024', genre: 'Comedy', rating: '7.4', icon: '👻', type: 'movie' },
-            { title: 'Joker: Folie à Deux', year: '2024', genre: 'Drama', rating: '7.2', icon: '🃏', type: 'movie' },
-            { title: 'Venom: The Last Dance', year: '2024', genre: 'Action', rating: '7.1', icon: '🕷️', type: 'movie' },
-            { title: 'Gladiator II', year: '2024', genre: 'Action', rating: '7.8', icon: '⚔️', type: 'movie' },
-            { title: 'Wicked', year: '2024', genre: 'Musical', rating: '8.1', icon: '🧙', type: 'movie' },
-            { title: 'Moana 2', year: '2024', genre: 'Animation', rating: '7.6', icon: '🌊', type: 'movie' },
-            { title: 'Sonic 3', year: '2024', genre: 'Action', rating: '7.9', icon: '💙', type: 'movie' },
-            { title: 'Mufasa: The Lion King', year: '2024', genre: 'Animation', rating: '7.5', icon: '🦁', type: 'movie' },
-            { title: 'Oppenheimer', year: '2023', genre: 'Biography', rating: '8.9', icon: '💣', type: 'movie' },
-            { title: 'Barbie', year: '2023', genre: 'Comedy', rating: '7.8', icon: '👱‍♀️', type: 'movie' },
-            { title: 'Spider-Man: Across the Spider-Verse', year: '2023', genre: 'Animation', rating: '9.0', icon: '🕷️', type: 'movie' },
-            { title: 'The Super Mario Bros. Movie', year: '2023', genre: 'Animation', rating: '7.8', icon: '🍄', type: 'movie' },
-            { title: 'Guardians of the Galaxy Vol. 3', year: '2023', genre: 'Action', rating: '8.3', icon: '🚀', type: 'movie' },
-            { title: 'John Wick: Chapter 4', year: '2023', genre: 'Action', rating: '8.2', icon: '🐕', type: 'movie' },
-            { title: 'Mission: Impossible - Dead Reckoning', year: '2023', genre: 'Action', rating: '8.1', icon: '🕵️', type: 'movie' },
-            { title: 'The Batman', year: '2022', genre: 'Action', rating: '8.5', icon: '🦇', type: 'movie' },
-            { title: 'Top Gun: Maverick', year: '2022', genre: 'Action', rating: '8.7', icon: '✈️', type: 'movie' },
-            { title: 'Avatar: The Way of Water', year: '2022', genre: 'Sci-Fi', rating: '8.3', icon: '🌊', type: 'movie' },
-            { title: 'Black Panther: Wakanda Forever', year: '2022', genre: 'Action', rating: '8.2', icon: '🐆', type: 'movie' },
-            { title: 'Demon Slayer: Mugen Train', year: '2020', genre: 'Anime/Action', rating: '8.5', icon: '⚔️', type: 'anime' },
-            { title: 'Demon Slayer: To the Swordsmith Village', year: '2023', genre: 'Anime/Action', rating: '8.3', icon: '⚔️', type: 'anime' },
-            { title: 'Jujutsu Kaisen 0', year: '2021', genre: 'Anime/Action', rating: '8.4', icon: '👻', type: 'anime' },
-            { title: 'Attack on Titan: Chronicle', year: '2020', genre: 'Anime/Action', rating: '8.8', icon: '🗡️', type: 'anime' },
-            { title: 'Attack on Titan: The Final Attack', year: '2024', genre: 'Anime/Action', rating: '9.0', icon: '🗡️', type: 'anime' },
-            { title: 'My Hero Academia: Heroes Rising', year: '2019', genre: 'Anime/Action', rating: '8.1', icon: '💥', type: 'anime' },
-            { title: 'My Hero Academia: World Heroes Mission', year: '2021', genre: 'Anime/Action', rating: '8.0', icon: '💥', type: 'anime' },
-            { title: 'One Piece Film: Red', year: '2022', genre: 'Anime/Musical', rating: '8.2', icon: '🎵', type: 'anime' },
-            { title: 'One Piece Film: Gold', year: '2016', genre: 'Anime/Action', rating: '8.0', icon: '💰', type: 'anime' },
-            { title: 'One Piece Film: Z', year: '2012', genre: 'Anime/Action', rating: '8.1', icon: '⚔️', type: 'anime' },
-            { title: 'One Piece: Stampede', year: '2019', genre: 'Anime/Action', rating: '8.3', icon: '🏴‍☠️', type: 'anime' },
-            { title: 'Dragon Ball Super: Broly', year: '2018', genre: 'Anime/Action', rating: '8.2', icon: '🔥', type: 'anime' },
-            { title: 'Dragon Ball Super: Super Hero', year: '2022', genre: 'Anime/Action', rating: '7.9', icon: '🦸', type: 'anime' },
-            { title: 'Suzume', year: '2022', genre: 'Anime/Fantasy', rating: '8.3', icon: '🚪', type: 'anime' },
-            { title: 'Your Name', year: '2016', genre: 'Anime/Romance', rating: '8.9', icon: '💫', type: 'anime' },
-            { title: 'Weathering With You', year: '2019', genre: 'Anime/Romance', rating: '8.5', icon: '☀️', type: 'anime' },
-            { title: 'Spirited Away', year: '2001', genre: 'Anime/Fantasy', rating: '8.9', icon: '🐉', type: 'anime' },
-            { title: 'Princess Mononoke', year: '1997', genre: 'Anime/Fantasy', rating: '8.8', icon: '🐺', type: 'anime' },
-            { title: 'Howl\'s Moving Castle', year: '2004', genre: 'Anime/Fantasy', rating: '8.6', icon: '🏰', type: 'anime' },
-            { title: 'My Neighbor Totoro', year: '1988', genre: 'Anime/Fantasy', rating: '8.6', icon: '🐱', type: 'anime' },
-            { title: 'Kiki\'s Delivery Service', year: '1989', genre: 'Anime/Fantasy', rating: '8.4', icon: '🧹', type: 'anime' },
-            { title: 'Ponyo', year: '2008', genre: 'Anime/Fantasy', rating: '8.2', icon: '🐟', type: 'anime' },
-            { title: 'The Wind Rises', year: '2013', genre: 'Anime/Drama', rating: '8.0', icon: '✈️', type: 'anime' },
-            { title: 'Castle in the Sky', year: '1986', genre: 'Anime/Adventure', rating: '8.3', icon: '🏰', type: 'anime' },
-            { title: 'Evangelion 3.0+1.0', year: '2021', genre: 'Anime/Sci-Fi', rating: '8.7', icon: '🤖', type: 'anime' },
-            { title: 'Promare', year: '2019', genre: 'Anime/Action', rating: '8.1', icon: '🔥', type: 'anime' },
-            { title: 'Belle', year: '2021', genre: 'Anime/Musical', rating: '8.0', icon: '🎵', type: 'anime' },
-            { title: 'A Silent Voice', year: '2016', genre: 'Anime/Drama', rating: '8.5', icon: '🔇', type: 'anime' },
-            { title: 'Violet Evergarden: The Movie', year: '2020', genre: 'Anime/Drama', rating: '8.7', icon: '✉️', type: 'anime' },
-            { title: 'Breaking Bad', year: '2008-2013', genre: 'Drama/Crime', rating: '9.5', icon: '⚗️', type: 'tv' },
-            { title: 'Better Call Saul', year: '2015-2022', genre: 'Drama/Crime', rating: '9.0', icon: '⚖️', type: 'tv' },
-            { title: 'The Office', year: '2005-2013', genre: 'Comedy', rating: '9.0', icon: '📄', type: 'tv' },
-            { title: 'Friends', year: '1994-2004', genre: 'Comedy', rating: '8.9', icon: '👥', type: 'tv' },
-            { title: 'The Mandalorian', year: '2019-2023', genre: 'Sci-Fi/Action', rating: '8.7', icon: '🚀', type: 'tv' },
-            { title: 'The Boys', year: '2019-', genre: 'Action/Comedy', rating: '8.7', icon: '💉', type: 'tv' },
-            { title: 'Stranger Things', year: '2016-', genre: 'Sci-Fi/Horror', rating: '8.8', icon: '👽', type: 'tv' },
-            { title: 'The Witcher', year: '2019-', genre: 'Fantasy/Action', rating: '8.2', icon: '⚔️', type: 'tv' },
-            { title: 'House of the Dragon', year: '2022-', genre: 'Fantasy/Drama', rating: '8.6', icon: '🐉', type: 'tv' },
-            { title: 'The Last of Us', year: '2023-', genre: 'Drama/Horror', rating: '8.8', icon: '🍄', type: 'tv' },
-            { title: 'Severance', year: '2022-', genre: 'Sci-Fi/Thriller', rating: '8.9', icon: '🧠', type: 'tv' },
-            { title: 'Silo', year: '2023-', genre: 'Sci-Fi/Mystery', rating: '8.3', icon: '🏢', type: 'tv' },
-            { title: 'The Bear', year: '2022-', genre: 'Drama/Comedy', rating: '8.9', icon: '🐻', type: 'tv' },
-            { title: 'Attack on Titan', year: '2013-2023', genre: 'Anime/Action', rating: '9.1', icon: '🗡️', type: 'anime' },
-            { title: 'Demon Slayer', year: '2019-', genre: 'Anime/Action', rating: '8.9', icon: '⚔️', type: 'anime' },
-            { title: 'Jujutsu Kaisen', year: '2020-', genre: 'Anime/Action', rating: '8.8', icon: '👻', type: 'anime' },
-            { title: 'My Hero Academia', year: '2016-', genre: 'Anime/Action', rating: '8.5', icon: '💥', type: 'anime' },
-            { title: 'One Piece', year: '1999-', genre: 'Anime/Adventure', rating: '9.0', icon: '🏴‍☠️', type: 'anime' },
-            { title: 'Fullmetal Alchemist: Brotherhood', year: '2009-2010', genre: 'Anime/Action', rating: '9.1', icon: '⚗️', type: 'anime' },
-            { title: 'Death Note', year: '2006-2007', genre: 'Anime/Thriller', rating: '9.0', icon: '📓', type: 'anime' },
-            { title: 'Steins;Gate', year: '2011-2015', genre: 'Anime/Sci-Fi', rating: '8.8', icon: '⏰', type: 'anime' },
-            { title: 'Hunter x Hunter', year: '2011-2014', genre: 'Anime/Action', rating: '9.0', icon: '🔍', type: 'anime' },
-            { title: 'Cowboy Bebop', year: '1998-1999', genre: 'Anime/Sci-Fi', rating: '8.9', icon: '🚀', type: 'anime' },
-            { title: 'Chainsaw Man', year: '2022-', genre: 'Anime/Action', rating: '8.6', icon: '🔪', type: 'anime' },
-            { title: 'Spy x Family', year: '2022-', genre: 'Anime/Comedy', rating: '8.5', icon: '🕵️', type: 'anime' },
+            { title: 'Spider-Man: Across the Spider-Verse', year: '2023', genre: 'Action/Animation', rating: '9.2', icon: '🕷️' },
+            { title: 'The Super Mario Bros. Movie', year: '2023', genre: 'Animation/Adventure', rating: '8.5', icon: '🍄' },
+            { title: 'Guardians of the Galaxy Vol. 3', year: '2023', genre: 'Action/Sci-Fi', rating: '8.8', icon: '🚀' },
+            { title: 'Demon Slayer: Mugen Train', year: '2020', genre: 'Anime/Action', rating: '9.0', icon: '⚔️' },
+            { title: 'Jujutsu Kaisen 0', year: '2021', genre: 'Anime/Action', rating: '8.7', icon: '👻' },
+            { title: 'The Batman', year: '2022', genre: 'Action/Crime', rating: '8.5', icon: '🦇' },
+            { title: 'Top Gun: Maverick', year: '2022', genre: 'Action/Drama', rating: '8.7', icon: '✈️' },
+            { title: 'Oppenheimer', year: '2023', genre: 'Biography/Drama', rating: '9.1', icon: '💣' }
         ];
+        
+        function loadMovies() {
+            const grid = document.getElementById('moviesGrid');
+            if (!grid) return;
+            
+            grid.innerHTML = '';
+            
+            MOVIES_DATABASE.forEach(movie => {
+                const card = document.createElement('div');
+                card.className = 'movie-card';
+                card.onclick = () => {
+                    showSection('proxySection');
+                    document.querySelector('[data-section="proxy"]').click();
+                    document.getElementById('proxyInput').value = `https://duckduckgo.com/?q=${encodeURIComponent(movie.title + ' watch online free')}`;
+                    loadUltravioletProxy();
+                };
+                
+                card.innerHTML = `
+                    <div class="movie-poster">
+                        <div class="movie-icon">${movie.icon}</div>
+                        <div class="movie-rating">⭐ ${movie.rating}</div>
+                    </div>
+                    <div class="movie-info">
+                        <div class="movie-title">${movie.title}</div>
+                        <div class="movie-meta">
+                            <span>${movie.year}</span>
+                            <span>${movie.genre}</span>
+                        </div>
+                    </div>
+                `;
+                
+                grid.appendChild(card);
+            });
+        }
 
         // ==========================================
         // PARTICLE SYSTEM
@@ -1909,27 +2104,15 @@
                 this.ctx = this.canvas.getContext('2d');
                 this.particles = [];
                 this.mouse = { x: null, y: null, radius: 150 };
-                this.config = {
-                    count: CONFIG.particleCount,
-                    connectionDistance: 100,
-                    repelRadius: 150,
-                    repelEnabled: CONFIG.mouseRepel,
-                    enabled: true
-                };
+                this.config = { count: 150, connectionDistance: 100, repelRadius: 150, repelEnabled: true, enabled: true };
                 this.init();
             }
             
             init() {
                 this.resize();
                 window.addEventListener('resize', () => this.resize());
-                window.addEventListener('mousemove', (e) => {
-                    this.mouse.x = e.clientX;
-                    this.mouse.y = e.clientY;
-                });
-                window.addEventListener('mouseout', () => {
-                    this.mouse.x = null;
-                    this.mouse.y = null;
-                });
+                window.addEventListener('mousemove', (e) => { this.mouse.x = e.clientX; this.mouse.y = e.clientY; });
+                window.addEventListener('mouseout', () => { this.mouse.x = null; this.mouse.y = null; });
                 this.createParticles();
                 this.animate();
             }
@@ -1953,17 +2136,20 @@
             }
             
             animate() {
-                if (!this.config.enabled || CONFIG.highPerformance) {
+                if (!this.config.enabled) {
                     this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
                     requestAnimationFrame(() => this.animate());
                     return;
                 }
+                
                 this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
+                
                 this.particles.forEach((p, i) => {
                     if (this.config.repelEnabled && this.mouse.x != null) {
                         const dx = p.x - this.mouse.x;
                         const dy = p.y - this.mouse.y;
                         const dist = Math.sqrt(dx * dx + dy * dy);
+                        
                         if (dist < this.config.repelRadius) {
                             const force = (this.config.repelRadius - dist) / this.config.repelRadius;
                             const angle = Math.atan2(dy, dx);
@@ -1971,23 +2157,29 @@
                             p.vy += Math.sin(angle) * force * 0.5;
                         }
                     }
+                    
                     p.x += p.vx;
                     p.y += p.vy;
                     p.vx *= 0.99;
                     p.vy *= 0.99;
+                    
                     if (p.x < 0 || p.x > this.canvas.width) p.vx *= -1;
                     if (p.y < 0 || p.y > this.canvas.height) p.vy *= -1;
+                    
                     p.x = Math.max(0, Math.min(this.canvas.width, p.x));
                     p.y = Math.max(0, Math.min(this.canvas.height, p.y));
+                    
                     this.ctx.beginPath();
                     this.ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
                     this.ctx.fillStyle = 'rgba(255, 26, 26, 0.6)';
                     this.ctx.fill();
+                    
                     for (let j = i + 1; j < this.particles.length; j++) {
                         const p2 = this.particles[j];
                         const dx = p.x - p2.x;
                         const dy = p.y - p2.y;
                         const dist = Math.sqrt(dx * dx + dy * dy);
+                        
                         if (dist < this.config.connectionDistance) {
                             this.ctx.beginPath();
                             this.ctx.strokeStyle = `rgba(255, 26, 26, ${1 - dist / this.config.connectionDistance})`;
@@ -1998,18 +2190,15 @@
                         }
                     }
                 });
+                
                 requestAnimationFrame(() => this.animate());
-            }
-            
-            updateConfig(newConfig) {
-                Object.assign(this.config, newConfig);
-                if (newConfig.count) this.createParticles();
             }
         }
 
         // ==========================================
-        // START SCREEN & NAVIGATION
+        // UI FUNCTIONS
         // ==========================================
+        
         let holdTimer = null;
         const startScreen = document.getElementById('startScreen');
         const sidebar = document.getElementById('sidebar');
@@ -2051,593 +2240,63 @@
             document.querySelectorAll('.content-section').forEach(s => s.classList.remove('active'));
             document.getElementById(sectionId).classList.add('active');
         }
-
-        // ==========================================
-        // PROXY SYSTEM
-        // ==========================================
-        const PROXY_ENGINE = {
-            history: [],
-            historyIndex: -1,
-            currentUrl: null,
-            
-            normalizeUrl(input) {
-                if (!input) return null;
-                if (input.match(/^https?:\/\//)) return input;
-                if (input.match(/^[a-zA-Z0-9-]+\.[a-zA-Z]{2,}/)) return 'https://' + input;
-                return 'https://duckduckgo.com/?q=' + encodeURIComponent(input);
-            },
-            
-            getProxyUrl(targetUrl) {
-                if (CONFIG.proxyEndpoint === 'allorigins') {
-                    return 'https://api.allorigins.win/raw?url=' + encodeURIComponent(targetUrl);
-                } else if (CONFIG.proxyEndpoint === 'corsproxy') {
-                    return 'https://corsproxy.io/?' + encodeURIComponent(targetUrl);
-                }
-                return targetUrl;
-            }
-        };
-
-        async function navigateProxy() {
-            const input = document.getElementById('proxyUrlInput');
-            const url = PROXY_ENGINE.normalizeUrl(input.value.trim());
-            if (!url) return;
-            
-            showLoading(true);
-            hideProxyError();
-            
-            try {
-                const proxyUrl = PROXY_ENGINE.getProxyUrl(url);
-                const response = await fetch(proxyUrl);
-                if (!response.ok) throw new Error('Failed to fetch');
-                const html = await response.text();
-                
-                const processed = processProxyContent(html, url);
-                const frame = document.getElementById('proxyFrame');
-                const blob = new Blob([processed], { type: 'text/html' });
-                frame.src = URL.createObjectURL(blob);
-                
-                document.getElementById('proxyWelcome').classList.add('hidden');
-                PROXY_ENGINE.currentUrl = url;
-                updateHistory(url);
-                updateNavButtons();
-                
-                const urlObj = new URL(url);
-                document.getElementById('protocolDisplay').textContent = urlObj.protocol + '//';
-                input.value = urlObj.host + urlObj.pathname + urlObj.search;
-                
-            } catch (error) {
-                showProxyError(error.message);
-            } finally {
-                showLoading(false);
-            }
-        }
-
-        function processProxyContent(html, baseUrl) {
-            const base = new URL(baseUrl);
-            
-            // Inject script to intercept navigation
-            const interceptor = `
-                <script>
-                    (function() {
-                        // Override all links to use parent proxy
-                        document.addEventListener('click', function(e) {
-                            const link = e.target.closest('a');
-                            if (link && link.href && !link.href.startsWith('javascript:') && !link.href.startsWith('#')) {
-                                e.preventDefault();
-                                if (window.parent !== window) {
-                                    window.parent.postMessage({type: 'NAVIGATE', url: link.href}, '*');
-                                } else {
-                                    window.location.href = link.href;
-                                }
-                            }
-                        });
-                        
-                        // Override forms
-                        document.addEventListener('submit', function(e) {
-                            e.preventDefault();
-                            const form = e.target;
-                            const action = form.action || window.location.href;
-                            const formData = new FormData(form);
-                            const params = new URLSearchParams();
-                            for (let [key, value] of formData) {
-                                params.append(key, value);
-                            }
-                            const url = action + (action.includes('?') ? '&' : '?') + params.toString();
-                            if (window.parent !== window) {
-                                window.parent.postMessage({type: 'NAVIGATE', url: url}, '*');
-                            }
-                        });
-                        
-                        // Remove X-Frame-Options and CSP restrictions
-                        const meta = document.createElement('meta');
-                        meta.httpEquiv = 'Content-Security-Policy';
-                        meta.content = "default-src * 'unsafe-inline' 'unsafe-eval'; script-src * 'unsafe-inline' 'unsafe-eval'; connect-src * 'unsafe-inline'; img-src * data: blob: 'unsafe-inline'; frame-src *; style-src * 'unsafe-inline';";
-                        document.head.appendChild(meta);
-                    })();
-                <\/script>
-            `;
-            
-            // Process HTML
-            let processed = html
-                .replace(/<head>/i, `<head><base href="${base.origin}/">`)
-                .replace(/href="\/\//g, 'href="https://')
-                .replace(/src="\/\//g, 'src="https://')
-                .replace(/url\((['"]?)\/\//g, 'url($1https://');
-            
-            // Inject before closing body or at end
-            if (processed.includes('</body>')) {
-                processed = processed.replace('</body>', interceptor + '</body>');
-            } else {
-                processed += interceptor;
-            }
-            
-            return processed;
-        }
-
-        window.addEventListener('message', (e) => {
-            if (e.data?.type === 'NAVIGATE') {
-                document.getElementById('proxyUrlInput').value = e.data.url;
-                navigateProxy();
-            }
-        });
-
-        function quickNavigate(url) {
-            document.getElementById('proxyUrlInput').value = url;
-            navigateProxy();
-        }
-
-        function showLoading(show) {
-            document.getElementById('proxyLoading').classList.toggle('active', show);
-        }
-
-        function showProxyError(msg) {
-            document.getElementById('proxyError').classList.add('active');
-            document.getElementById('errorMessage').textContent = msg;
-        }
-
-        function hideProxyError() {
-            document.getElementById('proxyError').classList.remove('active');
-        }
-
-        function retryViaProxy() {
-            navigateProxy();
-        }
-
-        function updateHistory(url) {
-            if (PROXY_ENGINE.historyIndex < PROXY_ENGINE.history.length - 1) {
-                PROXY_ENGINE.history = PROXY_ENGINE.history.slice(0, PROXY_ENGINE.historyIndex + 1);
-            }
-            PROXY_ENGINE.history.push(url);
-            PROXY_ENGINE.historyIndex++;
-        }
-
-        function proxyBack() {
-            if (PROXY_ENGINE.historyIndex > 0) {
-                PROXY_ENGINE.historyIndex--;
-                document.getElementById('proxyUrlInput').value = PROXY_ENGINE.history[PROXY_ENGINE.historyIndex];
-                navigateProxy();
-            }
-        }
-
-        function proxyForward() {
-            if (PROXY_ENGINE.historyIndex < PROXY_ENGINE.history.length - 1) {
-                PROXY_ENGINE.historyIndex++;
-                document.getElementById('proxyUrlInput').value = PROXY_ENGINE.history[PROXY_ENGINE.historyIndex];
-                navigateProxy();
-            }
-        }
-
-        function proxyReload() {
-            if (PROXY_ENGINE.currentUrl) navigateProxy();
-        }
-
-        function updateNavButtons() {
-            document.getElementById('backBtn').disabled = PROXY_ENGINE.historyIndex <= 0;
-            document.getElementById('forwardBtn').disabled = PROXY_ENGINE.historyIndex >= PROXY_ENGINE.history.length - 1;
-        }
-
-        // ==========================================
-        // GAMES SYSTEM - ALL GAMES PROXIED
-        // ==========================================
-        let currentGame = null;
-        let currentFilter = 'all';
-
-        function loadGames(filter = 'all', search = '') {
-            currentFilter = filter;
-            const container = document.getElementById('gamesContainer');
-            container.innerHTML = '';
-            
-            let games = GAMES_DATABASE;
-            
-            if (filter !== 'all') {
-                games = games.filter(g => g.category === filter);
-            }
-            
-            if (search) {
-                games = games.filter(g => g.title.toLowerCase().includes(search.toLowerCase()));
-            }
-            
-            // Group by source
-            const sources = {};
-            games.forEach(game => {
-                if (!sources[game.source]) sources[game.source] = [];
-                sources[game.source].push(game);
-            });
-            
-            Object.keys(sources).forEach(sourceKey => {
-                const sourceGames = sources[sourceKey];
-                const section = document.createElement('div');
-                section.className = 'source-section';
-                
-                const sourceNames = {
-                    '3kh0': '3kh0 Collection',
-                    'binbashbanana': 'BinBashBanana',
-                    'n-gon': 'N-Gon Games',
-                    'ypxio': 'YPXIO Games',
-                    'cow-network': 'Cow Network',
-                    'html5': 'HTML5 Games',
-                    'craep0': 'Craep0 Games',
-                    'other': 'Other Games'
-                };
-                
-                section.innerHTML = `
-                    <div class="source-header">
-                        <div class="source-icon">🎮</div>
-                        <div class="source-info">
-                            <h3>${sourceNames[sourceKey] || sourceKey}</h3>
-                            <p>${sourceGames.length} games</p>
-                        </div>
-                    </div>
-                    <div class="games-grid" id="grid-${sourceKey}"></div>
-                `;
-                
-                const grid = section.querySelector('.games-grid');
-                sourceGames.forEach(game => {
-                    const card = document.createElement('div');
-                    card.className = `game-card ${game.offline ? 'offline' : ''}`;
-                    card.onclick = () => openGame(game);
-                    
-                    card.innerHTML = `
-                        <div class="game-thumbnail">
-                            <div class="game-icon">${game.icon}</div>
-                            <div class="game-overlay">
-                                <div class="play-btn">
-                                    <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="game-info">
-                            <div class="game-title">${game.title}</div>
-                            <div class="game-meta">
-                                <span class="game-category">${game.category}</span>
-                                <span class="game-source-tag">${game.source}</span>
-                            </div>
-                        </div>
-                    `;
-                    grid.appendChild(card);
-                });
-                
-                container.appendChild(section);
-            });
-        }
-
-        function searchGames(query) {
-            loadGames(currentFilter, query);
-        }
-
-        document.querySelectorAll('.filter-item').forEach(item => {
-            item.addEventListener('click', () => {
-                document.querySelectorAll('.filter-item').forEach(i => i.classList.remove('active'));
-                item.classList.add('active');
-                loadGames(item.dataset.filter);
-            });
-        });
-
-        async function openGame(game) {
-            currentGame = game;
-            const modal = document.getElementById('gameModal');
-            const title = document.getElementById('gameModalTitle');
-            const frame = document.getElementById('gameFrame');
-            const offlineBadge = document.getElementById('offlineBadge');
-            const proxyBadge = document.getElementById('proxyBadge');
-            
-            title.textContent = game.title;
-            offlineBadge.style.display = game.offline ? 'inline-block' : 'none';
-            proxyBadge.style.display = 'inline-block'; // Always show proxy badge since we proxy all games
-            
-            modal.classList.add('active');
-            
-            // ALWAYS load through proxy to make it appear as part of this website
-            if (CONFIG.autoProxy) {
-                try {
-                    const proxyUrl = PROXY_ENGINE.getProxyUrl(game.url);
-                    const response = await fetch(proxyUrl);
-                    const html = await response.text();
-                    
-                    // Process the game HTML to make it work in iframe
-                    const processed = processGameContent(html, game.url);
-                    const blob = new Blob([processed], { type: 'text/html' });
-                    frame.src = URL.createObjectURL(blob);
-                    
-                    showNotification('🎮', 'Loading', `${game.title} loaded via proxy`);
-                } catch (e) {
-                    // Fallback to direct URL if proxy fails
-                    frame.src = game.url;
-                    showNotification('⚠️', 'Notice', 'Loading directly (proxy failed)');
-                }
-            } else {
-                frame.src = game.url;
-            }
-            
-            if (game.offline) {
-                cacheGame(game);
-            }
-        }
-
-        function processGameContent(html, gameUrl) {
-            const base = new URL(gameUrl);
-            
-            // Similar to processProxyContent but optimized for games
-            let processed = html
-                .replace(/<head>/i, `<head><base href="${base.origin}/">`)
-                .replace(/href="\/\//g, 'href="https://')
-                .replace(/src="\/\//g, 'src="https://')
-                .replace(/url\((['"]?)\/\//g, 'url($1https://');
-            
-            // Add fullscreen and styling fixes
-            const gameFixes = `
-                <style>
-                    html, body { margin: 0; padding: 0; width: 100%; height: 100%; overflow: hidden; }
-                    canvas, iframe { display: block; }
-                </style>
-                <script>
-                    // Prevent navigation away
-                    window.onbeforeunload = function() { return false; };
-                    document.addEventListener('click', function(e) {
-                        const link = e.target.closest('a');
-                        if (link && link.href && !link.href.startsWith('javascript:') && !link.href.startsWith('#')) {
-                            if (!link.href.includes(window.location.host)) {
-                                e.preventDefault();
-                            }
-                        }
-                    });
-                <\/script>
-            `;
-            
-            if (processed.includes('</head>')) {
-                processed = processed.replace('</head>', gameFixes + '</head>');
-            } else {
-                processed = gameFixes + processed;
-            }
-            
-            return processed;
-        }
-
-        function closeGame() {
-            const modal = document.getElementById('gameModal');
-            const frame = document.getElementById('gameFrame');
-            modal.classList.remove('active');
-            frame.src = '';
-            currentGame = null;
-        }
-
-        function reloadGame() {
-            if (currentGame) openGame(currentGame);
-        }
-
-        function toggleFullscreen() {
-            const modal = document.querySelector('.game-modal-content');
-            if (!document.fullscreenElement) {
-                modal.requestFullscreen();
-            } else {
-                document.exitFullscreen();
-            }
-        }
-
-        async function cacheGame(game) {
-            if ('caches' in window) {
-                try {
-                    const cache = await caches.open('amongusgxmes-v1');
-                    await cache.add(game.url);
-                } catch (e) {
-                    console.log('Cache failed:', e);
-                }
-            }
-        }
-
-        // ==========================================
-        // MOVIES SYSTEM
-        // ==========================================
-        let currentMovieFilter = 'all';
-
-        function loadMovies(filter = 'all', search = '') {
-            const grid = document.getElementById('moviesGrid');
-            grid.innerHTML = '';
-            
-            let movies = MOVIES_DATABASE;
-            
-            if (filter !== 'all') {
-                movies = movies.filter(m => m.type === filter);
-            }
-            
-            if (search) {
-                movies = movies.filter(m => m.title.toLowerCase().includes(search.toLowerCase()));
-            }
-            
-            movies.forEach(movie => {
-                const card = document.createElement('div');
-                card.className = 'movie-card';
-                card.onclick = () => playMovie(movie.title, movie.type);
-                
-                card.innerHTML = `
-                    <div class="movie-poster">
-                        <div class="movie-icon">${movie.icon}</div>
-                        <div class="movie-rating">⭐ ${movie.rating}</div>
-                    </div>
-                    <div class="movie-info">
-                        <div class="movie-title">${movie.title}</div>
-                        <div class="movie-meta">
-                            <span>${movie.year}</span>
-                            <span>${movie.genre}</span>
-                        </div>
-                    </div>
-                `;
-                grid.appendChild(card);
-            });
-        }
-
-        function filterMovies(type) {
-            currentMovieFilter = type;
-            document.querySelectorAll('.category-btn').forEach(btn => btn.classList.remove('active'));
-            event.target.classList.add('active');
-            loadMovies(type);
-        }
-
-        function searchMovies(query) {
-            loadMovies(currentMovieFilter, query);
-        }
-
-        function playMovie(title, type) {
-            showSection('proxySection');
-            document.querySelector('[data-section="proxy"]').click();
-            
-            let searchQuery;
-            if (type === 'anime') {
-                searchQuery = `${title} anime watch online`;
-            } else if (type === 'tv') {
-                searchQuery = `${title} tv series watch online`;
-            } else {
-                searchQuery = `${title} movie watch online free`;
-            }
-            
-            const searchUrl = 'https://duckduckgo.com/?q=' + encodeURIComponent(searchQuery);
-            document.getElementById('proxyUrlInput').value = searchUrl;
-            navigateProxy();
-            
-            showNotification('🎬', 'Loading', `Searching for ${title}...`);
-        }
-
-        // ==========================================
-        // SETTINGS FUNCTIONS
-        // ==========================================
-        let particleSystem;
-
-        function toggleAutoProxy() {
-            const toggle = document.getElementById('autoProxyToggle');
-            toggle.classList.toggle('active');
-            CONFIG.autoProxy = toggle.classList.contains('active');
-            showNotification('✓', 'Settings', `Auto-proxy ${CONFIG.autoProxy ? 'enabled' : 'disabled'}`);
-        }
-
-        function toggleUrlRewrite() {
-            const toggle = document.getElementById('urlRewriteToggle');
-            toggle.classList.toggle('active');
-            CONFIG.urlRewrite = toggle.classList.contains('active');
-        }
-
-        function toggleCorsBypass() {
-            const toggle = document.getElementById('corsBypassToggle');
-            toggle.classList.toggle('active');
-            CONFIG.corsBypass = toggle.classList.contains('active');
-        }
-
-        function selectProxy(endpoint) {
-            CONFIG.proxyEndpoint = endpoint;
-            document.querySelectorAll('.proxy-option').forEach(opt => opt.classList.remove('active'));
-            document.getElementById('proxy' + endpoint.charAt(0).toUpperCase() + endpoint.slice(1)).classList.add('active');
-            showNotification('🌐', 'Proxy', `Switched to ${endpoint}`);
-        }
-
+        
         function changeColor(color) {
             document.documentElement.style.setProperty('--primary-red', color);
             document.documentElement.style.setProperty('--accent', color);
-            document.querySelectorAll('.color-option').forEach(opt => {
-                opt.classList.remove('active');
-                if (opt.style.background === color) opt.classList.add('active');
-            });
+            document.querySelectorAll('.color-option').forEach(opt => opt.classList.remove('active'));
+            event.target.classList.add('active');
+            showNotification('🎨', 'Color Changed', 'Theme updated');
         }
-
-        function toggleParticles() {
-            const toggle = document.getElementById('particlesToggle');
-            toggle.classList.toggle('active');
-            if (particleSystem) {
-                particleSystem.updateConfig({ enabled: toggle.classList.contains('active') });
-            }
-        }
-
-        function updateParticles(value) {
-            document.getElementById('particleValue').textContent = value;
-            CONFIG.particleCount = parseInt(value);
-            if (particleSystem) {
-                particleSystem.updateConfig({ count: CONFIG.particleCount });
-            }
-        }
-
-        function toggleCache() {
-            const toggle = document.getElementById('autoCacheToggle');
-            toggle.classList.toggle('active');
-        }
-
-        function updateCacheSize(value) {
-            document.getElementById('cacheSizeValue').textContent = value + 'MB';
-            CONFIG.cacheSize = parseInt(value);
-        }
-
-        function togglePerformance() {
-            const toggle = document.getElementById('perfToggle');
-            toggle.classList.toggle('active');
-            CONFIG.highPerformance = toggle.classList.contains('active');
-            if (particleSystem) {
-                particleSystem.updateConfig({ enabled: !CONFIG.highPerformance && document.getElementById('particlesToggle').classList.contains('active') });
-            }
-        }
-
-        function toggleRepel() {
-            const toggle = document.getElementById('repelToggle');
-            toggle.classList.toggle('active');
-            CONFIG.mouseRepel = toggle.classList.contains('active');
-            if (particleSystem) {
-                particleSystem.updateConfig({ repelEnabled: CONFIG.mouseRepel });
-            }
-        }
-
-        async function updateCacheStatus() {
-            if ('storage' in navigator && 'estimate' in navigator.storage) {
-                const estimate = await navigator.storage.estimate();
-                const usage = Math.round((estimate.usage || 0) / 1024 / 1024);
-                document.getElementById('cacheUsage').textContent = usage + 'MB';
-            }
-        }
-
-        // ==========================================
-        // NOTIFICATIONS
-        // ==========================================
+        
         function showNotification(icon, title, message) {
             const notif = document.getElementById('notification');
-            document.getElementById('notifIcon').textContent = icon;
-            document.getElementById('notifTitle').textContent = title;
-            document.getElementById('notifMessage').textContent = message;
+            const notifIcon = document.getElementById('notifIcon');
+            const notifTitle = document.getElementById('notifTitle');
+            const notifMessage = document.getElementById('notifMessage');
+            
+            notifIcon.textContent = icon;
+            notifTitle.textContent = title;
+            notifMessage.textContent = message;
+            
             notif.classList.add('show');
             setTimeout(() => notif.classList.remove('show'), 3000);
         }
 
-        function toggleProxySettings() {
-            showSection('settingsSection');
-            document.querySelector('[data-section="settings"]').click();
-        }
-
         // ==========================================
-        // INIT
+        // INITIALIZATION
         // ==========================================
-        window.addEventListener('DOMContentLoaded', () => {
-            particleSystem = new ParticleSystem();
+        document.addEventListener('DOMContentLoaded', () => {
+            new ParticleSystem();
             loadGames();
             loadMovies();
-            updateCacheStatus();
             
-            // Set initial toggle states
-            document.getElementById('autoProxyToggle').classList.add('active');
-            document.getElementById('urlRewriteToggle').classList.add('active');
+            // Load saved theme
+            const savedTheme = localStorage.getItem('theme');
+            if (savedTheme) {
+                document.body.setAttribute('theme', savedTheme);
+                const themeSelect = document.getElementById('themeSelect');
+                if (themeSelect) themeSelect.value = savedTheme;
+            }
+            
+            // Load saved tab cloak
+            const savedTabName = localStorage.getItem('tabName');
+            const savedTabIcon = localStorage.getItem('tabIcon');
+            if (savedTabName && savedTabIcon) {
+                setTab(savedTabName, savedTabIcon);
+                const nameInput = document.getElementById('tabname');
+                const iconInput = document.getElementById('tabicon');
+                if (nameInput) nameInput.value = savedTabName;
+                if (iconInput) iconInput.value = savedTabIcon;
+            }
+            
+            // Load saved panic settings
+            const panicKey = localStorage.getItem('panickey');
+            const panicUrl = localStorage.getItem('panicurl');
+            const panicKeyInput = document.getElementById('panickey');
+            const panicUrlInput = document.getElementById('panicurl');
+            if (panicKeyInput && panicKey) panicKeyInput.value = panicKey;
+            if (panicUrlInput && panicUrl) panicUrlInput.value = panicUrl;
         });
     </script>
 </body>
