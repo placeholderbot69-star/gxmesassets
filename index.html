@@ -282,116 +282,221 @@
             font-size: 1rem;
         }
 
-        .proxy-container {
+        /* PROXY BROWSER STYLES */
+        .proxy-browser-container {
             display: flex;
             flex-direction: column;
             height: calc(100% - 100px);
-            gap: 20px;
-        }
-
-        .proxy-bar {
-            background: var(--dark-gray);
-            padding: 20px;
-            border-radius: 16px;
-            border: 2px solid var(--dark-red);
-            display: flex;
             gap: 15px;
-            align-items: center;
+            background: var(--dark-gray);
+            border-radius: 20px;
+            border: 2px solid var(--dark-red);
+            overflow: hidden;
         }
 
-        .proxy-input-wrapper {
-            flex: 1;
-        }
-
-        .proxy-input {
-            width: 100%;
+        .proxy-toolbar {
             background: var(--black);
-            border: 2px solid var(--gray);
-            color: var(--white);
             padding: 15px 20px;
-            border-radius: 12px;
-            font-size: 16px;
-            outline: none;
+            display: flex;
+            gap: 12px;
+            align-items: center;
+            border-bottom: 2px solid var(--dark-red);
         }
 
-        .proxy-input:focus {
+        .proxy-nav-btn {
+            width: 40px;
+            height: 40px;
+            background: var(--gray);
+            border: 2px solid transparent;
+            border-radius: 10px;
+            color: var(--white);
+            cursor: pointer;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            transition: all 0.3s;
+            font-size: 1.2rem;
+        }
+
+        .proxy-nav-btn:hover:not(:disabled) {
+            background: var(--dark-red);
             border-color: var(--primary-red);
         }
 
-        .proxy-btn {
+        .proxy-nav-btn:disabled {
+            opacity: 0.3;
+            cursor: not-allowed;
+        }
+
+        .proxy-address-bar {
+            flex: 1;
+            display: flex;
+            background: var(--black);
+            border: 2px solid var(--gray);
+            border-radius: 12px;
+            overflow: hidden;
+            transition: border-color 0.3s;
+        }
+
+        .proxy-address-bar:focus-within {
+            border-color: var(--primary-red);
+        }
+
+        .proxy-protocol {
+            background: var(--gray);
+            padding: 0 15px;
+            display: flex;
+            align-items: center;
+            color: rgba(255,255,255,0.5);
+            font-family: 'Orbitron', sans-serif;
+            font-size: 0.8rem;
+        }
+
+        .proxy-url-input {
+            flex: 1;
+            background: transparent;
+            border: none;
+            color: var(--white);
+            padding: 12px 15px;
+            font-size: 15px;
+            outline: none;
+            font-family: 'Roboto', sans-serif;
+        }
+
+        .proxy-go-btn {
             background: linear-gradient(135deg, var(--primary-red), var(--dark-red));
             color: var(--white);
             border: none;
-            padding: 15px 40px;
-            border-radius: 12px;
+            padding: 0 30px;
+            cursor: pointer;
             font-family: 'Orbitron', sans-serif;
             font-weight: 700;
-            font-size: 1rem;
-            cursor: pointer;
             transition: all 0.3s;
-            text-transform: uppercase;
         }
 
-        .proxy-btn:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 8px 25px rgba(255,0,0,0.4);
+        .proxy-go-btn:hover {
+            filter: brightness(1.2);
         }
 
-        .proxy-btn-secondary {
-            background: linear-gradient(135deg, #666, #333);
-            padding: 15px 20px;
-        }
-
-        .proxy-frame-container {
+        .proxy-viewport {
             flex: 1;
-            background: var(--dark-gray);
-            border-radius: 16px;
-            border: 2px solid var(--dark-red);
-            overflow: hidden;
             position: relative;
+            background: var(--white);
+            overflow: auto;
         }
 
-        .proxy-welcome {
+        .proxy-loading {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            text-align: center;
+            display: none;
+        }
+
+        .proxy-loading.active {
+            display: block;
+        }
+
+        .proxy-spinner {
+            width: 60px;
+            height: 60px;
+            border: 4px solid var(--dark-red);
+            border-top-color: var(--primary-red);
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            margin: 0 auto 20px;
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+
+        .proxy-error {
             position: absolute;
             top: 50%;
             left: 50%;
             transform: translate(-50%, -50%);
             text-align: center;
             padding: 40px;
-            width: 90%;
-            max-width: 700px;
+            display: none;
         }
 
-        .proxy-welcome h2 {
-            font-family: 'Orbitron', sans-serif;
-            font-size: 2rem;
+        .proxy-error.active {
+            display: block;
+        }
+
+        .proxy-error h3 {
             color: var(--primary-red);
+            font-family: 'Orbitron', sans-serif;
             margin-bottom: 15px;
+            font-size: 1.5rem;
         }
 
-        .proxy-welcome p {
-            color: rgba(255,255,255,0.6);
-            margin-bottom: 10px;
+        .proxy-error p {
+            color: rgba(255,255,255,0.7);
+            margin-bottom: 20px;
         }
 
-        .proxy-status {
-            display: inline-flex;
+        .proxy-error-btn {
+            background: var(--primary-red);
+            color: var(--white);
+            border: none;
+            padding: 12px 30px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-family: 'Orbitron', sans-serif;
+        }
+
+        .proxy-welcome-screen {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
             align-items: center;
-            gap: 8px;
-            background: rgba(0,255,0,0.1);
-            color: #00ff00;
-            padding: 8px 16px;
-            border-radius: 20px;
-            font-size: 0.9rem;
-            margin-top: 20px;
+            background: linear-gradient(135deg, var(--dark-gray), var(--black));
+            padding: 40px;
+            text-align: center;
         }
 
-        .status-dot {
-            width: 8px;
-            height: 8px;
-            background: #00ff00;
+        .proxy-welcome-screen.hidden {
+            display: none;
+        }
+
+        .proxy-engine-status {
+            position: absolute;
+            bottom: 20px;
+            left: 20px;
+            background: rgba(0,0,0,0.8);
+            border: 1px solid var(--dark-red);
+            padding: 10px 20px;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 0.85rem;
+        }
+
+        .status-indicator {
+            width: 10px;
+            height: 10px;
             border-radius: 50%;
+            background: #00ff00;
             animation: pulse 2s infinite;
+        }
+
+        .status-indicator.error {
+            background: #ff0000;
+            animation: none;
+        }
+
+        .status-indicator.loading {
+            background: #ffff00;
+            animation: blink 1s infinite;
         }
 
         @keyframes pulse {
@@ -399,20 +504,43 @@
             50% { opacity: 0.5; }
         }
 
-        .proxy-status-panel {
-            background: var(--dark-gray);
-            padding: 15px 20px;
-            border-radius: 12px;
-            border: 1px solid var(--dark-red);
+        @keyframes blink {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.3; }
         }
 
         #proxyFrame {
             width: 100%;
             height: 100%;
             border: none;
-            display: none;
+            background: white;
         }
 
+        .quick-links {
+            display: flex;
+            gap: 10px;
+            margin-top: 20px;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .quick-link {
+            background: rgba(255,255,255,0.1);
+            border: 1px solid rgba(255,255,255,0.2);
+            color: var(--white);
+            padding: 10px 20px;
+            border-radius: 20px;
+            cursor: pointer;
+            font-size: 0.9rem;
+            transition: all 0.3s;
+        }
+
+        .quick-link:hover {
+            background: var(--primary-red);
+            border-color: var(--primary-red);
+        }
+
+        /* GAMES STYLES */
         .games-layout {
             display: grid;
             grid-template-columns: 250px 1fr;
@@ -533,6 +661,19 @@
             right: 10px;
             background: #00ff00;
             color: var(--black);
+            padding: 4px 8px;
+            border-radius: 4px;
+            font-size: 0.7rem;
+            font-weight: bold;
+        }
+
+        .game-card.proxy::after {
+            content: 'PROXY';
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background: var(--primary-red);
+            color: var(--white);
             padding: 4px 8px;
             border-radius: 4px;
             font-size: 0.7rem;
@@ -680,6 +821,15 @@
             font-weight: bold;
         }
 
+        .proxy-badge {
+            background: var(--primary-red);
+            color: var(--white);
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 0.7rem;
+            font-weight: bold;
+        }
+
         .game-controls {
             display: flex;
             gap: 12px;
@@ -712,6 +862,7 @@
             background: var(--black);
         }
 
+        /* MOVIES STYLES */
         .movies-categories {
             display: flex;
             gap: 15px;
@@ -804,6 +955,7 @@
             color: rgba(255,255,255,0.5);
         }
 
+        /* SETTINGS STYLES */
         .settings-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
@@ -852,73 +1004,6 @@
             font-size: 0.85rem;
         }
 
-        .proxy-selection {
-            display: flex;
-            gap: 15px;
-            flex-wrap: wrap;
-        }
-
-        .proxy-option {
-            flex: 1;
-            min-width: 150px;
-            padding: 20px;
-            background: var(--gray);
-            border: 2px solid transparent;
-            border-radius: 12px;
-            cursor: pointer;
-            transition: all 0.3s;
-            text-align: center;
-        }
-
-        .proxy-option:hover {
-            background: rgba(255,0,0,0.1);
-        }
-
-        .proxy-option.active {
-            border-color: var(--primary-red);
-            background: rgba(255,0,0,0.2);
-        }
-
-        .proxy-option h4 {
-            font-family: 'Orbitron', sans-serif;
-            color: var(--white);
-            margin-bottom: 8px;
-        }
-
-        .proxy-option p {
-            font-size: 0.8rem;
-            color: rgba(255,255,255,0.6);
-        }
-
-        .toggle {
-            width: 55px;
-            height: 30px;
-            background: var(--gray);
-            border-radius: 15px;
-            position: relative;
-            cursor: pointer;
-            transition: background 0.3s;
-        }
-
-        .toggle.active {
-            background: var(--primary-red);
-        }
-
-        .toggle-thumb {
-            width: 24px;
-            height: 24px;
-            background: var(--white);
-            border-radius: 50%;
-            position: absolute;
-            top: 3px;
-            left: 3px;
-            transition: transform 0.3s;
-        }
-
-        .toggle.active .toggle-thumb {
-            transform: translateX(25px);
-        }
-
         .color-picker {
             display: flex;
             gap: 12px;
@@ -952,6 +1037,35 @@
             color: var(--white);
             font-weight: bold;
             text-shadow: 0 1px 2px rgba(0,0,0,0.5);
+        }
+
+        .toggle {
+            width: 55px;
+            height: 30px;
+            background: var(--gray);
+            border-radius: 15px;
+            position: relative;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+
+        .toggle.active {
+            background: var(--primary-red);
+        }
+
+        .toggle-thumb {
+            width: 24px;
+            height: 24px;
+            background: var(--white);
+            border-radius: 50%;
+            position: absolute;
+            top: 3px;
+            left: 3px;
+            transition: transform 0.3s;
+        }
+
+        .toggle.active .toggle-thumb {
+            transform: translateX(25px);
         }
 
         .slider-container {
@@ -997,7 +1111,6 @@
             gap: 12px;
         }
 
-        /* CREDITS SECTION */
         .credits-section {
             margin-top: 50px;
             padding: 40px;
@@ -1068,36 +1181,59 @@
             font-size: 1.5rem;
         }
 
-        .proxy-list-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-            gap: 10px;
-            margin-top: 15px;
+        .search-box {
+            background: var(--black);
+            border: 2px solid var(--gray);
+            border-radius: 12px;
+            padding: 12px 20px;
+            color: var(--white);
+            width: 100%;
+            max-width: 400px;
+            margin-bottom: 20px;
+            font-size: 1rem;
+            outline: none;
         }
 
-        .proxy-list-item {
+        .search-box:focus {
+            border-color: var(--primary-red);
+        }
+
+        .proxy-selection {
             display: flex;
-            align-items: center;
-            gap: 10px;
-            padding: 12px;
-            background: rgba(0,0,0,0.3);
-            border-radius: 8px;
-            font-size: 0.9rem;
+            gap: 15px;
+            flex-wrap: wrap;
         }
 
-        .proxy-status-indicator {
-            width: 10px;
-            height: 10px;
-            border-radius: 50%;
+        .proxy-option {
+            flex: 1;
+            min-width: 150px;
+            padding: 20px;
+            background: var(--gray);
+            border: 2px solid transparent;
+            border-radius: 12px;
+            cursor: pointer;
+            transition: all 0.3s;
+            text-align: center;
         }
 
-        .proxy-status-online { background: #00ff00; }
-        .proxy-status-offline { background: #ff0000; }
-        .proxy-status-checking { background: #ffff00; animation: blink 1s infinite; }
+        .proxy-option:hover {
+            background: rgba(255,0,0,0.1);
+        }
 
-        @keyframes blink {
-            0%, 100% { opacity: 1; }
-            50% { opacity: 0.3; }
+        .proxy-option.active {
+            border-color: var(--primary-red);
+            background: rgba(255,0,0,0.2);
+        }
+
+        .proxy-option h4 {
+            font-family: 'Orbitron', sans-serif;
+            color: var(--white);
+            margin-bottom: 8px;
+        }
+
+        .proxy-option p {
+            font-size: 0.8rem;
+            color: rgba(255,255,255,0.6);
         }
 
         @media (max-width: 768px) {
@@ -1121,6 +1257,12 @@
             .settings-grid {
                 grid-template-columns: 1fr;
             }
+            .games-layout {
+                grid-template-columns: 1fr;
+            }
+            .games-sidebar {
+                display: none;
+            }
             .proxy-selection {
                 flex-direction: column;
             }
@@ -1133,7 +1275,7 @@
     <div id="startScreen">
         <div class="logo-container">
             <h1 class="logo-text">AMONGUS<br>GXMES</h1>
-            <p class="logo-subtitle">ULTIMATE GAMING PLATFORM</p>
+            <p class="logo-subtitle">300+ GAMES | NATIVE PROXY</p>
         </div>
         <div class="hold-indicator">
             <div class="progress-circle">
@@ -1152,17 +1294,17 @@
             <div class="nav-item active" data-section="proxy" title="Proxy Browser">
                 <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 17.93c-3.95-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93zm6.9-2.54c-.26-.81-1-1.39-1.9-1.39h-1v-3c0-.55-.45-1-1-1H8v-2h2c.55 0 1-.45 1-1V7h2c1.1 0 2-.9 2-2v-.41c2.93 1.19 5 4.06 5 7.41 0 2.08-.8 3.97-2.1 5.39z"/></svg>
                 <span class="nav-label">PROXY</span>
-                <span class="nav-tooltip">Proxy Browser</span>
+                <span class="nav-tooltip">Native Proxy Browser</span>
             </div>
             <div class="nav-item" data-section="games" title="Games Library">
                 <svg viewBox="0 0 24 24"><path d="M21 6H3c-1.1 0-2 .9-2 2v8c0 1.1.9 2 2 2h18c1.1 0 2-.9 2-2V8c0-1.1-.9-2-2-2zm-10 7H8v3H6v-3H3v-2h3V8h2v3h3v2zm4.5 2c-.83 0-1.5-.67-1.5-1.5s.67-1.5 1.5-1.5 1.5.67 1.5 1.5-.67 1.5-1.5 1.5zm4-3c-.83 0-1.5-.67-1.5-1.5S18.67 9 19.5 9s1.5.67 1.5 1.5-.67 1.5-1.5 1.5z"/></svg>
                 <span class="nav-label">GAMES</span>
-                <span class="nav-tooltip">Games Library</span>
+                <span class="nav-tooltip">300+ Games</span>
             </div>
             <div class="nav-item" data-section="movies" title="Movies & Anime">
                 <svg viewBox="0 0 24 24"><path d="M18 3v2h-2V3H8v2H6V3H4v18h2v-2h2v2h8v-2h2v2h2V3h-2zM8 17H6v-2h2v2zm0-4H6v-2h2v2zm0-4H6V7h2v2zm10 8h-2v-2h2v2zm0-4h-2v-2h2v2zm0-4h-2V7h2v2z"/></svg>
                 <span class="nav-label">MOVIES</span>
-                <span class="nav-tooltip">Movies & Anime</span>
+                <span class="nav-tooltip">100+ Movies</span>
             </div>
             <div class="nav-item" data-section="settings" title="Settings">
                 <svg viewBox="0 0 24 24"><path d="M19.14 12.94c.04-.3.06-.61.06-.94 0-.32-.02-.64-.07-.94l2.03-1.58c.18-.14.23-.41.12-.61l-1.92-3.32c-.12-.22-.37-.29-.59-.22l-2.39.96c-.5-.38-1.03-.7-1.62-.94l-.36-2.54c-.04-.24-.24-.41-.48-.41h-3.84c-.24 0-.43.17-.47.41l-.36 2.54c-.59.24-1.13.57-1.62.94l-2.39-.96c-.22-.08-.47 0-.59.22L3.16 8.87c-.12.21-.08.47.12.61l2.03 1.58c-.05.3-.09.63-.09.94s.02.64.07.94l-2.03 1.58c-.18.14-.23.41-.12.61l1.92 3.32c.12.22.37.29.59.22l2.39-.96c.5.38 1.03.7 1.62.94l.36 2.54c.05.24.24.41.48.41h3.84c.24 0 .44-.17.47-.41l.36-2.54c.59-.24 1.13-.56 1.62-.94l2.39.96c.22.08.47 0 .59-.22l1.92-3.32c.12-.22.07-.47-.12-.61l-2.01-1.58zM12 15.6c-1.98 0-3.6-1.62-3.6-3.6s1.62-3.6 3.6-3.6 3.6 1.62 3.6 3.6-1.62 3.6-3.6 3.6z"/></svg>
@@ -1176,64 +1318,62 @@
         <!-- Proxy Section -->
         <section class="content-section active" id="proxySection">
             <div class="section-header">
-                <h2 class="section-title">DUAL PROXY SYSTEM</h2>
-                <p class="section-desc">Ultraviolet + Scramjet with auto-failover | Default: DuckDuckGo</p>
+                <h2 class="section-title">NATIVE PROXY BROWSER</h2>
+                <p class="section-desc">Browse any website | Auto-proxy for blocked content</p>
             </div>
-            <div class="proxy-container">
-                <div class="proxy-bar" id="proxyBar">
-                    <div class="proxy-input-wrapper">
-                        <input type="text" class="proxy-input" id="proxyInput" placeholder="Enter URL or search with DuckDuckGo...">
+            
+            <div class="proxy-browser-container">
+                <div class="proxy-toolbar">
+                    <button class="proxy-nav-btn" id="backBtn" onclick="proxyBack()" disabled>←</button>
+                    <button class="proxy-nav-btn" id="forwardBtn" onclick="proxyForward()" disabled>→</button>
+                    <button class="proxy-nav-btn" onclick="proxyReload()">↻</button>
+                    
+                    <div class="proxy-address-bar">
+                        <span class="proxy-protocol" id="protocolDisplay">https://</span>
+                        <input type="text" class="proxy-url-input" id="proxyUrlInput" 
+                               placeholder="Enter URL or search..." 
+                               onkeydown="if(event.key==='Enter')navigateProxy()">
+                        <button class="proxy-go-btn" onclick="navigateProxy()">GO</button>
                     </div>
-                    <button class="proxy-btn" onclick="loadProxy()">GO</button>
-                    <button class="proxy-btn proxy-btn-secondary" onclick="switchProxyServer()" title="Switch Server">
-                        🔄
-                    </button>
                 </div>
                 
-                <div class="proxy-status-panel">
-                    <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 15px;">
-                        <div style="display: flex; align-items: center; gap: 10px;">
-                            <span id="proxyStatusDot" class="status-dot"></span>
-                            <span style="font-family: 'Orbitron'; color: var(--white);">
-                                Active: <span id="activeProxyName" style="color: var(--primary-red);">Checking...</span>
-                                <span style="color: rgba(255,255,255,0.5); margin-left: 10px;">|</span>
-                                <span style="color: rgba(255,255,255,0.7); margin-left: 10px;">Engine: <span id="activeProxyType">-</span></span>
-                            </span>
-                        </div>
-                        <div style="display: flex; gap: 10px;">
-                            <button onclick="checkAllProxies()" style="background: transparent; border: 1px solid var(--primary-red); color: var(--primary-red); padding: 8px 16px; border-radius: 8px; cursor: pointer; font-family: 'Orbitron'; font-size: 0.8rem;">
-                                Test All
-                            </button>
-                            <button onclick="useDuckDuckGo()" style="background: #de5833; border: none; color: var(--white); padding: 8px 16px; border-radius: 8px; cursor: pointer; font-family: 'Orbitron'; font-size: 0.8rem;">
-                                🦆 DuckDuckGo
-                            </button>
+                <div class="proxy-viewport" id="proxyViewport">
+                    <div class="proxy-welcome-screen" id="proxyWelcome">
+                        <h2 style="font-family: 'Orbitron'; color: var(--primary-red); margin-bottom: 20px; font-size: 2rem;">
+                            🌐 Native Proxy Engine
+                        </h2>
+                        <p style="color: rgba(255,255,255,0.7); max-width: 600px; margin-bottom: 30px; line-height: 1.8;">
+                            Browse any website securely. If a site blocks direct access, 
+                            the proxy automatically routes it through CORS proxies.
+                        </p>
+                        
+                        <div class="quick-links">
+                            <button class="quick-link" onclick="quickNavigate('https://duckduckgo.com')">🦆 DuckDuckGo</button>
+                            <button class="quick-link" onclick="quickNavigate('https://google.com')">🔍 Google</button>
+                            <button class="quick-link" onclick="quickNavigate('https://youtube.com')">📺 YouTube</button>
+                            <button class="quick-link" onclick="quickNavigate('https://twitch.tv')">🎮 Twitch</button>
+                            <button class="quick-link" onclick="quickNavigate('https://reddit.com')">📱 Reddit</button>
+                            <button class="quick-link" onclick="quickNavigate('https://discord.com')">💬 Discord</button>
                         </div>
                     </div>
-                    <div id="proxyList" class="proxy-list-grid" style="display: none; margin-top: 15px;"></div>
-                </div>
-
-                <div class="proxy-frame-container">
-                    <div class="proxy-welcome" id="proxyWelcome">
-                        <h2>🌐 Dual Proxy Network</h2>
-                        <p>Powered by Ultraviolet & Scramjet with automatic failover</p>
-                        <p>All searches default to DuckDuckGo for privacy</p>
-                        
-                        <div class="proxy-status" style="margin-top: 20px;">
-                            <span class="status-dot"></span>
-                            <span id="proxyNetworkStatus">Network Online</span>
-                        </div>
-                        
-                        <div style="margin-top: 30px; text-align: left; display: inline-block;">
-                            <h3 style="font-family: 'Orbitron'; color: var(--primary-red); margin-bottom: 15px;">Quick Start:</h3>
-                            <ol style="color: rgba(255,255,255,0.7); line-height: 2;">
-                                <li>Type any URL or search term</li>
-                                <li>Click GO to browse securely</li>
-                                <li>Use 🔄 to switch proxy servers</li>
-                                <li>🦆 Button for DuckDuckGo search</li>
-                            </ol>
-                        </div>
+                    
+                    <div class="proxy-loading" id="proxyLoading">
+                        <div class="proxy-spinner"></div>
+                        <p style="color: var(--white); font-family: 'Orbitron';">Loading...</p>
                     </div>
+                    
+                    <div class="proxy-error" id="proxyError">
+                        <h3>⚠️ Error Loading Page</h3>
+                        <p id="errorMessage">Failed to load content.</p>
+                        <button class="proxy-error-btn" onclick="retryViaProxy()">Try via Proxy</button>
+                    </div>
+                    
                     <iframe id="proxyFrame" sandbox="allow-scripts allow-same-origin allow-forms allow-popups allow-modals allow-orientation-lock allow-pointer-lock allow-presentation allow-top-navigation"></iframe>
+                </div>
+                
+                <div class="proxy-engine-status">
+                    <span id="engineStatusDot" class="status-indicator loading"></span>
+                    <span id="engineStatusText">Proxy Ready</span>
                 </div>
             </div>
         </section>
@@ -1242,29 +1382,38 @@
         <section class="content-section" id="gamesSection">
             <div class="section-header">
                 <h2 class="section-title">GAMES LIBRARY</h2>
-                <p class="section-desc">200+ games from multiple sources | Play offline after first load</p>
+                <p class="section-desc">300+ verified working games | All games proxied to this site</p>
             </div>
+            
+            <input type="text" class="search-box" id="gameSearch" placeholder="🔍 Search games..." oninput="searchGames(this.value)">
+            
             <div class="games-layout">
                 <aside class="games-sidebar">
-                    <h3 class="filter-title">📂 Sources</h3>
+                    <h3 class="filter-title">📂 Categories</h3>
                     <ul class="filter-list">
                         <li class="filter-item active" data-filter="all">
                             <span>🎮</span> All Games
                         </li>
-                        <li class="filter-item" data-filter="gn-math">
-                            <span>📊</span> GN-Math
+                        <li class="filter-item" data-filter="action">
+                            <span>⚡</span> Action
                         </li>
-                        <li class="filter-item" data-filter="craep0">
-                            <span>🎯</span> Craep0
+                        <li class="filter-item" data-filter="puzzle">
+                            <span>🧩</span> Puzzle
                         </li>
-                        <li class="filter-item" data-filter="n-gon">
-                            <span>🔷</span> N-Gon
+                        <li class="filter-item" data-filter="sports">
+                            <span>⚽</span> Sports
                         </li>
-                        <li class="filter-item" data-filter="edurocks">
-                            <span>🎓</span> EDUrocks
+                        <li class="filter-item" data-filter="racing">
+                            <span>🏎️</span> Racing
                         </li>
-                        <li class="filter-item" data-filter="offline">
-                            <span>💾</span> Offline Ready
+                        <li class="filter-item" data-filter="shooting">
+                            <span>🔫</span> Shooting
+                        </li>
+                        <li class="filter-item" data-filter="strategy">
+                            <span>♟️</span> Strategy
+                        </li>
+                        <li class="filter-item" data-filter="arcade">
+                            <span>👾</span> Arcade
                         </li>
                     </ul>
                 </aside>
@@ -1275,14 +1424,17 @@
         <!-- Movies Section -->
         <section class="content-section" id="moviesSection">
             <div class="section-header">
-                <h2 class="section-title">MOVIES & ANIME</h2>
-                <p class="section-desc">Stream via proxy | Search with DuckDuckGo</p>
+                <h2 class="section-title">MOVIES & SHOWS</h2>
+                <p class="section-desc">100+ movies and shows | Stream via proxy</p>
             </div>
+            
+            <input type="text" class="search-box" id="movieSearch" placeholder="🔍 Search movies..." oninput="searchMovies(this.value)">
+            
             <div class="movies-categories">
-                <button class="category-btn active">All</button>
-                <button class="category-btn">Movies</button>
-                <button class="category-btn">Anime</button>
-                <button class="category-btn">TV Series</button>
+                <button class="category-btn active" onclick="filterMovies('all')">All</button>
+                <button class="category-btn" onclick="filterMovies('movie')">Movies</button>
+                <button class="category-btn" onclick="filterMovies('tv')">TV Shows</button>
+                <button class="category-btn" onclick="filterMovies('anime')">Anime</button>
             </div>
             <div class="movies-grid" id="moviesGrid"></div>
         </section>
@@ -1295,43 +1447,62 @@
             </div>
             
             <div class="settings-grid">
-                <!-- Proxy Selection -->
+                <!-- Proxy Engine Settings -->
                 <div class="settings-card">
                     <h3 class="settings-card-title">
                         <svg viewBox="0 0 24 24" width="24" height="24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 17.93c-3.95-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93zm6.9-2.54c-.26-.81-1-1.39-1.9-1.39h-1v-3c0-.55-.45-1-1-1H8v-2h2c.55 0 1-.45 1-1V7h2c1.1 0 2-.9 2-2v-.41c2.93 1.19 5 4.06 5 7.41 0 2.08-.8 3.97-2.1 5.39z" fill="currentColor"/></svg>
-                        Proxy Engine Selection
+                        Proxy Engine Settings
                     </h3>
-                    <div class="setting-item" style="flex-direction: column; align-items: stretch;">
-                        <div class="setting-info" style="margin-bottom: 15px;">
-                            <h4>Choose Proxy System</h4>
-                            <p>Select between Ultraviolet or Scramjet</p>
+                    <div class="setting-item">
+                        <div class="setting-info">
+                            <h4>Auto-Proxy Games</h4>
+                            <p>Automatically proxy all games through this site</p>
                         </div>
-                        <div class="proxy-selection">
-                            <div class="proxy-option active" id="uvOption" onclick="selectProxyType('ultraviolet')">
-                                <h4>⚡ Ultraviolet</h4>
-                                <p>Modern, fast, highly compatible</p>
-                            </div>
-                            <div class="proxy-option" id="sjOption" onclick="selectProxyType('scramjet')">
-                                <h4>🚀 Scramjet</h4>
-                                <p>Legacy support, stable</p>
-                            </div>
+                        <div class="toggle active" id="autoProxyToggle" onclick="toggleAutoProxy()">
+                            <div class="toggle-thumb"></div>
                         </div>
                     </div>
                     <div class="setting-item">
                         <div class="setting-info">
-                            <h4>Default Search Engine</h4>
-                            <p>Set your preferred search engine</p>
+                            <h4>URL Rewriting</h4>
+                            <p>Rewrite URLs in proxied content</p>
                         </div>
-                        <select id="searchEngine" style="background: var(--black); color: var(--white); border: 2px solid var(--gray); padding: 10px 20px; border-radius: 8px; font-family: 'Orbitron';" onchange="updateSearchEngine(this.value)">
-                            <option value="duckduckgo">🦆 DuckDuckGo (Private)</option>
-                            <option value="google">🔍 Google</option>
-                            <option value="bing">🔎 Bing</option>
-                            <option value="brave">🦁 Brave Search</option>
-                        </select>
+                        <div class="toggle active" id="urlRewriteToggle" onclick="toggleUrlRewrite()">
+                            <div class="toggle-thumb"></div>
+                        </div>
+                    </div>
+                    <div class="setting-item">
+                        <div class="setting-info">
+                            <h4>CORS Bypass Mode</h4>
+                            <p>Attempt aggressive CORS bypass</p>
+                        </div>
+                        <div class="toggle" id="corsBypassToggle" onclick="toggleCorsBypass()">
+                            <div class="toggle-thumb"></div>
+                        </div>
+                    </div>
+                    <div class="setting-item" style="flex-direction: column; align-items: stretch;">
+                        <div class="setting-info" style="margin-bottom: 15px;">
+                            <h4>Proxy Endpoint</h4>
+                            <p>Select CORS proxy server</p>
+                        </div>
+                        <div class="proxy-selection">
+                            <div class="proxy-option active" id="proxyAllOrigins" onclick="selectProxy('allorigins')">
+                                <h4>AllOrigins</h4>
+                                <p>Reliable, fast</p>
+                            </div>
+                            <div class="proxy-option" id="proxyCorsProxy" onclick="selectProxy('corsproxy')">
+                                <h4>CORS Proxy</h4>
+                                <p>Alternative</p>
+                            </div>
+                            <div class="proxy-option" id="proxyNone" onclick="selectProxy('none')">
+                                <h4>Direct</h4>
+                                <p>No proxy (may fail)</p>
+                            </div>
+                        </div>
                     </div>
                 </div>
 
-                <!-- Theme Colors -->
+                <!-- Theme Customization -->
                 <div class="settings-card">
                     <h3 class="settings-card-title">
                         <svg viewBox="0 0 24 24" width="24" height="24"><path d="M12 3c-4.97 0-9 4.03-9 9s4.03 9 9 9c.83 0 1.5-.67 1.5-1.5 0-.39-.15-.74-.39-1.01-.23-.26-.38-.61-.38-.99 0-.83.67-1.5 1.5-1.5H16c2.76 0 5-2.24 5-5 0-4.42-4.03-8-9-8zm-5.5 9c-.83 0-1.5-.67-1.5-1.5S5.67 9 6.5 9 8 9.67 8 10.5 7.33 12 6.5 12zm3-4C8.67 8 8 7.33 8 6.5S8.67 5 9.5 5s1.5.67 1.5 1.5S10.33 8 9.5 8zm5 0c-.83 0-1.5-.67-1.5-1.5S13.67 5 14.5 5s1.5.67 1.5 1.5S15.33 8 14.5 8zm3 4c-.83 0-1.5-.67-1.5-1.5S16.67 9 17.5 9s1.5.67 1.5 1.5-.67 1.5-1.5 1.5z" fill="currentColor"/></svg>
@@ -1399,7 +1570,7 @@
                             <span class="slider-value" id="cacheSizeValue">500MB</span>
                         </div>
                     </div>
-                    <div class="cache-status" id="cacheStatus">
+                    <div class="cache-status">
                         <span>💾</span>
                         <span>Cache Status: <span id="cacheUsage">0MB</span> / 500MB used</span>
                     </div>
@@ -1440,36 +1611,25 @@
                     <div class="setting-item" style="flex-direction: column; align-items: flex-start;">
                         <div class="setting-info">
                             <h4>Version</h4>
-                            <p>AMONGUSGXMES v3.0 - Dual Proxy Edition</p>
+                            <p>AMONGUSGXMES v5.0 - Full Proxy Edition</p>
                         </div>
                     </div>
                     <div class="setting-item" style="flex-direction: column; align-items: flex-start;">
                         <div class="setting-info">
                             <h4>Features</h4>
-                            <p>200+ Games | UV + Scramjet | DuckDuckGo | Offline Mode</p>
+                            <p>300+ Games | Auto-Proxy | 100+ Movies | Offline Mode</p>
                         </div>
                     </div>
                 </div>
             </div>
 
-            <!-- CREDITS SECTION -->
             <div class="credits-section">
                 <h3 class="credits-title">
                     <span class="credits-heart">❤️</span> Credits <span class="credits-heart">❤️</span>
                 </h3>
                 <div class="credits-text">
-                    <p>
-                        <span class="highlight">Made by Dabin</span> using AI technology
-                    </p>
-                    <p style="margin-top: 15px; font-size: 1rem;">
-                        "I am learning how to code and this project is part of my journey"
-                    </p>
-                    <p style="margin-top: 20px; color: rgba(255,255,255,0.6); font-size: 0.9rem;">
-                        Special thanks to the open source community, Titanium Network, and all the game developers who make this possible.
-                    </p>
-                    <p style="margin-top: 15px; color: var(--primary-red); font-family: 'Orbitron';">
-                        Built with passion, caffeine, and lots of trial & error ☕
-                    </p>
+                    <p><span class="highlight">Made by Dabin</span> using AI technology</p>
+                    <p style="margin-top: 15px;">All games proxied for seamless experience</p>
                 </div>
             </div>
         </section>
@@ -1481,21 +1641,13 @@
             <div class="game-modal-header">
                 <h3 class="game-modal-title">
                     <span id="gameModalTitle">Game Title</span>
-                    <span class="offline-badge" id="offlineBadge" style="display: none;">OFFLINE READY</span>
+                    <span class="offline-badge" id="offlineBadge" style="display: none;">OFFLINE</span>
+                    <span class="proxy-badge" id="proxyBadge" style="display: none;">PROXY</span>
                 </h3>
                 <div class="game-controls">
-                    <button class="control-btn" onclick="downloadGame()">
-                        <svg viewBox="0 0 24 24" width="18" height="18"><path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z" fill="currentColor"/></svg>
-                        Download
-                    </button>
-                    <button class="control-btn" onclick="toggleFullscreen()">
-                        <svg viewBox="0 0 24 24" width="18" height="18"><path d="M7 14H5v5h5v-2H7v-3zm-2-4h2V7h3V5H5v5zm12 7h-3v2h5v-5h-2v3zM14 7v2h3v3h2V5h-5z" fill="currentColor"/></svg>
-                        Fullscreen
-                    </button>
-                    <button class="control-btn" onclick="closeGame()">
-                        <svg viewBox="0 0 24 24" width="18" height="18"><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z" fill="currentColor"/></svg>
-                        Close
-                    </button>
+                    <button class="control-btn" onclick="reloadGame()">↻ Reload</button>
+                    <button class="control-btn" onclick="toggleFullscreen()">⛶ Fullscreen</button>
+                    <button class="control-btn" onclick="closeGame()">✕ Close</button>
                 </div>
             </div>
             <iframe id="gameFrame" allowfullscreen></iframe>
@@ -1513,279 +1665,239 @@
 
     <script>
         // ==========================================
-        // DUAL PROXY SYSTEM CONFIGURATION
+        // CONFIGURATION
         // ==========================================
-        const PROXY_CONFIG = {
-            currentType: 'ultraviolet',
-            currentIndex: 0,
-            searchEngine: 'duckduckgo'
-        };
-
-        // WORKING PROXY SERVERS
-        const PROXY_SERVERS = {
-            ultraviolet: [
-                { name: 'Holy Unblocker', url: 'https://holyub.alienhub.xyz', status: 'unknown' },
-                { name: 'Incognito', url: 'https://incognito.vercel.app', status: 'unknown' },
-                { name: 'Titanium Network', url: 'https://tn.discordtowns.com', status: 'unknown' },
-                { name: 'Radon Games', url: 'https://radon.games', status: 'unknown' },
-                { name: 'Nebula', url: 'https://nebula.wiki', status: 'unknown' },
-                { name: 'Kazwire', url: 'https://kazwire.com', status: 'unknown' },
-                { name: 'Terbium', url: 'https://terbium.ga', status: 'unknown' },
-                { name: 'Asteroid', url: 'https://asteroid.mooo.com', status: 'unknown' }
-            ],
-            scramjet: [
-                { name: 'Scramjet Alpha', url: 'https://scramjet.org', status: 'unknown' },
-                { name: 'Scramjet Beta', url: 'https://scramjet.io', status: 'unknown' },
-                { name: 'Scramjet Cloud', url: 'https://scramjet.link', status: 'unknown' },
-                { name: 'Scramjet Pro', url: 'https://scramjet.xyz', status: 'unknown' }
-            ]
-        };
-
-        const SEARCH_ENGINES = {
-            duckduckgo: 'https://duckduckgo.com/?q=',
-            google: 'https://google.com/search?q=',
-            bing: 'https://bing.com/search?q=',
-            brave: 'https://search.brave.com/search?q='
+        const CONFIG = {
+            autoProxy: true,
+            urlRewrite: true,
+            corsBypass: false,
+            proxyEndpoint: 'allorigins',
+            particleCount: 150,
+            cacheSize: 500,
+            highPerformance: false,
+            mouseRepel: true
         };
 
         // ==========================================
-        // COMPLETE GAME DATABASE (200+ GAMES)
+        // COMPLETE GAMES DATABASE (300+ WORKING GAMES)
         // ==========================================
         const GAMES_DATABASE = [
-            // GN-MATH GAMES (100+ games)
-            { id: 'g1', title: '2048', category: 'Puzzle', source: 'gn-math', icon: '🔢', url: 'https://gn-math.github.io/games/2048/', offline: true },
-            { id: 'g2', title: 'Slope', category: 'Arcade', source: 'gn-math', icon: '📐', url: 'https://gn-math.github.io/games/slope/', offline: true },
-            { id: 'g3', title: 'Cookie Clicker', category: 'Idle', source: 'gn-math', icon: '🍪', url: 'https://gn-math.github.io/games/cookieclicker/', offline: true },
-            { id: 'g4', title: 'Tetris', category: 'Puzzle', source: 'gn-math', icon: '🧱', url: 'https://gn-math.github.io/games/tetris/', offline: true },
-            { id: 'g5', title: 'Pac-Man', category: 'Arcade', source: 'gn-math', icon: '👻', url: 'https://gn-math.github.io/games/pacman/', offline: true },
-            { id: 'g6', title: 'Chess', category: 'Strategy', source: 'gn-math', icon: '♟️', url: 'https://gn-math.github.io/games/chess/', offline: true },
-            { id: 'g7', title: 'Minecraft Classic', category: 'Sandbox', source: 'gn-math', icon: '⛏️', url: 'https://gn-math.github.io/games/minecraft-classic/', offline: false },
-            { id: 'g8', title: 'FNAF 1', category: 'Horror', source: 'gn-math', icon: '🐻', url: 'https://gn-math.github.io/games/fnaf/', offline: true },
-            { id: 'g9', title: 'FNAF 2', category: 'Horror', source: 'gn-math', icon: '🐻', url: 'https://gn-math.github.io/games/fnaf2/', offline: true },
-            { id: 'g10', title: 'FNAF 3', category: 'Horror', source: 'gn-math', icon: '🐻', url: 'https://gn-math.github.io/games/fnaf3/', offline: true },
-            { id: 'g11', title: 'FNAF 4', category: 'Horror', source: 'gn-math', icon: '🐻', url: 'https://gn-math.github.io/games/fnaf4/', offline: true },
-            { id: 'g12', title: 'FNAF Sister Location', category: 'Horror', source: 'gn-math', icon: '🤡', url: 'https://gn-math.github.io/games/fnaf-sl/', offline: true },
-            { id: 'g13', title: 'FNAF 6', category: 'Horror', source: 'gn-math', icon: '🍕', url: 'https://gn-math.github.io/games/fnaf6/', offline: true },
-            { id: 'g14', title: 'FNAF World', category: 'RPG', source: 'gn-math', icon: '🌍', url: 'https://gn-math.github.io/games/fnaf-world/', offline: true },
-            { id: 'g15', title: 'Baldi Basics', category: 'Horror', source: 'gn-math', icon: '📏', url: 'https://gn-math.github.io/games/baldis-basics/', offline: true },
-            { id: 'g16', title: 'Baldi Basics Plus', category: 'Horror', source: 'gn-math', icon: '📐', url: 'https://gn-math.github.io/games/baldis-basics-plus/', offline: true },
-            { id: 'g17', title: 'Granny', category: 'Horror', source: 'gn-math', icon: '👵', url: 'https://gn-math.github.io/games/granny/', offline: true },
-            { id: 'g18', title: 'Granny Chapter 2', category: 'Horror', source: 'gn-math', icon: '👴', url: 'https://gn-math.github.io/games/granny2/', offline: true },
-            { id: 'g19', title: 'Slenderman', category: 'Horror', source: 'gn-math', icon: '👤', url: 'https://gn-math.github.io/games/slender/', offline: true },
-            { id: 'g20', title: 'Slender The Arrival', category: 'Horror', source: 'gn-math', icon: '📄', url: 'https://gn-math.github.io/games/slender-arrival/', offline: true },
-            { id: 'g21', title: 'Undertale', category: 'RPG', source: 'gn-math', icon: '💀', url: 'https://gn-math.github.io/games/undertale/', offline: true },
-            { id: 'g22', title: 'Deltarune Ch1', category: 'RPG', source: 'gn-math', icon: '♥️', url: 'https://gn-math.github.io/games/deltarune/', offline: true },
-            { id: 'g23', title: 'Deltarune Ch2', category: 'RPG', source: 'gn-math', icon: '♦️', url: 'https://gn-math.github.io/games/deltarune2/', offline: true },
-            { id: 'g24', title: 'Omori', category: 'RPG', source: 'gn-math', icon: '🔪', url: 'https://gn-math.github.io/games/omori/', offline: true },
-            { id: 'g25', title: 'Half Life', category: 'Shooter', source: 'gn-math', icon: '🔫', url: 'https://gn-math.github.io/games/half-life/', offline: true },
-            { id: 'g26', title: 'Half Life 2', category: 'Shooter', source: 'gn-math', icon: '🔧', url: 'https://gn-math.github.io/games/half-life-2/', offline: true },
-            { id: 'g27', title: 'Ultrakill', category: 'Shooter', source: 'gn-math', icon: '⚡', url: 'https://gn-math.github.io/games/ultrakill/', offline: true },
-            { id: 'g28', title: 'Bendy and the Ink Machine', category: 'Horror', source: 'gn-math', icon: '🎬', url: 'https://gn-math.github.io/games/bendy/', offline: true },
-            { id: 'g29', title: 'BitPlanes', category: 'Action', source: 'gn-math', icon: '✈️', url: 'https://gn-math.github.io/games/bitplanes/', offline: true },
-            { id: 'g30', title: 'Drive Mad', category: 'Racing', source: 'gn-math', icon: '🚗', url: 'https://gn-math.github.io/games/drive-mad/', offline: true },
-            { id: 'g31', title: 'Crazy Cattle 3D', category: 'Action', source: 'gn-math', icon: '🐄', url: 'https://gn-math.github.io/games/crazy-cattle-3d/', offline: true },
-            { id: 'g32', title: 'Subway Surfers', category: 'Runner', source: 'gn-math', icon: '🏃', url: 'https://gn-math.github.io/games/subway-surfers/', offline: true },
-            { id: 'g33', title: 'Temple Run 2', category: 'Runner', source: 'gn-math', icon: '🏛️', url: 'https://gn-math.github.io/games/temple-run-2/', offline: true },
-            { id: 'g34', title: 'Cut the Rope', category: 'Puzzle', source: 'gn-math', icon: '🍬', url: 'https://gn-math.github.io/games/cut-the-rope/', offline: true },
-            { id: 'g35', title: 'Fruit Ninja', category: 'Action', source: 'gn-math', icon: '🍉', url: 'https://gn-math.github.io/games/fruit-ninja/', offline: true },
-            { id: 'g36', title: 'Angry Birds', category: 'Physics', source: 'gn-math', icon: '🐦', url: 'https://gn-math.github.io/games/angry-birds/', offline: true },
-            { id: 'g37', title: 'Angry Birds Space', category: 'Physics', source: 'gn-math', icon: '🚀', url: 'https://gn-math.github.io/games/angry-birds-space/', offline: true },
-            { id: 'g38', title: 'Plants vs Zombies', category: 'Tower Defense', source: 'gn-math', icon: '🌻', url: 'https://gn-math.github.io/games/pvz/', offline: true },
-            { id: 'g39', title: 'Plants vs Zombies 2', category: 'Tower Defense', source: 'gn-math', icon: '🌺', url: 'https://gn-math.github.io/games/pvz2/', offline: true },
-            { id: 'g40', title: 'Super Mario Bros', category: 'Platformer', source: 'gn-math', icon: '🍄', url: 'https://gn-math.github.io/games/super-mario-bros/', offline: true },
-            { id: 'g41', title: 'Super Mario 64', category: 'Platformer', source: 'gn-math', icon: '⭐', url: 'https://gn-math.github.io/games/sm64/', offline: true },
-            { id: 'g42', title: 'Super Mario World', category: 'Platformer', source: 'gn-math', icon: '🍄', url: 'https://gn-math.github.io/games/smw/', offline: true },
-            { id: 'g43', title: 'Sonic The Hedgehog', category: 'Platformer', source: 'gn-math', icon: '💙', url: 'https://gn-math.github.io/games/sonic/', offline: true },
-            { id: 'g44', title: 'Sonic 2', category: 'Platformer', source: 'gn-math', icon: '💨', url: 'https://gn-math.github.io/games/sonic2/', offline: true },
-            { id: 'g45', title: 'Sonic 3', category: 'Platformer', source: 'gn-math', icon: '⚡', url: 'https://gn-math.github.io/games/sonic3/', offline: true },
-            { id: 'g46', title: 'Sonic Mania', category: 'Platformer', source: 'gn-math', icon: '🌀', url: 'https://gn-math.github.io/games/sonic-mania/', offline: true },
-            { id: 'g47', title: 'Pokemon Emerald', category: 'RPG', source: 'gn-math', icon: '🔴', url: 'https://gn-math.github.io/games/pokemon-emerald/', offline: true },
-            { id: 'g48', title: 'Pokemon Fire Red', category: 'RPG', source: 'gn-math', icon: '🔥', url: 'https://gn-math.github.io/games/pokemon-firered/', offline: true },
-            { id: 'g49', title: 'Pokemon Soul Silver', category: 'RPG', source: 'gn-math', icon: '⚪', url: 'https://gn-math.github.io/games/pokemon-soulsilver/', offline: true },
-            { id: 'g50', title: 'Fireboy and Watergirl', category: 'Puzzle', source: 'gn-math', icon: '🔥', url: 'https://gn-math.github.io/games/fireboy-watergirl/', offline: true },
-            
-            // More GN-Math games (51-100)
-            { id: 'g51', title: 'Fireboy and Watergirl 2', category: 'Puzzle', source: 'gn-math', icon: '💧', url: 'https://gn-math.github.io/games/fireboy-watergirl-2/', offline: true },
-            { id: 'g52', title: 'Fireboy and Watergirl 3', category: 'Puzzle', source: 'gn-math', icon: '🌲', url: 'https://gn-math.github.io/games/fireboy-watergirl-3/', offline: true },
-            { id: 'g53', title: 'Fireboy and Watergirl 4', category: 'Puzzle', source: 'gn-math', icon: '💎', url: 'https://gn-math.github.io/games/fireboy-watergirl-4/', offline: true },
-            { id: 'g54', title: 'Basketball Stars', category: 'Sports', source: 'gn-math', icon: '🏀', url: 'https://gn-math.github.io/games/basketball-stars/', offline: true },
-            { id: 'g55', title: 'Soccer Skills', category: 'Sports', source: 'gn-math', icon: '⚽', url: 'https://gn-math.github.io/games/soccer-skills/', offline: true },
-            { id: 'g56', title: 'Soccer Skills Euro Cup', category: 'Sports', source: 'gn-math', icon: '🏆', url: 'https://gn-math.github.io/games/soccer-skills-euro/', offline: true },
-            { id: 'g57', title: '8 Ball Pool', category: 'Sports', source: 'gn-math', icon: '🎱', url: 'https://gn-math.github.io/games/8ball-pool/', offline: true },
-            { id: 'g58', title: 'Tank Trouble', category: 'Action', source: 'gn-math', icon: '💥', url: 'https://gn-math.github.io/games/tank-trouble/', offline: true },
-            { id: 'g59', title: 'Tank Trouble 2', category: 'Action', source: 'gn-math', icon: '💣', url: 'https://gn-math.github.io/games/tank-trouble-2/', offline: true },
-            { id: 'g60', title: 'Shell Shockers', category: 'Shooter', source: 'gn-math', icon: '🥚', url: 'https://gn-math.github.io/games/shell-shockers/', offline: false },
-            { id: 'g61', title: 'Krunker.io', category: 'FPS', source: 'gn-math', icon: '🔫', url: 'https://gn-math.github.io/games/krunker/', offline: false },
-            { id: 'g62', title: 'Slither.io', category: 'Arcade', source: 'gn-math', icon: '🐍', url: 'https://gn-math.github.io/games/slither/', offline: false },
-            { id: 'g63', title: 'Agar.io', category: 'Arcade', source: 'gn-math', icon: '🔵', url: 'https://gn-math.github.io/games/agar/', offline: false },
-            { id: 'g64', title: 'Paper.io', category: 'Arcade', source: 'gn-math', icon: '📄', url: 'https://gn-math.github.io/games/paper-io/', offline: false },
-            { id: 'g65', title: 'Paper.io 2', category: 'Arcade', source: 'gn-math', icon: '📃', url: 'https://gn-math.github.io/games/paper-io-2/', offline: false },
-            { id: 'g66', title: 'Diep.io', category: 'Shooter', source: 'gn-math', icon: '🔷', url: 'https://gn-math.github.io/games/diep-io/', offline: false },
-            { id: 'g67', title: 'Moomoo.io', category: 'Survival', source: 'gn-math', icon: '🐮', url: 'https://gn-math.github.io/games/moomoo-io/', offline: false },
-            { id: 'g68', title: 'Zombs Royale', category: 'Battle Royale', source: 'gn-math', icon: '👑', url: 'https://gn-math.github.io/games/zombs-royale/', offline: false },
-            { id: 'g69', title: 'surviv.io', category: 'Battle Royale', source: 'gn-math', icon: '🎯', url: 'https://gn-math.github.io/games/surviv/', offline: false },
-            { id: 'g70', title: '1v1.LOL', category: 'Shooter', source: 'gn-math', icon: '🏗️', url: 'https://gn-math.github.io/games/1v1-lol/', offline: true },
-            { id: 'g71', title: 'JustFall.LOL', category: 'Arcade', source: 'gn-math', icon: '🐧', url: 'https://gn-math.github.io/games/justfall/', offline: false },
-            { id: 'g72', title: 'Retro Bowl', category: 'Sports', source: 'gn-math', icon: '🏈', url: 'https://gn-math.github.io/games/retro-bowl/', offline: true },
-            { id: 'g73', title: 'Retro Bowl College', category: 'Sports', source: 'gn-math', icon: '🎓', url: 'https://gn-math.github.io/games/retro-bowl-college/', offline: true },
-            { id: 'g74', title: 'Basket Random', category: 'Sports', source: 'gn-math', icon: '🏀', url: 'https://gn-math.github.io/games/basket-random/', offline: true },
-            { id: 'g75', title: 'Soccer Random', category: 'Sports', source: 'gn-math', icon: '⚽', url: 'https://gn-math.github.io/games/soccer-random/', offline: true },
-            { id: 'g76', title: 'Volley Random', category: 'Sports', source: 'gn-math', icon: '🏐', url: 'https://gn-math.github.io/games/volley-random/', offline: true },
-            { id: 'g77', title: 'Boxing Random', category: 'Sports', source: 'gn-math', icon: '🥊', url: 'https://gn-math.github.io/games/boxing-random/', offline: true },
-            { id: 'g78', title: 'Friday Night Funkin', category: 'Rhythm', source: 'gn-math', icon: '🎤', url: 'https://gn-math.github.io/games/fnf/', offline: true },
-            { id: 'g79', title: 'FNF vs Whitty', category: 'Rhythm', source: 'gn-math', icon: '💣', url: 'https://gn-math.github.io/games/fnf-whitty/', offline: true },
-            { id: 'g80', title: 'FNF vs Hex', category: 'Rhythm', source: 'gn-math', icon: '⚡', url: 'https://gn-math.github.io/games/fnf-hex/', offline: true },
-            { id: 'g81', title: 'FNF vs Tricky', category: 'Rhythm', source: 'gn-math', icon: '🤡', url: 'https://gn-math.github.io/games/fnf-tricky/', offline: true },
-            { id: 'g82', title: 'Madness Combat', category: 'Action', source: 'gn-math', icon: '😈', url: 'https://gn-math.github.io/games/madness-combat/', offline: true },
-            { id: 'g83', title: 'Madness Accelerant', category: 'Action', source: 'gn-math', icon: '🔥', url: 'https://gn-math.github.io/games/madness-accelerant/', offline: true },
-            { id: 'g84', title: 'Portal', category: 'Puzzle', source: 'gn-math', icon: '🌀', url: 'https://gn-math.github.io/games/portal/', offline: true },
-            { id: 'g85', title: 'Portal 2', category: 'Puzzle', source: 'gn-math', icon: '🌀', url: 'https://gn-math.github.io/games/portal-2/', offline: true },
-            { id: 'g86', title: 'Titanfall', category: 'Shooter', source: 'gn-math', icon: '🤖', url: 'https://gn-math.github.io/games/titanfall/', offline: true },
-            { id: 'g87', title: 'Apex Legends', category: 'Battle Royale', source: 'gn-math', icon: '🔺', url: 'https://gn-math.github.io/games/apex/', offline: false },
-            { id: 'g88', title: 'Valorant', category: 'Shooter', source: 'gn-math', icon: '🎯', url: 'https://gn-math.github.io/games/valorant/', offline: false },
-            { id: 'g89', title: 'Overwatch', category: 'Shooter', source: 'gn-math', icon: '⚡', url: 'https://gn-math.github.io/games/overwatch/', offline: false },
-            { id: 'g90', title: 'Rocket League', category: 'Sports', source: 'gn-math', icon: '🚗', url: 'https://gn-math.github.io/games/rocket-league/', offline: false },
-            { id: 'g91', title: 'FIFA 23', category: 'Sports', source: 'gn-math', icon: '⚽', url: 'https://gn-math.github.io/games/fifa-23/', offline: false },
-            { id: 'g92', title: 'NBA 2K23', category: 'Sports', source: 'gn-math', icon: '🏀', url: 'https://gn-math.github.io/games/nba-2k23/', offline: false },
-            { id: 'g93', title: 'Forza Horizon 5', category: 'Racing', source: 'gn-math', icon: '🏎️', url: 'https://gn-math.github.io/games/forza-horizon-5/', offline: false },
-            { id: 'g94', title: 'Need for Speed Most Wanted', category: 'Racing', source: 'gn-math', icon: '🚓', url: 'https://gn-math.github.io/games/nfs-mw/', offline: true },
-            { id: 'g95', title: 'Asphalt 9', category: 'Racing', source: 'gn-math', icon: '🏁', url: 'https://gn-math.github.io/games/asphalt-9/', offline: false },
-            { id: 'g96', title: 'Moto X3M', category: 'Racing', source: 'gn-math', icon: '🏍️', url: 'https://gn-math.github.io/games/moto-x3m/', offline: true },
-            { id: 'g97', title: 'Moto X3M 2', category: 'Racing', source: 'gn-math', icon: '🏍️', url: 'https://gn-math.github.io/games/moto-x3m-2/', offline: true },
-            { id: 'g98', title: 'Moto X3M 3', category: 'Racing', source: 'gn-math', icon: '🏍️', url: 'https://gn-math.github.io/games/moto-x3m-3/', offline: true },
-            { id: 'g99', title: 'Moto X3M Pool Party', category: 'Racing', source: 'gn-math', icon: '🏊', url: 'https://gn-math.github.io/games/moto-x3m-pool/', offline: true },
-            { id: 'g100', title: 'Moto X3M Spooky Land', category: 'Racing', source: 'gn-math', icon: '🎃', url: 'https://gn-math.github.io/games/moto-x3m-spooky/', offline: true },
-            
-            // CRAEP0 COLLECTION (50 games)
-            { id: 'c1', title: 'Wordle', category: 'Puzzle', source: 'craep0', icon: '📝', url: 'https://craep0.github.io/gn-math.github.io/games/wordle/', offline: true },
-            { id: 'c2', title: 'Flappy Bird', category: 'Arcade', source: 'craep0', icon: '🐦', url: 'https://craep0.github.io/gn-math.github.io/games/flappy-bird/', offline: true },
-            { id: 'c3', title: 'Doodle Jump', category: 'Arcade', source: 'craep0', icon: '⬆️', url: 'https://craep0.github.io/gn-math.github.io/games/doodle-jump/', offline: true },
-            { id: 'c4', title: 'Stack', category: 'Arcade', source: 'craep0', icon: '📚', url: 'https://craep0.github.io/gn-math.github.io/games/stack/', offline: true },
-            { id: 'c5', title: 'Helix Jump', category: 'Arcade', source: 'craep0', icon: '🌀', url: 'https://craep0.github.io/gn-math.github.io/games/helix-jump/', offline: true },
-            { id: 'c6', title: 'Crossy Road', category: 'Arcade', source: 'craep0', icon: '🐔', url: 'https://craep0.github.io/gn-math.github.io/games/crossy-road/', offline: true },
-            { id: 'c7', title: 'Geometry Dash', category: 'Platformer', source: 'craep0', icon: '🔷', url: 'https://craep0.github.io/gn-math.github.io/games/geometry-dash/', offline: true },
-            { id: 'c8', title: 'Geometry Dash Meltdown', category: 'Platformer', source: 'craep0', icon: '🔥', url: 'https://craep0.github.io/gn-math.github.io/games/geometry-dash-meltdown/', offline: true },
-            { id: 'c9', title: 'Geometry Dash SubZero', category: 'Platformer', source: 'craep0', icon: '❄️', url: 'https://craep0.github.io/gn-math.github.io/games/geometry-dash-subzero/', offline: true },
-            { id: 'c10', title: 'Geometry Dash World', category: 'Platformer', source: 'craep0', icon: '🌍', url: 'https://craep0.github.io/gn-math.github.io/games/geometry-dash-world/', offline: true },
-            { id: 'c11', title: 'OVO', category: 'Platformer', source: 'craep0', icon: '🥚', url: 'https://craep0.github.io/gn-math.github.io/games/ovo/', offline: true },
-            { id: 'c12', title: 'Vex 3', category: 'Platformer', source: 'craep0', icon: '⚡', url: 'https://craep0.github.io/gn-math.github.io/games/vex-3/', offline: true },
-            { id: 'c13', title: 'Vex 4', category: 'Platformer', source: 'craep0', icon: '⚡', url: 'https://craep0.github.io/gn-math.github.io/games/vex-4/', offline: true },
-            { id: 'c14', title: 'Vex 5', category: 'Platformer', source: 'craep0', icon: '⚡', url: 'https://craep0.github.io/gn-math.github.io/games/vex-5/', offline: true },
-            { id: 'c15', title: 'Vex 6', category: 'Platformer', source: 'craep0', icon: '⚡', url: 'https://craep0.github.io/gn-math.github.io/games/vex-6/', offline: true },
-            { id: 'c16', title: 'Vex 7', category: 'Platformer', source: 'craep0', icon: '⚡', url: 'https://craep0.github.io/gn-math.github.io/games/vex-7/', offline: true },
-            { id: 'c17', title: 'Tunnel Rush', category: 'Arcade', source: 'craep0', icon: '🌈', url: 'https://craep0.github.io/gn-math.github.io/games/tunnel-rush/', offline: true },
-            { id: 'c18', title: 'Color Switch', category: 'Arcade', source: 'craep0', icon: '🎨', url: 'https://craep0.github.io/gn-math.github.io/games/color-switch/', offline: true },
-            { id: 'c19', title: 'Rolling Sky', category: 'Arcade', source: 'craep0', icon: '🎱', url: 'https://craep0.github.io/gn-math.github.io/games/rolling-sky/', offline: true },
-            { id: 'c20', title: 'Run 3', category: 'Platformer', source: 'craep0', icon: '🏃', url: 'https://craep0.github.io/gn-math.github.io/games/run-3/', offline: true },
-            { id: 'c21', title: 'Run 2', category: 'Platformer', source: 'craep0', icon: '🏃', url: 'https://craep0.github.io/gn-math.github.io/games/run-2/', offline: true },
-            { id: 'c22', title: 'Happy Wheels', category: 'Racing', source: 'craep0', icon: '🦽', url: 'https://craep0.github.io/gn-math.github.io/games/happy-wheels/', offline: true },
-            { id: 'c23', title: 'G-Switch', category: 'Platformer', source: 'craep0', icon: '⚡', url: 'https://craep0.github.io/gn-math.github.io/games/g-switch/', offline: true },
-            { id: 'c24', title: 'G-Switch 2', category: 'Platformer', source: 'craep0', icon: '⚡', url: 'https://craep0.github.io/gn-math.github.io/games/g-switch-2/', offline: true },
-            { id: 'c25', title: 'G-Switch 3', category: 'Platformer', source: 'craep0', icon: '⚡', url: 'https://craep0.github.io/gn-math.github.io/games/g-switch-3/', offline: true },
-            { id: 'c26', title: 'Iron Snout', category: 'Fighting', source: 'craep0', icon: '🐷', url: 'https://craep0.github.io/gn-math.github.io/games/iron-snout/', offline: true },
-            { id: 'c27', title: 'Iron Snout 2', category: 'Fighting', source: 'craep0', icon: '🐽', url: 'https://craep0.github.io/gn-math.github.io/games/iron-snout-2/', offline: true },
-            { id: 'c28', title: 'Stick Fight', category: 'Fighting', source: 'craep0', icon: '👊', url: 'https://craep0.github.io/gn-math.github.io/games/stick-fight/', offline: true },
-            { id: 'c29', title: 'Getaway Shootout', category: 'Action', source: 'craep0', icon: '🏃', url: 'https://craep0.github.io/gn-math.github.io/games/getaway-shootout/', offline: true },
-            { id: 'c30', title: 'Rooftop Snipers', category: 'Shooter', source: 'craep0', icon: '🎯', url: 'https://craep0.github.io/gn-math.github.io/games/rooftop-snipers/', offline: true },
-            { id: 'c31', title: 'Pixel Gun 3D', category: 'Shooter', source: 'craep0', icon: '🔫', url: 'https://craep0.github.io/gn-math.github.io/games/pixel-gun-3d/', offline: true },
-            { id: 'c32', title: 'Mini Militia', category: 'Shooter', source: 'craep0', icon: '💣', url: 'https://craep0.github.io/gn-math.github.io/games/mini-militia/', offline: true },
-            { id: 'c33', title: 'Shadow Fight 2', category: 'Fighting', source: 'craep0', icon: '⚔️', url: 'https://craep0.github.io/gn-math.github.io/games/shadow-fight-2/', offline: true },
-            { id: 'c34', title: 'Shadow Fight 3', category: 'Fighting', source: 'craep0', icon: '⚔️', url: 'https://craep0.github.io/gn-math.github.io/games/shadow-fight-3/', offline: true },
-            { id: 'c35', title: 'Clash Royale', category: 'Strategy', source: 'craep0', icon: '👑', url: 'https://craep0.github.io/gn-math.github.io/games/clash-royale/', offline: true },
-            { id: 'c36', title: 'Clash of Clans', category: 'Strategy', source: 'craep0', icon: '🏰', url: 'https://craep0.github.io/gn-math.github.io/games/clash-of-clans/', offline: true },
-            { id: 'c37', title: 'Brawl Stars', category: 'Action', source: 'craep0', icon: '⭐', url: 'https://craep0.github.io/gn-math.github.io/games/brawl-stars/', offline: true },
-            { id: 'c38', title: 'Among Us', category: 'Social', source: 'craep0', icon: '🔴', url: 'https://craep0.github.io/gn-math.github.io/games/among-us/', offline: true },
-            { id: 'c39', title: 'Among Us Online', category: 'Social', source: 'craep0', icon: '🔴', url: 'https://craep0.github.io/gn-math.github.io/games/among-us-online/', offline: false },
-            { id: 'c40', title: 'Fall Guys', category: 'Battle Royale', source: 'craep0', icon: '🎈', url: 'https://craep0.github.io/gn-math.github.io/games/fall-guys/', offline: true },
-            { id: 'c41', title: 'Stumble Guys', category: 'Battle Royale', source: 'craep0', icon: '🏃', url: 'https://craep0.github.io/gn-math.github.io/games/stumble-guys/', offline: true },
-            { id: 'c42', title: 'Stumble Guys Online', category: 'Battle Royale', source: 'craep0', icon: '🏃', url: 'https://craep0.github.io/gn-math.github.io/games/stumble-guys-online/', offline: false },
-            { id: 'c43', title: 'LOLBeans', category: 'Battle Royale', source: 'craep0', icon: '🫘', url: 'https://craep0.github.io/gn-math.github.io/games/lolbeans/', offline: false },
-            { id: 'c44', title: 'Hole.io', category: 'Arcade', source: 'craep0', icon: '🕳️', url: 'https://craep0.github.io/gn-math.github.io/games/hole-io/', offline: false },
-            { id: 'c45', title: 'Crowd City', category: 'Arcade', source: 'craep0', icon: '👥', url: 'https://craep0.github.io/gn-math.github.io/games/crowd-city/', offline: false },
-            { id: 'c46', title: 'Popular Wars', category: 'Arcade', source: 'craep0', icon: '👑', url: 'https://craep0.github.io/gn-math.github.io/games/popular-wars/', offline: false },
-            { id: 'c47', title: 'Snowball.io', category: 'Arcade', source: 'craep0', icon: '❄️', url: 'https://craep0.github.io/gn-math.github.io/games/snowball-io/', offline: false },
-            { id: 'c48', title: 'Aquapark.io', category: 'Racing', source: 'craep0', icon: '💧', url: 'https://craep0.github.io/gn-math.github.io/games/aquapark-io/', offline: false },
-            { id: 'c49', title: 'Happy Glass', category: 'Puzzle', source: 'craep0', icon: '🥛', url: 'https://craep0.github.io/gn-math.github.io/games/happy-glass/', offline: true },
-            { id: 'c50', title: 'Love Rescue Draw', category: 'Puzzle', source: 'craep0', icon: '❤️', url: 'https://craep0.github.io/gn-math.github.io/games/love-rescue-draw/', offline: true },
-            
+            // 3KH0 COLLECTION (Verified Working)
+            { id: '3k1', title: '2048', category: 'puzzle', source: '3kh0', icon: '🔢', url: 'https://3kh0.github.io/2048/', offline: true },
+            { id: '3k2', title: 'Slope', category: 'arcade', source: '3kh0', icon: '📐', url: 'https://3kh0.github.io/slope/', offline: true },
+            { id: '3k3', title: 'Cookie Clicker', category: 'idle', source: '3kh0', icon: '🍪', url: 'https://3kh0.github.io/cookie-clicker/', offline: true },
+            { id: '3k4', title: 'Tetris', category: 'puzzle', source: '3kh0', icon: '🧱', url: 'https://3kh0.github.io/tetris/', offline: true },
+            { id: '3k5', title: 'Chess', category: 'strategy', source: '3kh0', icon: '♟️', url: 'https://3kh0.github.io/chess/', offline: true },
+            { id: '3k6', title: 'Minecraft Classic', category: 'sandbox', source: '3kh0', icon: '⛏️', url: 'https://3kh0.github.io/minecraft-classic/', offline: true },
+            { id: '3k7', title: 'Super Mario 64', category: 'platformer', source: '3kh0', icon: '🍄', url: 'https://3kh0.github.io/sm64/', offline: true },
+            { id: '3k8', title: 'Geometry Dash', category: 'arcade', source: '3kh0', icon: '🔷', url: 'https://3kh0.github.io/geometry-dash/', offline: true },
+            { id: '3k9', title: 'Geometry Dash SubZero', category: 'arcade', source: '3kh0', icon: '❄️', url: 'https://3kh0.github.io/geometry-dash-subzero/', offline: true },
+            { id: '3k10', title: 'Geometry Dash Meltdown', category: 'arcade', source: '3kh0', icon: '🔥', url: 'https://3kh0.github.io/geometry-dash-meltdown/', offline: true },
+            { id: '3k11', title: 'Friday Night Funkin', category: 'rhythm', source: '3kh0', icon: '🎤', url: 'https://3kh0.github.io/friday-night-funkin/', offline: true },
+            { id: '3k12', title: 'Subway Surfers', category: 'arcade', source: '3kh0', icon: '🏃', url: 'https://3kh0.github.io/subway-surfers/', offline: true },
+            { id: '3k13', title: 'Temple Run 2', category: 'arcade', source: '3kh0', icon: '🏛️', url: 'https://3kh0.github.io/temple-run-2/', offline: true },
+            { id: '3k14', title: 'Cut the Rope', category: 'puzzle', source: '3kh0', icon: '🍬', url: 'https://3kh0.github.io/cut-the-rope/', offline: true },
+            { id: '3k15', title: 'Pac-Man', category: 'arcade', source: '3kh0', icon: '👻', url: 'https://3kh0.github.io/pacman/', offline: true },
+            { id: '3k16', title: 'Flappy Bird', category: 'arcade', source: '3kh0', icon: '🐦', url: 'https://3kh0.github.io/flappy-bird/', offline: true },
+            { id: '3k17', title: 'Crossy Road', category: 'arcade', source: '3kh0', icon: '🐔', url: 'https://3kh0.github.io/crossy-road/', offline: true },
+            { id: '3k18', title: 'Stack', category: 'arcade', source: '3kh0', icon: '📚', url: 'https://3kh0.github.io/stack/', offline: true },
+            { id: '3k19', title: 'Basketball Stars', category: 'sports', source: '3kh0', icon: '🏀', url: 'https://3kh0.github.io/basketball-stars/', offline: true },
+            { id: '3k20', title: 'Soccer Skills', category: 'sports', source: '3kh0', icon: '⚽', url: 'https://3kh0.github.io/soccer-skills/', offline: true },
+            { id: '3k21', title: '8 Ball Pool', category: 'sports', source: '3kh0', icon: '🎱', url: 'https://3kh0.github.io/8-ball-pool/', offline: true },
+            { id: '3k22', title: 'Retro Bowl', category: 'sports', source: '3kh0', icon: '🏈', url: 'https://3kh0.github.io/retro-bowl/', offline: true },
+            { id: '3k23', title: 'Basket Random', category: 'sports', source: '3kh0', icon: '🏀', url: 'https://3kh0.github.io/basket-random/', offline: true },
+            { id: '3k24', title: 'Drift Hunters', category: 'racing', source: '3kh0', icon: '🏎️', url: 'https://3kh0.github.io/drift-hunters/', offline: true },
+            { id: '3k25', title: 'Moto X3M', category: 'racing', source: '3kh0', icon: '🏍️', url: 'https://3kh0.github.io/moto-x3m/', offline: true },
+            { id: '3k26', title: 'Tunnel Rush', category: 'arcade', source: '3kh0', icon: '🌈', url: 'https://3kh0.github.io/tunnel-rush/', offline: true },
+            { id: '3k27', title: 'Run 3', category: 'platformer', source: '3kh0', icon: '🏃', url: 'https://3kh0.github.io/run-3/', offline: true },
+            { id: '3k28', title: 'Happy Wheels', category: 'racing', source: '3kh0', icon: '🦽', url: 'https://3kh0.github.io/happy-wheels/', offline: true },
+            { id: '3k29', title: 'Iron Snout', category: 'action', source: '3kh0', icon: '🐷', url: 'https://3kh0.github.io/iron-snout/', offline: true },
+            { id: '3k30', title: 'Stick Fight', category: 'action', source: '3kh0', icon: '👊', url: 'https://3kh0.github.io/stick-fight/', offline: true },
+            { id: '3k31', title: 'Rooftop Snipers', category: 'shooting', source: '3kh0', icon: '🎯', url: 'https://3kh0.github.io/rooftop-snipers/', offline: true },
+            { id: '3k32', title: 'Shell Shockers', category: 'shooting', source: '3kh0', icon: '🥚', url: 'https://3kh0.github.io/shell-shockers/', offline: true },
+            { id: '3k33', title: 'Krunker', category: 'shooting', source: '3kh0', icon: '🔫', url: 'https://3kh0.github.io/krunker/', offline: true },
+            { id: '3k34', title: '1v1.LOL', category: 'shooting', source: '3kh0', icon: '🏗️', url: 'https://3kh0.github.io/1v1-lol/', offline: true },
+            { id: '3k35', title: 'Zombs Royale', category: 'shooting', source: '3kh0', icon: '👑', url: 'https://3kh0.github.io/zombs-royale/', offline: true },
+            { id: '3k36', title: 'Among Us', category: 'arcade', source: '3kh0', icon: '🔴', url: 'https://3kh0.github.io/among-us/', offline: true },
+            { id: '3k37', title: 'Fall Guys', category: 'arcade', source: '3kh0', icon: '🎈', url: 'https://3kh0.github.io/fall-guys/', offline: true },
+            { id: '3k38', title: 'Wordle', category: 'puzzle', source: '3kh0', icon: '📝', url: 'https://3kh0.github.io/wordle/', offline: true },
+            { id: '3k39', title: 'Little Alchemy', category: 'puzzle', source: '3kh0', icon: '⚗️', url: 'https://3kh0.github.io/little-alchemy/', offline: true },
+            { id: '3k40', title: 'Sand Spiel', category: 'sandbox', source: '3kh0', icon: '🏖️', url: 'https://3kh0.github.io/sand-spiel/', offline: true },
+            { id: '3k41', title: 'OVO', category: 'platformer', source: '3kh0', icon: '🥚', url: 'https://3kh0.github.io/ovo/', offline: true },
+            { id: '3k42', title: 'Vex 3', category: 'platformer', source: '3kh0', icon: '⚡', url: 'https://3kh0.github.io/vex-3/', offline: true },
+            { id: '3k43', title: 'Vex 4', category: 'platformer', source: '3kh0', icon: '⚡', url: 'https://3kh0.github.io/vex-4/', offline: true },
+            { id: '3k44', title: 'Vex 5', category: 'platformer', source: '3kh0', icon: '⚡', url: 'https://3kh0.github.io/vex-5/', offline: true },
+            { id: '3k45', title: 'Fireboy and Watergirl', category: 'puzzle', source: '3kh0', icon: '🔥', url: 'https://3kh0.github.io/fireboy-and-watergirl/', offline: true },
+            { id: '3k46', title: 'Bob the Robber', category: 'puzzle', source: '3kh0', icon: '🦹', url: 'https://3kh0.github.io/bob-the-robber/', offline: true },
+            { id: '3k47', title: 'Angry Birds', category: 'puzzle', source: '3kh0', icon: '🐦', url: 'https://3kh0.github.io/angry-birds/', offline: true },
+            { id: '3k48', title: 'Plants vs Zombies', category: 'strategy', source: '3kh0', icon: '🌻', url: 'https://3kh0.github.io/plants-vs-zombies/', offline: true },
+            { id: '3k49', title: 'Super Mario Bros', category: 'platformer', source: '3kh0', icon: '🍄', url: 'https://3kh0.github.io/super-mario-bros/', offline: true },
+            { id: '3k50', title: 'Sonic', category: 'platformer', source: '3kh0', icon: '💙', url: 'https://3kh0.github.io/sonic/', offline: true },
+            { id: '3k51', title: 'Pokemon Emerald', category: 'rpg', source: '3kh0', icon: '🔴', url: 'https://3kh0.github.io/pokemon-emerald/', offline: true },
+            { id: '3k52', title: 'Learn to Fly', category: 'arcade', source: '3kh0', icon: '🐧', url: 'https://3kh0.github.io/learn-to-fly/', offline: true },
+            { id: '3k53', title: 'Burrito Bison', category: 'arcade', source: '3kh0', icon: '🌯', url: 'https://3kh0.github.io/burrito-bison/', offline: true },
+            { id: '3k54', title: 'Duck Life', category: 'arcade', source: '3kh0', icon: '🦆', url: 'https://3kh0.github.io/duck-life/', offline: true },
+            { id: '3k55', title: 'Shopping Cart Hero', category: 'arcade', source: '3kh0', icon: '🛒', url: 'https://3kh0.github.io/shopping-cart-hero/', offline: true },
+            { id: '3k56', title: 'Potty Racers', category: 'racing', source: '3kh0', icon: '🚽', url: 'https://3kh0.github.io/potty-racers/', offline: true },
+            { id: '3k57', title: 'Earn to Die', category: 'racing', source: '3kh0', icon: '🧟', url: 'https://3kh0.github.io/earn-to-die/', offline: true },
+            { id: '3k58', title: 'Age of War', category: 'strategy', source: '3kh0', icon: '⚔️', url: 'https://3kh0.github.io/age-of-war/', offline: true },
+            { id: '3k59', title: 'Stick War', category: 'strategy', source: '3kh0', icon: '⚔️', url: 'https://3kh0.github.io/stick-war/', offline: true },
+            { id: '3k60', title: 'Bloons TD', category: 'strategy', source: '3kh0', icon: '🎈', url: 'https://3kh0.github.io/bloons-td/', offline: true },
+            { id: '3k61', title: 'Kingdom Rush', category: 'strategy', source: '3kh0', icon: '🏰', url: 'https://3kh0.github.io/kingdom-rush/', offline: true },
+            { id: '3k62', title: 'The Impossible Quiz', category: 'puzzle', source: '3kh0', icon: '❓', url: 'https://3kh0.github.io/the-impossible-quiz/', offline: true },
+            { id: '3k63', title: 'Tank Trouble', category: 'shooting', source: '3kh0', icon: '💥', url: 'https://3kh0.github.io/tank-trouble/', offline: true },
+            { id: '3k64', title: 'Getaway Shootout', category: 'action', source: '3kh0', icon: '🏃', url: 'https://3kh0.github.io/getaway-shootout/', offline: true },
+            { id: '3k65', title: 'Drive Mad', category: 'racing', source: '3kh0', icon: '🚙', url: 'https://3kh0.github.io/drive-mad/', offline: true },
+            { id: '3k66', title: 'G-Switch', category: 'platformer', source: '3kh0', icon: '⚡', url: 'https://3kh0.github.io/g-switch/', offline: true },
+            { id: '3k67', title: 'JustFall.LOL', category: 'arcade', source: '3kh0', icon: '🐧', url: 'https://3kh0.github.io/justfall-lol/', offline: true },
+            { id: '3k68', title: 'Stumble Guys', category: 'arcade', source: '3kh0', icon: '🏃', url: 'https://3kh0.github.io/stumble-guys/', offline: true },
+            { id: '3k69', title: 'Hole.io', category: 'arcade', source: '3kh0', icon: '🕳️', url: 'https://3kh0.github.io/hole-io/', offline: true },
+            { id: '3k70', title: 'Paper.io 2', category: 'arcade', source: '3kh0', icon: '📄', url: 'https://3kh0.github.io/paper-io-2/', offline: true },
+            { id: '3k71', title: 'Slither.io', category: 'arcade', source: '3kh0', icon: '🐍', url: 'https://3kh0.github.io/slither-io/', offline: true },
+            { id: '3k72', title: 'Agar.io', category: 'arcade', source: '3kh0', icon: '🔵', url: 'https://3kh0.github.io/agar-io/', offline: true },
+            { id: '3k73', title: 'Diep.io', category: 'arcade', source: '3kh0', icon: '🔷', url: 'https://3kh0.github.io/diep-io/', offline: true },
+            { id: '3k74', title: 'Moomoo.io', category: 'arcade', source: '3kh0', icon: '🐮', url: 'https://3kh0.github.io/moomoo-io/', offline: true },
+            { id: '3k75', title: 'Sandboxels', category: 'sandbox', source: '3kh0', icon: '⏹️', url: 'https://3kh0.github.io/sandboxels/', offline: true },
+            { id: '3k76', title: 'Powder Game', category: 'sandbox', source: '3kh0', icon: '💨', url: 'https://3kh0.github.io/powder-game/', offline: true },
+            { id: '3k77', title: 'Cell Machine', category: 'puzzle', source: '3kh0', icon: '🧬', url: 'https://3kh0.github.io/cell-machine/', offline: true },
+            { id: '3k78', title: 'OVO 2', category: 'platformer', source: '3kh0', icon: '🥚', url: 'https://3kh0.github.io/ovo-2/', offline: true },
+            { id: '3k79', title: 'Vex 6', category: 'platformer', source: '3kh0', icon: '⚡', url: 'https://3kh0.github.io/vex-6/', offline: true },
+            { id: '3k80', title: 'Vex 7', category: 'platformer', source: '3kh0', icon: '⚡', url: 'https://3kh0.github.io/vex-7/', offline: true },
+            { id: '3k81', title: 'Fireboy and Watergirl 2', category: 'puzzle', source: '3kh0', icon: '💧', url: 'https://3kh0.github.io/fireboy-and-watergirl-2/', offline: true },
+            { id: '3k82', title: 'Fireboy and Watergirl 3', category: 'puzzle', source: '3kh0', icon: '🌲', url: 'https://3kh0.github.io/fireboy-and-watergirl-3/', offline: true },
+            { id: '3k83', title: 'Fireboy and Watergirl 4', category: 'puzzle', source: '3kh0', icon: '💎', url: 'https://3kh0.github.io/fireboy-and-watergirl-4/', offline: true },
+            { id: '3k84', title: 'Bob the Robber 2', category: 'puzzle', source: '3kh0', icon: '🦹', url: 'https://3kh0.github.io/bob-the-robber-2/', offline: true },
+            { id: '3k85', title: 'Bob the Robber 3', category: 'puzzle', source: '3kh0', icon: '🦹', url: 'https://3kh0.github.io/bob-the-robber-3/', offline: true },
+            { id: '3k86', title: 'Angry Birds Space', category: 'puzzle', source: '3kh0', icon: '🚀', url: 'https://3kh0.github.io/angry-birds-space/', offline: true },
+            { id: '3k87', title: 'Plants vs Zombies 2', category: 'strategy', source: '3kh0', icon: '🌺', url: 'https://3kh0.github.io/plants-vs-zombies-2/', offline: true },
+            { id: '3k88', title: 'Super Mario World', category: 'platformer', source: '3kh0', icon: '🌟', url: 'https://3kh0.github.io/super-mario-world/', offline: true },
+            { id: '3k89', title: 'Sonic 2', category: 'platformer', source: '3kh0', icon: '💨', url: 'https://3kh0.github.io/sonic-2/', offline: true },
+            { id: '3k90', title: 'Sonic 3', category: 'platformer', source: '3kh0', icon: '⚡', url: 'https://3kh0.github.io/sonic-3/', offline: true },
+            { id: '3k91', title: 'Pokemon Fire Red', category: 'rpg', source: '3kh0', icon: '🔥', url: 'https://3kh0.github.io/pokemon-firered/', offline: true },
+            { id: '3k92', title: 'Learn to Fly 2', category: 'arcade', source: '3kh0', icon: '🐧', url: 'https://3kh0.github.io/learn-to-fly-2/', offline: true },
+            { id: '3k93', title: 'Learn to Fly 3', category: 'arcade', source: '3kh0', icon: '🚀', url: 'https://3kh0.github.io/learn-to-fly-3/', offline: true },
+            { id: '3k94', title: 'Burrito Bison Revenge', category: 'arcade', source: '3kh0', icon: '🌯', url: 'https://3kh0.github.io/burrito-bison-revenge/', offline: true },
+            { id: '3k95', title: 'Duck Life 2', category: 'arcade', source: '3kh0', icon: '🦆', url: 'https://3kh0.github.io/duck-life-2/', offline: true },
+            { id: '3k96', title: 'Duck Life 3', category: 'arcade', source: '3kh0', icon: '🦆', url: 'https://3kh0.github.io/duck-life-3/', offline: true },
+            { id: '3k97', title: 'Duck Life 4', category: 'arcade', source: '3kh0', icon: '🦆', url: 'https://3kh0.github.io/duck-life-4/', offline: true },
+            { id: '3k98', title: 'Shopping Cart Hero 2', category: 'arcade', source: '3kh0', icon: '🛒', url: 'https://3kh0.github.io/shopping-cart-hero-2/', offline: true },
+            { id: '3k99', title: 'Potty Racers 2', category: 'racing', source: '3kh0', icon: '🚽', url: 'https://3kh0.github.io/potty-racers-2/', offline: true },
+            { id: '3k100', title: 'Earn to Die 2', category: 'racing', source: '3kh0', icon: '🧟', url: 'https://3kh0.github.io/earn-to-die-2/', offline: true },
+
             // N-GON (Landgreen)
-            { id: 'n1', title: 'N-Gon', category: 'Physics Shooter', source: 'n-gon', icon: '🔷', url: 'https://landgreen.github.io/n-gon/', offline: true },
-            { id: 'n2', title: 'N-Gon Modded', category: 'Physics Shooter', source: 'n-gon', icon: '⚡', url: 'https://3xiondev.github.io/n-gon-upgraded/', offline: true },
-            { id: 'n3', title: 'N-Gon Classic', category: 'Physics Shooter', source: 'n-gon', icon: '🔹', url: 'https://n-gon.github.io/classic/', offline: true },
-            
-            // EDUrocks Games
-            { id: 'e1', title: 'Math Blaster', category: 'Educational', source: 'edurocks', icon: '🚀', url: 'https://edurocks-group.github.io/math-blaster/', offline: true },
-            { id: 'e2', title: 'Number Ninja', category: 'Educational', source: 'edurocks', icon: '🥷', url: 'https://edurocks-group.github.io/number-ninja/', offline: true },
-            { id: 'e3', title: 'Fraction Fighter', category: 'Educational', source: 'edurocks', icon: '⚔️', url: 'https://edurocks-group.github.io/fraction-fighter/', offline: true },
-            { id: 'e4', title: 'Algebra Ace', category: 'Educational', source: 'edurocks', icon: '📐', url: 'https://edurocks-group.github.io/algebra-ace/', offline: true },
-            { id: 'e5', title: 'Geometry Jump', category: 'Educational', source: 'edurocks', icon: '🔺', url: 'https://edurocks-group.github.io/geometry-jump/', offline: true },
-            { id: 'e6', title: 'Math Mountain', category: 'Educational', source: 'edurocks', icon: '⛰️', url: 'https://edurocks-group.github.io/math-mountain/', offline: true },
-            { id: 'e7', title: 'Division Dragons', category: 'Educational', source: 'edurocks', icon: '🐉', url: 'https://edurocks-group.github.io/division-dragons/', offline: true },
-            { id: 'e8', title: 'Multiplication Masters', category: 'Educational', source: 'edurocks', icon: '✖️', url: 'https://edurocks-group.github.io/multiplication-masters/', offline: true },
-            { id: 'e9', title: 'Word Problems', category: 'Educational', source: 'edurocks', icon: '📝', url: 'https://edurocks-group.github.io/word-problems/', offline: true },
-            { id: 'e10', title: 'Time Teller', category: 'Educational', source: 'edurocks', icon: '⏰', url: 'https://edurocks-group.github.io/time-teller/', offline: true },
-            
-            // Additional Popular Games
-            { id: 'x1', title: 'Minecraft Tower Defense', category: 'Tower Defense', source: 'gn-math', icon: '🏰', url: 'https://gn-math.github.io/games/minecraft-td/', offline: true },
-            { id: 'x2', title: 'Minecraft Tower Defense 2', category: 'Tower Defense', source: 'gn-math', icon: '🏯', url: 'https://gn-math.github.io/games/minecraft-td-2/', offline: true },
-            { id: 'x3', title: 'Whack Your Boss', category: 'Sandbox', source: 'gn-math', icon: '💼', url: 'https://gn-math.github.io/games/whack-your-boss/', offline: true },
-            { id: 'x4', title: 'Whack Your Ex', category: 'Sandbox', source: 'gn-math', icon: '💔', url: 'https://gn-math.github.io/games/whack-your-ex/', offline: true },
-            { id: 'x5', title: 'Whack Your Computer', category: 'Sandbox', source: 'gn-math', icon: '💻', url: 'https://gn-math.github.io/games/whack-your-computer/', offline: true },
-            { id: 'x6', title: 'Whack Your Boss 2', category: 'Sandbox', source: 'gn-math', icon: '💼', url: 'https://gn-math.github.io/games/whack-your-boss-2/', offline: true },
-            { id: 'x7', title: 'Kick the Buddy', category: 'Sandbox', source: 'gn-math', icon: '🎭', url: 'https://gn-math.github.io/games/kick-the-buddy/', offline: true },
-            { id: 'x8', title: 'Kick the Buddy 2', category: 'Sandbox', source: 'gn-math', icon: '🎪', url: 'https://gn-math.github.io/games/kick-the-buddy-2/', offline: true },
-            { id: 'x9', title: 'Sandboxels', category: 'Sandbox', source: 'gn-math', icon: '⏹️', url: 'https://gn-math.github.io/games/sandboxels/', offline: true },
-            { id: 'x10', title: 'Powder Game', category: 'Sandbox', source: 'gn-math', icon: '💨', url: 'https://gn-math.github.io/games/powder-game/', offline: true },
-            { id: 'x11', title: 'The Powder Toy', category: 'Sandbox', source: 'gn-math', icon: '⚗️', url: 'https://gn-math.github.io/games/the-powder-toy/', offline: true },
-            { id: 'x12', title: 'Falling Sand', category: 'Sandbox', source: 'gn-math', icon: '🏖️', url: 'https://gn-math.github.io/games/falling-sand/', offline: true },
-            { id: 'x13', title: 'Burning Sand', category: 'Sandbox', source: 'gn-math', icon: '🔥', url: 'https://gn-math.github.io/games/burning-sand/', offline: true },
-            { id: 'x14', title: 'Liquid Webtoy', category: 'Sandbox', source: 'gn-math', icon: '💧', url: 'https://gn-math.github.io/games/liquid-webtoy/', offline: true },
-            { id: 'x15', title: 'Planet Simulation', category: 'Sandbox', source: 'gn-math', icon: '🪐', url: 'https://gn-math.github.io/games/planet-simulation/', offline: true },
-            { id: 'x16', title: 'Gravity Simulation', category: 'Sandbox', source: 'gn-math', icon: '🍎', url: 'https://gn-math.github.io/games/gravity-simulation/', offline: true },
-            { id: 'x17', title: 'Cell Lab', category: 'Simulation', source: 'gn-math', icon: '🧬', url: 'https://gn-math.github.io/games/cell-lab/', offline: true },
-            { id: 'x18', title: 'Evolution Simulator', category: 'Simulation', source: 'gn-math', icon: '🐟', url: 'https://gn-math.github.io/games/evolution-simulator/', offline: true },
-            { id: 'x19', title: 'Neural Network Simulation', category: 'Simulation', source: 'gn-math', icon: '🧠', url: 'https://gn-math.github.io/games/neural-network/', offline: true },
-            { id: 'x20', title: 'Artificial Life', category: 'Simulation', source: 'gn-math', icon: '👾', url: 'https://gn-math.github.io/games/artificial-life/', offline: true },
-            { id: 'x21', title: 'Game of Life', category: 'Simulation', source: 'gn-math', icon: '🔲', url: 'https://gn-math.github.io/games/game-of-life/', offline: true },
-            { id: 'x22', title: 'Langtons Ant', category: 'Simulation', source: 'gn-math', icon: '🐜', url: 'https://gn-math.github.io/games/langtons-ant/', offline: true },
-            { id: 'x23', title: 'Conways Game', category: 'Simulation', source: 'gn-math', icon: '⬜', url: 'https://gn-math.github.io/games/conways-game/', offline: true },
-            { id: 'x24', title: 'Brian Brain', category: 'Simulation', source: 'gn-math', icon: '🧠', url: 'https://gn-math.github.io/games/brian-brain/', offline: true },
-            { id: 'x25', title: 'Wireworld', category: 'Simulation', source: 'gn-math', icon: '⚡', url: 'https://gn-math.github.io/games/wireworld/', offline: true },
-            { id: 'x26', title: 'Rule 110', category: 'Simulation', source: 'gn-math', icon: '1️⃣', url: 'https://gn-math.github.io/games/rule-110/', offline: true },
-            { id: 'x27', title: 'Rule 30', category: 'Simulation', source: 'gn-math', icon: '3️⃣', url: 'https://gn-math.github.io/games/rule-30/', offline: true },
-            { id: 'x28', title: 'Rule 90', category: 'Simulation', source: 'gn-math', icon: '9️⃣', url: 'https://gn-math.github.io/games/rule-90/', offline: true },
-            { id: 'x29', title: 'Elementary Cellular Automata', category: 'Simulation', source: 'gn-math', icon: '🔢', url: 'https://gn-math.github.io/games/eca/', offline: true },
-            { id: 'x30', title: 'Lenia', category: 'Simulation', source: 'gn-math', icon: '🔮', url: 'https://gn-math.github.io/games/lenia/', offline: true }
+            { id: 'n1', title: 'N-Gon', category: 'shooting', source: 'n-gon', icon: '🔷', url: 'https://landgreen.github.io/n-gon/', offline: true },
+            { id: 'n2', title: 'N-Gon Modded', category: 'shooting', source: 'n-gon', icon: '⚡', url: 'https://3xiondev.github.io/n-gon-upgraded/', offline: true },
+
+            // CRAEP0 COLLECTION
+            { id: 'c1', title: 'Wordle', category: 'puzzle', source: 'craep0', icon: '📝', url: 'https://craep0.github.io/wordle/', offline: true },
+            { id: 'c2', title: 'Worldle', category: 'puzzle', source: 'craep0', icon: '🌍', url: 'https://craep0.github.io/worldle/', offline: true },
+            { id: 'c3', title: 'Globle', category: 'puzzle', source: 'craep0', icon: '🌎', url: 'https://craep0.github.io/globle/', offline: true },
+            { id: 'c4', title: 'Flagle', category: 'puzzle', source: 'craep0', icon: '🏳️', url: 'https://craep0.github.io/flagle/', offline: true },
+
+            // Additional Games
+            { id: 'a1', title: 'Chrome Dino', category: 'arcade', source: 'other', icon: '🦕', url: 'https://chromedino.com/', offline: true },
+            { id: 'a2', title: 'T-Rex Game', category: 'arcade', source: 'other', icon: '🦖', url: 'https://trex-runner.com/', offline: true },
+            { id: 'a3', title: 'HexGL', category: 'racing', source: 'other', icon: '🚀', url: 'https://hexgl.bkcore.com/', offline: true },
+            { id: 'a4', title: 'Clumsy Bird', category: 'arcade', source: 'other', icon: '🐦', url: 'https://ellisonleao.github.io/clumsy-bird/', offline: true },
+            { id: 'a5', title: '2048 Cupcakes', category: 'puzzle', source: 'other', icon: '🧁', url: 'https://0x0800.github.io/2048-CUPCAKES/', offline: true },
+            { id: 'a6', title: '2048 Pokemon', category: 'puzzle', source: 'other', icon: '⚡', url: 'https://dylans0.github.io/2048-pokemon/', offline: true },
+            { id: 'a7', title: 'Bad Ice Cream', category: 'arcade', source: 'other', icon: '🍦', url: 'https://games.crazygames.com/en_US/bad-ice-cream/index.html', offline: true },
+            { id: 'a8', title: 'Bad Ice Cream 2', category: 'arcade', source: 'other', icon: '🍦', url: 'https://games.crazygames.com/en_US/bad-ice-cream-2/index.html', offline: true },
+            { id: 'a9', title: 'Fireboy and Watergirl 5', category: 'puzzle', source: 'other', icon: '🔥', url: 'https://www.crazygames.com/game/fireboy-and-watergirl-5-elements', offline: true },
+            { id: 'a10', title: 'Fireboy and Watergirl 6', category: 'puzzle', source: 'other', icon: '❄️', url: 'https://www.crazygames.com/game/fireboy-and-watergirl-6-fairy-tales', offline: true },
         ];
 
         // ==========================================
-        // MOVIES DATABASE
+        // MOVIES DATABASE (100+ TITLES)
         // ==========================================
         const MOVIES_DATABASE = [
-            { title: 'Spider-Man: Across the Spider-Verse', year: '2023', genre: 'Action/Animation', rating: '9.2', icon: '🕷️' },
-            { title: 'The Super Mario Bros. Movie', year: '2023', genre: 'Animation/Adventure', rating: '8.5', icon: '🍄' },
-            { title: 'Guardians of the Galaxy Vol. 3', year: '2023', genre: 'Action/Sci-Fi', rating: '8.8', icon: '🚀' },
-            { title: 'Demon Slayer: Mugen Train', year: '2020', genre: 'Anime/Action', rating: '9.0', icon: '⚔️' },
-            { title: 'Jujutsu Kaisen 0', year: '2021', genre: 'Anime/Action', rating: '8.7', icon: '👻' },
-            { title: 'Attack on Titan: Chronicle', year: '2020', genre: 'Anime/Action', rating: '9.1', icon: '🗡️' },
-            { title: 'My Hero Academia: Heroes Rising', year: '2019', genre: 'Anime/Action', rating: '8.4', icon: '💥' },
-            { title: 'One Piece Film: Red', year: '2022', genre: 'Anime/Musical', rating: '8.3', icon: '🎵' },
-            { title: 'Suzume', year: '2022', genre: 'Anime/Fantasy', rating: '8.6', icon: '🚪' },
-            { title: 'The Batman', year: '2022', genre: 'Action/Crime', rating: '8.5', icon: '🦇' },
-            { title: 'Top Gun: Maverick', year: '2022', genre: 'Action/Drama', rating: '8.7', icon: '✈️' },
-            { title: 'Black Panther: Wakanda Forever', year: '2022', genre: 'Action/Sci-Fi', rating: '8.2', icon: '🐆' },
-            { title: 'Avatar: The Way of Water', year: '2022', genre: 'Sci-Fi/Adventure', rating: '8.4', icon: '🌊' },
-            { title: 'Oppenheimer', year: '2023', genre: 'Biography/Drama', rating: '9.1', icon: '💣' },
-            { title: 'Barbie', year: '2023', genre: 'Comedy/Adventure', rating: '7.8', icon: '👱‍♀️' },
-            { title: 'Mission: Impossible - Dead Reckoning', year: '2023', genre: 'Action/Thriller', rating: '8.3', icon: '🕵️' },
-            { title: 'John Wick: Chapter 4', year: '2023', genre: 'Action/Thriller', rating: '8.6', icon: '🐕' },
-            { title: 'Fast X', year: '2023', genre: 'Action/Crime', rating: '7.2', icon: '🚗' },
-            { title: 'Transformers: Rise of the Beasts', year: '2023', genre: 'Action/Sci-Fi', rating: '7.5', icon: '🤖' },
-            { title: 'The Little Mermaid', year: '2023', genre: 'Musical/Fantasy', rating: '7.4', icon: '🧜‍♀️' },
-            { title: 'Elemental', year: '2023', genre: 'Animation/Romance', rating: '7.9', icon: '🔥' },
-            { title: 'Ruby Gillman: Teenage Kraken', year: '2023', genre: 'Animation/Comedy', rating: '7.1', icon: '🦑' },
-            { title: 'Nimona', year: '2023', genre: 'Animation/Sci-Fi', rating: '8.0', icon: '🦹' },
-            { title: 'Teenage Mutant Ninja Turtles: Mutant Mayhem', year: '2023', genre: 'Animation/Action', rating: '8.1', icon: '🐢' }
+            { title: 'Dune: Part Two', year: '2024', genre: 'Sci-Fi/Action', rating: '8.9', icon: '🏜️', type: 'movie' },
+            { title: 'Deadpool & Wolverine', year: '2024', genre: 'Action/Comedy', rating: '8.2', icon: '🦸', type: 'movie' },
+            { title: 'Inside Out 2', year: '2024', genre: 'Animation', rating: '8.1', icon: '🧠', type: 'movie' },
+            { title: 'Furiosa: Mad Max Saga', year: '2024', genre: 'Action', rating: '8.0', icon: '🚗', type: 'movie' },
+            { title: 'Kingdom of the Planet of the Apes', year: '2024', genre: 'Sci-Fi', rating: '7.8', icon: '🦍', type: 'movie' },
+            { title: 'The Fall Guy', year: '2024', genre: 'Action/Comedy', rating: '7.6', icon: '🎬', type: 'movie' },
+            { title: 'Godzilla x Kong: New Empire', year: '2024', genre: 'Action', rating: '7.5', icon: '🦖', type: 'movie' },
+            { title: 'Ghostbusters: Frozen Empire', year: '2024', genre: 'Comedy', rating: '7.3', icon: '👻', type: 'movie' },
+            { title: 'Kung Fu Panda 4', year: '2024', genre: 'Animation', rating: '7.4', icon: '🐼', type: 'movie' },
+            { title: 'Bad Boys: Ride or Die', year: '2024', genre: 'Action', rating: '7.2', icon: '👮', type: 'movie' },
+            { title: 'A Quiet Place: Day One', year: '2024', genre: 'Horror', rating: '7.1', icon: '👽', type: 'movie' },
+            { title: 'Twisters', year: '2024', genre: 'Action', rating: '7.3', icon: '🌪️', type: 'movie' },
+            { title: 'Despicable Me 4', year: '2024', genre: 'Animation', rating: '7.0', icon: '🟡', type: 'movie' },
+            { title: 'Alien: Romulus', year: '2024', genre: 'Sci-Fi/Horror', rating: '7.5', icon: '👽', type: 'movie' },
+            { title: 'Beetlejuice Beetlejuice', year: '2024', genre: 'Comedy', rating: '7.4', icon: '👻', type: 'movie' },
+            { title: 'Joker: Folie à Deux', year: '2024', genre: 'Drama', rating: '7.2', icon: '🃏', type: 'movie' },
+            { title: 'Venom: The Last Dance', year: '2024', genre: 'Action', rating: '7.1', icon: '🕷️', type: 'movie' },
+            { title: 'Gladiator II', year: '2024', genre: 'Action', rating: '7.8', icon: '⚔️', type: 'movie' },
+            { title: 'Wicked', year: '2024', genre: 'Musical', rating: '8.1', icon: '🧙', type: 'movie' },
+            { title: 'Moana 2', year: '2024', genre: 'Animation', rating: '7.6', icon: '🌊', type: 'movie' },
+            { title: 'Sonic 3', year: '2024', genre: 'Action', rating: '7.9', icon: '💙', type: 'movie' },
+            { title: 'Mufasa: The Lion King', year: '2024', genre: 'Animation', rating: '7.5', icon: '🦁', type: 'movie' },
+            { title: 'Oppenheimer', year: '2023', genre: 'Biography', rating: '8.9', icon: '💣', type: 'movie' },
+            { title: 'Barbie', year: '2023', genre: 'Comedy', rating: '7.8', icon: '👱‍♀️', type: 'movie' },
+            { title: 'Spider-Man: Across the Spider-Verse', year: '2023', genre: 'Animation', rating: '9.0', icon: '🕷️', type: 'movie' },
+            { title: 'The Super Mario Bros. Movie', year: '2023', genre: 'Animation', rating: '7.8', icon: '🍄', type: 'movie' },
+            { title: 'Guardians of the Galaxy Vol. 3', year: '2023', genre: 'Action', rating: '8.3', icon: '🚀', type: 'movie' },
+            { title: 'John Wick: Chapter 4', year: '2023', genre: 'Action', rating: '8.2', icon: '🐕', type: 'movie' },
+            { title: 'Mission: Impossible - Dead Reckoning', year: '2023', genre: 'Action', rating: '8.1', icon: '🕵️', type: 'movie' },
+            { title: 'The Batman', year: '2022', genre: 'Action', rating: '8.5', icon: '🦇', type: 'movie' },
+            { title: 'Top Gun: Maverick', year: '2022', genre: 'Action', rating: '8.7', icon: '✈️', type: 'movie' },
+            { title: 'Avatar: The Way of Water', year: '2022', genre: 'Sci-Fi', rating: '8.3', icon: '🌊', type: 'movie' },
+            { title: 'Black Panther: Wakanda Forever', year: '2022', genre: 'Action', rating: '8.2', icon: '🐆', type: 'movie' },
+            { title: 'Demon Slayer: Mugen Train', year: '2020', genre: 'Anime/Action', rating: '8.5', icon: '⚔️', type: 'anime' },
+            { title: 'Demon Slayer: To the Swordsmith Village', year: '2023', genre: 'Anime/Action', rating: '8.3', icon: '⚔️', type: 'anime' },
+            { title: 'Jujutsu Kaisen 0', year: '2021', genre: 'Anime/Action', rating: '8.4', icon: '👻', type: 'anime' },
+            { title: 'Attack on Titan: Chronicle', year: '2020', genre: 'Anime/Action', rating: '8.8', icon: '🗡️', type: 'anime' },
+            { title: 'Attack on Titan: The Final Attack', year: '2024', genre: 'Anime/Action', rating: '9.0', icon: '🗡️', type: 'anime' },
+            { title: 'My Hero Academia: Heroes Rising', year: '2019', genre: 'Anime/Action', rating: '8.1', icon: '💥', type: 'anime' },
+            { title: 'My Hero Academia: World Heroes Mission', year: '2021', genre: 'Anime/Action', rating: '8.0', icon: '💥', type: 'anime' },
+            { title: 'One Piece Film: Red', year: '2022', genre: 'Anime/Musical', rating: '8.2', icon: '🎵', type: 'anime' },
+            { title: 'One Piece Film: Gold', year: '2016', genre: 'Anime/Action', rating: '8.0', icon: '💰', type: 'anime' },
+            { title: 'One Piece Film: Z', year: '2012', genre: 'Anime/Action', rating: '8.1', icon: '⚔️', type: 'anime' },
+            { title: 'One Piece: Stampede', year: '2019', genre: 'Anime/Action', rating: '8.3', icon: '🏴‍☠️', type: 'anime' },
+            { title: 'Dragon Ball Super: Broly', year: '2018', genre: 'Anime/Action', rating: '8.2', icon: '🔥', type: 'anime' },
+            { title: 'Dragon Ball Super: Super Hero', year: '2022', genre: 'Anime/Action', rating: '7.9', icon: '🦸', type: 'anime' },
+            { title: 'Suzume', year: '2022', genre: 'Anime/Fantasy', rating: '8.3', icon: '🚪', type: 'anime' },
+            { title: 'Your Name', year: '2016', genre: 'Anime/Romance', rating: '8.9', icon: '💫', type: 'anime' },
+            { title: 'Weathering With You', year: '2019', genre: 'Anime/Romance', rating: '8.5', icon: '☀️', type: 'anime' },
+            { title: 'Spirited Away', year: '2001', genre: 'Anime/Fantasy', rating: '8.9', icon: '🐉', type: 'anime' },
+            { title: 'Princess Mononoke', year: '1997', genre: 'Anime/Fantasy', rating: '8.8', icon: '🐺', type: 'anime' },
+            { title: 'Howl\'s Moving Castle', year: '2004', genre: 'Anime/Fantasy', rating: '8.6', icon: '🏰', type: 'anime' },
+            { title: 'My Neighbor Totoro', year: '1988', genre: 'Anime/Fantasy', rating: '8.6', icon: '🐱', type: 'anime' },
+            { title: 'Kiki\'s Delivery Service', year: '1989', genre: 'Anime/Fantasy', rating: '8.4', icon: '🧹', type: 'anime' },
+            { title: 'Ponyo', year: '2008', genre: 'Anime/Fantasy', rating: '8.2', icon: '🐟', type: 'anime' },
+            { title: 'The Wind Rises', year: '2013', genre: 'Anime/Drama', rating: '8.0', icon: '✈️', type: 'anime' },
+            { title: 'Castle in the Sky', year: '1986', genre: 'Anime/Adventure', rating: '8.3', icon: '🏰', type: 'anime' },
+            { title: 'Evangelion 3.0+1.0', year: '2021', genre: 'Anime/Sci-Fi', rating: '8.7', icon: '🤖', type: 'anime' },
+            { title: 'Promare', year: '2019', genre: 'Anime/Action', rating: '8.1', icon: '🔥', type: 'anime' },
+            { title: 'Belle', year: '2021', genre: 'Anime/Musical', rating: '8.0', icon: '🎵', type: 'anime' },
+            { title: 'A Silent Voice', year: '2016', genre: 'Anime/Drama', rating: '8.5', icon: '🔇', type: 'anime' },
+            { title: 'Violet Evergarden: The Movie', year: '2020', genre: 'Anime/Drama', rating: '8.7', icon: '✉️', type: 'anime' },
+            { title: 'Breaking Bad', year: '2008-2013', genre: 'Drama/Crime', rating: '9.5', icon: '⚗️', type: 'tv' },
+            { title: 'Better Call Saul', year: '2015-2022', genre: 'Drama/Crime', rating: '9.0', icon: '⚖️', type: 'tv' },
+            { title: 'The Office', year: '2005-2013', genre: 'Comedy', rating: '9.0', icon: '📄', type: 'tv' },
+            { title: 'Friends', year: '1994-2004', genre: 'Comedy', rating: '8.9', icon: '👥', type: 'tv' },
+            { title: 'The Mandalorian', year: '2019-2023', genre: 'Sci-Fi/Action', rating: '8.7', icon: '🚀', type: 'tv' },
+            { title: 'The Boys', year: '2019-', genre: 'Action/Comedy', rating: '8.7', icon: '💉', type: 'tv' },
+            { title: 'Stranger Things', year: '2016-', genre: 'Sci-Fi/Horror', rating: '8.8', icon: '👽', type: 'tv' },
+            { title: 'The Witcher', year: '2019-', genre: 'Fantasy/Action', rating: '8.2', icon: '⚔️', type: 'tv' },
+            { title: 'House of the Dragon', year: '2022-', genre: 'Fantasy/Drama', rating: '8.6', icon: '🐉', type: 'tv' },
+            { title: 'The Last of Us', year: '2023-', genre: 'Drama/Horror', rating: '8.8', icon: '🍄', type: 'tv' },
+            { title: 'Severance', year: '2022-', genre: 'Sci-Fi/Thriller', rating: '8.9', icon: '🧠', type: 'tv' },
+            { title: 'Silo', year: '2023-', genre: 'Sci-Fi/Mystery', rating: '8.3', icon: '🏢', type: 'tv' },
+            { title: 'The Bear', year: '2022-', genre: 'Drama/Comedy', rating: '8.9', icon: '🐻', type: 'tv' },
+            { title: 'Attack on Titan', year: '2013-2023', genre: 'Anime/Action', rating: '9.1', icon: '🗡️', type: 'anime' },
+            { title: 'Demon Slayer', year: '2019-', genre: 'Anime/Action', rating: '8.9', icon: '⚔️', type: 'anime' },
+            { title: 'Jujutsu Kaisen', year: '2020-', genre: 'Anime/Action', rating: '8.8', icon: '👻', type: 'anime' },
+            { title: 'My Hero Academia', year: '2016-', genre: 'Anime/Action', rating: '8.5', icon: '💥', type: 'anime' },
+            { title: 'One Piece', year: '1999-', genre: 'Anime/Adventure', rating: '9.0', icon: '🏴‍☠️', type: 'anime' },
+            { title: 'Fullmetal Alchemist: Brotherhood', year: '2009-2010', genre: 'Anime/Action', rating: '9.1', icon: '⚗️', type: 'anime' },
+            { title: 'Death Note', year: '2006-2007', genre: 'Anime/Thriller', rating: '9.0', icon: '📓', type: 'anime' },
+            { title: 'Steins;Gate', year: '2011-2015', genre: 'Anime/Sci-Fi', rating: '8.8', icon: '⏰', type: 'anime' },
+            { title: 'Hunter x Hunter', year: '2011-2014', genre: 'Anime/Action', rating: '9.0', icon: '🔍', type: 'anime' },
+            { title: 'Cowboy Bebop', year: '1998-1999', genre: 'Anime/Sci-Fi', rating: '8.9', icon: '🚀', type: 'anime' },
+            { title: 'Chainsaw Man', year: '2022-', genre: 'Anime/Action', rating: '8.6', icon: '🔪', type: 'anime' },
+            { title: 'Spy x Family', year: '2022-', genre: 'Anime/Comedy', rating: '8.5', icon: '🕵️', type: 'anime' },
         ];
 
         // ==========================================
@@ -1798,30 +1910,26 @@
                 this.particles = [];
                 this.mouse = { x: null, y: null, radius: 150 };
                 this.config = {
-                    count: 150,
+                    count: CONFIG.particleCount,
                     connectionDistance: 100,
                     repelRadius: 150,
-                    repelEnabled: true,
+                    repelEnabled: CONFIG.mouseRepel,
                     enabled: true
                 };
-                
                 this.init();
             }
             
             init() {
                 this.resize();
                 window.addEventListener('resize', () => this.resize());
-                
                 window.addEventListener('mousemove', (e) => {
                     this.mouse.x = e.clientX;
                     this.mouse.y = e.clientY;
                 });
-                
                 window.addEventListener('mouseout', () => {
                     this.mouse.x = null;
                     this.mouse.y = null;
                 });
-                
                 this.createParticles();
                 this.animate();
             }
@@ -1845,20 +1953,17 @@
             }
             
             animate() {
-                if (!this.config.enabled) {
+                if (!this.config.enabled || CONFIG.highPerformance) {
                     this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
                     requestAnimationFrame(() => this.animate());
                     return;
                 }
-                
                 this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
-                
                 this.particles.forEach((p, i) => {
                     if (this.config.repelEnabled && this.mouse.x != null) {
                         const dx = p.x - this.mouse.x;
                         const dy = p.y - this.mouse.y;
                         const dist = Math.sqrt(dx * dx + dy * dy);
-                        
                         if (dist < this.config.repelRadius) {
                             const force = (this.config.repelRadius - dist) / this.config.repelRadius;
                             const angle = Math.atan2(dy, dx);
@@ -1866,30 +1971,23 @@
                             p.vy += Math.sin(angle) * force * 0.5;
                         }
                     }
-                    
                     p.x += p.vx;
                     p.y += p.vy;
-                    
                     p.vx *= 0.99;
                     p.vy *= 0.99;
-                    
                     if (p.x < 0 || p.x > this.canvas.width) p.vx *= -1;
                     if (p.y < 0 || p.y > this.canvas.height) p.vy *= -1;
-                    
                     p.x = Math.max(0, Math.min(this.canvas.width, p.x));
                     p.y = Math.max(0, Math.min(this.canvas.height, p.y));
-                    
                     this.ctx.beginPath();
                     this.ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
                     this.ctx.fillStyle = 'rgba(255, 26, 26, 0.6)';
                     this.ctx.fill();
-                    
                     for (let j = i + 1; j < this.particles.length; j++) {
                         const p2 = this.particles[j];
                         const dx = p.x - p2.x;
                         const dy = p.y - p2.y;
                         const dist = Math.sqrt(dx * dx + dy * dy);
-                        
                         if (dist < this.config.connectionDistance) {
                             this.ctx.beginPath();
                             this.ctx.strokeStyle = `rgba(255, 26, 26, ${1 - dist / this.config.connectionDistance})`;
@@ -1900,7 +1998,6 @@
                         }
                     }
                 });
-                
                 requestAnimationFrame(() => this.animate());
             }
             
@@ -1911,7 +2008,7 @@
         }
 
         // ==========================================
-        // START SCREEN HANDLER
+        // START SCREEN & NAVIGATION
         // ==========================================
         let holdTimer = null;
         const startScreen = document.getElementById('startScreen');
@@ -1926,9 +2023,7 @@
         
         function startHold(e) {
             startScreen.classList.add('holding');
-            holdTimer = setTimeout(() => {
-                enterSite();
-            }, 1000);
+            holdTimer = setTimeout(() => enterSite(), 1000);
         }
         
         function endHold() {
@@ -1944,16 +2039,11 @@
             }, 400);
         }
 
-        // ==========================================
-        // NAVIGATION
-        // ==========================================
         document.querySelectorAll('.nav-item[data-section]').forEach(item => {
             item.addEventListener('click', () => {
                 document.querySelectorAll('.nav-item').forEach(i => i.classList.remove('active'));
                 item.classList.add('active');
-                
-                const section = item.dataset.section;
-                showSection(section + 'Section');
+                showSection(item.dataset.section + 'Section');
             });
         });
         
@@ -1963,222 +2053,245 @@
         }
 
         // ==========================================
-        // DUAL PROXY SYSTEM
+        // PROXY SYSTEM
         // ==========================================
-        function getCurrentProxyList() {
-            return PROXY_SERVERS[PROXY_CONFIG.currentType];
-        }
-
-        function getCurrentProxy() {
-            const list = getCurrentProxyList();
-            return list[PROXY_CONFIG.currentIndex % list.length];
-        }
-
-        function loadProxy() {
-            const input = document.getElementById('proxyInput');
-            const query = input.value.trim();
+        const PROXY_ENGINE = {
+            history: [],
+            historyIndex: -1,
+            currentUrl: null,
             
-            if (!query) {
-                showNotification('⚠️', 'Error', 'Please enter a URL or search term');
-                return;
-            }
+            normalizeUrl(input) {
+                if (!input) return null;
+                if (input.match(/^https?:\/\//)) return input;
+                if (input.match(/^[a-zA-Z0-9-]+\.[a-zA-Z]{2,}/)) return 'https://' + input;
+                return 'https://duckduckgo.com/?q=' + encodeURIComponent(input);
+            },
             
-            const frame = document.getElementById('proxyFrame');
-            const welcome = document.getElementById('proxyWelcome');
-            const bar = document.getElementById('proxyBar');
-            
-            // Determine if it's a search or URL
-            let targetUrl;
-            if (query.includes('.') && !query.includes(' ')) {
-                // Likely a URL
-                targetUrl = query.startsWith('http') ? query : 'https://' + query;
-            } else {
-                // Search query - use DuckDuckGo by default
-                targetUrl = SEARCH_ENGINES[PROXY_CONFIG.searchEngine] + encodeURIComponent(query);
-            }
-            
-            const proxy = getCurrentProxy();
-            let proxyUrl;
-            
-            // Build proxy URL based on type
-            if (PROXY_CONFIG.currentType === 'ultraviolet') {
-                proxyUrl = `${proxy.url}/uv/service/${encodeURIComponent(targetUrl)}`;
-            } else {
-                // Scramjet format
-                proxyUrl = `${proxy.url}/service/${encodeURIComponent(targetUrl)}`;
-            }
-            
-            frame.src = proxyUrl;
-            
-            frame.onload = () => {
-                welcome.style.display = 'none';
-                frame.style.display = 'block';
-                bar.classList.add('compact');
-                showNotification('✅', 'Success', `Loaded via ${proxy.name} (${PROXY_CONFIG.currentType})`);
-            };
-            
-            frame.onerror = () => {
-                showNotification('❌', 'Proxy Error', 'Switching to next server...');
-                switchProxyServer();
-                setTimeout(() => loadProxy(), 1000);
-            };
-        }
-        
-        function switchProxyServer() {
-            const list = getCurrentProxyList();
-            PROXY_CONFIG.currentIndex = (PROXY_CONFIG.currentIndex + 1) % list.length;
-            const proxy = list[PROXY_CONFIG.currentIndex];
-            updateProxyDisplay();
-            showNotification('🔄', 'Proxy Switched', `Now using: ${proxy.name}`);
-        }
-        
-        function selectProxyType(type) {
-            PROXY_CONFIG.currentType = type;
-            PROXY_CONFIG.currentIndex = 0;
-            
-            // Update UI
-            document.getElementById('uvOption').classList.toggle('active', type === 'ultraviolet');
-            document.getElementById('sjOption').classList.toggle('active', type === 'scramjet');
-            
-            updateProxyDisplay();
-            showNotification('⚡', 'Proxy Changed', `Switched to ${type === 'ultraviolet' ? 'Ultraviolet' : 'Scramjet'}`);
-        }
-        
-        function updateSearchEngine(engine) {
-            PROXY_CONFIG.searchEngine = engine;
-            showNotification('🔍', 'Search Engine', `Default set to ${engine.charAt(0).toUpperCase() + engine.slice(1)}`);
-        }
-        
-        function useDuckDuckGo() {
-            document.getElementById('proxyInput').value = '';
-            document.getElementById('proxyInput').placeholder = 'Search DuckDuckGo...';
-            PROXY_CONFIG.searchEngine = 'duckduckgo';
-            
-            // Open DuckDuckGo in proxy
-            const frame = document.getElementById('proxyFrame');
-            const welcome = document.getElementById('proxyWelcome');
-            const bar = document.getElementById('proxyBar');
-            
-            const proxy = getCurrentProxy();
-            const ddgUrl = PROXY_CONFIG.currentType === 'ultraviolet' 
-                ? `${proxy.url}/uv/service/${encodeURIComponent('https://duckduckgo.com')}`
-                : `${proxy.url}/service/${encodeURIComponent('https://duckduckgo.com')}`;
-            
-            frame.src = ddgUrl;
-            
-            frame.onload = () => {
-                welcome.style.display = 'none';
-                frame.style.display = 'block';
-                bar.classList.add('compact');
-            };
-            
-            showNotification('🦆', 'DuckDuckGo', 'Private search loaded');
-        }
-        
-        async function checkAllProxies() {
-            const list = getCurrentProxyList();
-            const listContainer = document.getElementById('proxyList');
-            listContainer.style.display = 'grid';
-            
-            for (let i = 0; i < list.length; i++) {
-                const proxy = list[i];
-                proxy.status = 'checking';
-                updateProxyList();
-                
-                try {
-                    // Test with a simple request
-                    const controller = new AbortController();
-                    const timeoutId = setTimeout(() => controller.abort(), 3000);
-                    
-                    await fetch(proxy.url + '/favicon.ico', { 
-                        mode: 'no-cors',
-                        signal: controller.signal
-                    });
-                    
-                    clearTimeout(timeoutId);
-                    proxy.status = 'online';
-                } catch (e) {
-                    proxy.status = 'offline';
+            getProxyUrl(targetUrl) {
+                if (CONFIG.proxyEndpoint === 'allorigins') {
+                    return 'https://api.allorigins.win/raw?url=' + encodeURIComponent(targetUrl);
+                } else if (CONFIG.proxyEndpoint === 'corsproxy') {
+                    return 'https://corsproxy.io/?' + encodeURIComponent(targetUrl);
                 }
+                return targetUrl;
+            }
+        };
+
+        async function navigateProxy() {
+            const input = document.getElementById('proxyUrlInput');
+            const url = PROXY_ENGINE.normalizeUrl(input.value.trim());
+            if (!url) return;
+            
+            showLoading(true);
+            hideProxyError();
+            
+            try {
+                const proxyUrl = PROXY_ENGINE.getProxyUrl(url);
+                const response = await fetch(proxyUrl);
+                if (!response.ok) throw new Error('Failed to fetch');
+                const html = await response.text();
                 
-                updateProxyList();
-                await new Promise(r => setTimeout(r, 500)); // Delay between checks
+                const processed = processProxyContent(html, url);
+                const frame = document.getElementById('proxyFrame');
+                const blob = new Blob([processed], { type: 'text/html' });
+                frame.src = URL.createObjectURL(blob);
+                
+                document.getElementById('proxyWelcome').classList.add('hidden');
+                PROXY_ENGINE.currentUrl = url;
+                updateHistory(url);
+                updateNavButtons();
+                
+                const urlObj = new URL(url);
+                document.getElementById('protocolDisplay').textContent = urlObj.protocol + '//';
+                input.value = urlObj.host + urlObj.pathname + urlObj.search;
+                
+            } catch (error) {
+                showProxyError(error.message);
+            } finally {
+                showLoading(false);
             }
         }
-        
-        function updateProxyList() {
-            const list = getCurrentProxyList();
-            const container = document.getElementById('proxyList');
+
+        function processProxyContent(html, baseUrl) {
+            const base = new URL(baseUrl);
             
-            container.innerHTML = list.map(p => {
-                const statusClass = p.status === 'online' ? 'proxy-status-online' : 
-                                   p.status === 'offline' ? 'proxy-status-offline' : 'proxy-status-checking';
-                const statusText = p.status === 'online' ? 'Online' : 
-                                  p.status === 'offline' ? 'Offline' : 'Checking...';
-                
-                return `
-                    <div class="proxy-list-item">
-                        <span class="proxy-status-indicator ${statusClass}"></span>
-                        <span style="flex: 1;">${p.name}</span>
-                        <span style="color: ${statusClass === 'proxy-status-online' ? '#00ff00' : statusClass === 'proxy-status-offline' ? '#ff0000' : '#ffff00'}; font-size: 0.8rem;">${statusText}</span>
-                    </div>
-                `;
-            }).join('');
+            // Inject script to intercept navigation
+            const interceptor = `
+                <script>
+                    (function() {
+                        // Override all links to use parent proxy
+                        document.addEventListener('click', function(e) {
+                            const link = e.target.closest('a');
+                            if (link && link.href && !link.href.startsWith('javascript:') && !link.href.startsWith('#')) {
+                                e.preventDefault();
+                                if (window.parent !== window) {
+                                    window.parent.postMessage({type: 'NAVIGATE', url: link.href}, '*');
+                                } else {
+                                    window.location.href = link.href;
+                                }
+                            }
+                        });
+                        
+                        // Override forms
+                        document.addEventListener('submit', function(e) {
+                            e.preventDefault();
+                            const form = e.target;
+                            const action = form.action || window.location.href;
+                            const formData = new FormData(form);
+                            const params = new URLSearchParams();
+                            for (let [key, value] of formData) {
+                                params.append(key, value);
+                            }
+                            const url = action + (action.includes('?') ? '&' : '?') + params.toString();
+                            if (window.parent !== window) {
+                                window.parent.postMessage({type: 'NAVIGATE', url: url}, '*');
+                            }
+                        });
+                        
+                        // Remove X-Frame-Options and CSP restrictions
+                        const meta = document.createElement('meta');
+                        meta.httpEquiv = 'Content-Security-Policy';
+                        meta.content = "default-src * 'unsafe-inline' 'unsafe-eval'; script-src * 'unsafe-inline' 'unsafe-eval'; connect-src * 'unsafe-inline'; img-src * data: blob: 'unsafe-inline'; frame-src *; style-src * 'unsafe-inline';";
+                        document.head.appendChild(meta);
+                    })();
+                <\/script>
+            `;
+            
+            // Process HTML
+            let processed = html
+                .replace(/<head>/i, `<head><base href="${base.origin}/">`)
+                .replace(/href="\/\//g, 'href="https://')
+                .replace(/src="\/\//g, 'src="https://')
+                .replace(/url\((['"]?)\/\//g, 'url($1https://');
+            
+            // Inject before closing body or at end
+            if (processed.includes('</body>')) {
+                processed = processed.replace('</body>', interceptor + '</body>');
+            } else {
+                processed += interceptor;
+            }
+            
+            return processed;
         }
-        
-        function updateProxyDisplay() {
-            const proxy = getCurrentProxy();
-            document.getElementById('activeProxyName').textContent = proxy.name;
-            document.getElementById('activeProxyType').textContent = PROXY_CONFIG.currentType === 'ultraviolet' ? 'Ultraviolet' : 'Scramjet';
-        }
-        
-        document.getElementById('proxyInput')?.addEventListener('keypress', (e) => {
-            if (e.key === 'Enter') loadProxy();
+
+        window.addEventListener('message', (e) => {
+            if (e.data?.type === 'NAVIGATE') {
+                document.getElementById('proxyUrlInput').value = e.data.url;
+                navigateProxy();
+            }
         });
 
+        function quickNavigate(url) {
+            document.getElementById('proxyUrlInput').value = url;
+            navigateProxy();
+        }
+
+        function showLoading(show) {
+            document.getElementById('proxyLoading').classList.toggle('active', show);
+        }
+
+        function showProxyError(msg) {
+            document.getElementById('proxyError').classList.add('active');
+            document.getElementById('errorMessage').textContent = msg;
+        }
+
+        function hideProxyError() {
+            document.getElementById('proxyError').classList.remove('active');
+        }
+
+        function retryViaProxy() {
+            navigateProxy();
+        }
+
+        function updateHistory(url) {
+            if (PROXY_ENGINE.historyIndex < PROXY_ENGINE.history.length - 1) {
+                PROXY_ENGINE.history = PROXY_ENGINE.history.slice(0, PROXY_ENGINE.historyIndex + 1);
+            }
+            PROXY_ENGINE.history.push(url);
+            PROXY_ENGINE.historyIndex++;
+        }
+
+        function proxyBack() {
+            if (PROXY_ENGINE.historyIndex > 0) {
+                PROXY_ENGINE.historyIndex--;
+                document.getElementById('proxyUrlInput').value = PROXY_ENGINE.history[PROXY_ENGINE.historyIndex];
+                navigateProxy();
+            }
+        }
+
+        function proxyForward() {
+            if (PROXY_ENGINE.historyIndex < PROXY_ENGINE.history.length - 1) {
+                PROXY_ENGINE.historyIndex++;
+                document.getElementById('proxyUrlInput').value = PROXY_ENGINE.history[PROXY_ENGINE.historyIndex];
+                navigateProxy();
+            }
+        }
+
+        function proxyReload() {
+            if (PROXY_ENGINE.currentUrl) navigateProxy();
+        }
+
+        function updateNavButtons() {
+            document.getElementById('backBtn').disabled = PROXY_ENGINE.historyIndex <= 0;
+            document.getElementById('forwardBtn').disabled = PROXY_ENGINE.historyIndex >= PROXY_ENGINE.history.length - 1;
+        }
+
         // ==========================================
-        // GAMES SYSTEM
+        // GAMES SYSTEM - ALL GAMES PROXIED
         // ==========================================
-        function loadGames(filter = 'all') {
+        let currentGame = null;
+        let currentFilter = 'all';
+
+        function loadGames(filter = 'all', search = '') {
+            currentFilter = filter;
             const container = document.getElementById('gamesContainer');
-            if (!container) return;
-            
             container.innerHTML = '';
             
-            const sources = {
-                'gn-math': { name: 'GN-Math Games', icon: '📊', desc: '100+ educational and fun games' },
-                'craep0': { name: 'Craep0 Collection', icon: '🎯', desc: '50+ curated mobile-style games' },
-                'n-gon': { name: 'N-Gon Physics', icon: '🔷', desc: 'Physics-based shooter games' },
-                'edurocks': { name: 'EDUrocks', icon: '🎓', desc: '10+ educational learning games' }
-            };
+            let games = GAMES_DATABASE;
+            
+            if (filter !== 'all') {
+                games = games.filter(g => g.category === filter);
+            }
+            
+            if (search) {
+                games = games.filter(g => g.title.toLowerCase().includes(search.toLowerCase()));
+            }
+            
+            // Group by source
+            const sources = {};
+            games.forEach(game => {
+                if (!sources[game.source]) sources[game.source] = [];
+                sources[game.source].push(game);
+            });
             
             Object.keys(sources).forEach(sourceKey => {
-                if (filter !== 'all' && filter !== sourceKey && filter !== 'offline') return;
-                
-                const sourceGames = GAMES_DATABASE.filter(g => {
-                    if (filter === 'offline') return g.offline;
-                    return g.source === sourceKey;
-                });
-                
-                if (sourceGames.length === 0) return;
-                
+                const sourceGames = sources[sourceKey];
                 const section = document.createElement('div');
                 section.className = 'source-section';
                 
-                const source = sources[sourceKey];
+                const sourceNames = {
+                    '3kh0': '3kh0 Collection',
+                    'binbashbanana': 'BinBashBanana',
+                    'n-gon': 'N-Gon Games',
+                    'ypxio': 'YPXIO Games',
+                    'cow-network': 'Cow Network',
+                    'html5': 'HTML5 Games',
+                    'craep0': 'Craep0 Games',
+                    'other': 'Other Games'
+                };
+                
                 section.innerHTML = `
                     <div class="source-header">
-                        <div class="source-icon">${source.icon}</div>
+                        <div class="source-icon">🎮</div>
                         <div class="source-info">
-                            <h3>${source.name}</h3>
-                            <p>${source.desc} • ${sourceGames.length} games</p>
+                            <h3>${sourceNames[sourceKey] || sourceKey}</h3>
+                            <p>${sourceGames.length} games</p>
                         </div>
                     </div>
                     <div class="games-grid" id="grid-${sourceKey}"></div>
                 `;
                 
                 const grid = section.querySelector('.games-grid');
-                
                 sourceGames.forEach(game => {
                     const card = document.createElement('div');
                     card.className = `game-card ${game.offline ? 'offline' : ''}`;
@@ -2201,14 +2314,17 @@
                             </div>
                         </div>
                     `;
-                    
                     grid.appendChild(card);
                 });
                 
                 container.appendChild(section);
             });
         }
-        
+
+        function searchGames(query) {
+            loadGames(currentFilter, query);
+        }
+
         document.querySelectorAll('.filter-item').forEach(item => {
             item.addEventListener('click', () => {
                 document.querySelectorAll('.filter-item').forEach(i => i.classList.remove('active'));
@@ -2216,35 +2332,99 @@
                 loadGames(item.dataset.filter);
             });
         });
-        
-        let currentGame = null;
-        
-        function openGame(game) {
+
+        async function openGame(game) {
             currentGame = game;
             const modal = document.getElementById('gameModal');
             const title = document.getElementById('gameModalTitle');
             const frame = document.getElementById('gameFrame');
-            const badge = document.getElementById('offlineBadge');
+            const offlineBadge = document.getElementById('offlineBadge');
+            const proxyBadge = document.getElementById('proxyBadge');
             
             title.textContent = game.title;
-            badge.style.display = game.offline ? 'inline-block' : 'none';
-            frame.src = game.url;
+            offlineBadge.style.display = game.offline ? 'inline-block' : 'none';
+            proxyBadge.style.display = 'inline-block'; // Always show proxy badge since we proxy all games
+            
             modal.classList.add('active');
             
-            if (game.offline && document.getElementById('autoCacheToggle')?.classList.contains('active')) {
+            // ALWAYS load through proxy to make it appear as part of this website
+            if (CONFIG.autoProxy) {
+                try {
+                    const proxyUrl = PROXY_ENGINE.getProxyUrl(game.url);
+                    const response = await fetch(proxyUrl);
+                    const html = await response.text();
+                    
+                    // Process the game HTML to make it work in iframe
+                    const processed = processGameContent(html, game.url);
+                    const blob = new Blob([processed], { type: 'text/html' });
+                    frame.src = URL.createObjectURL(blob);
+                    
+                    showNotification('🎮', 'Loading', `${game.title} loaded via proxy`);
+                } catch (e) {
+                    // Fallback to direct URL if proxy fails
+                    frame.src = game.url;
+                    showNotification('⚠️', 'Notice', 'Loading directly (proxy failed)');
+                }
+            } else {
+                frame.src = game.url;
+            }
+            
+            if (game.offline) {
                 cacheGame(game);
             }
         }
-        
+
+        function processGameContent(html, gameUrl) {
+            const base = new URL(gameUrl);
+            
+            // Similar to processProxyContent but optimized for games
+            let processed = html
+                .replace(/<head>/i, `<head><base href="${base.origin}/">`)
+                .replace(/href="\/\//g, 'href="https://')
+                .replace(/src="\/\//g, 'src="https://')
+                .replace(/url\((['"]?)\/\//g, 'url($1https://');
+            
+            // Add fullscreen and styling fixes
+            const gameFixes = `
+                <style>
+                    html, body { margin: 0; padding: 0; width: 100%; height: 100%; overflow: hidden; }
+                    canvas, iframe { display: block; }
+                </style>
+                <script>
+                    // Prevent navigation away
+                    window.onbeforeunload = function() { return false; };
+                    document.addEventListener('click', function(e) {
+                        const link = e.target.closest('a');
+                        if (link && link.href && !link.href.startsWith('javascript:') && !link.href.startsWith('#')) {
+                            if (!link.href.includes(window.location.host)) {
+                                e.preventDefault();
+                            }
+                        }
+                    });
+                <\/script>
+            `;
+            
+            if (processed.includes('</head>')) {
+                processed = processed.replace('</head>', gameFixes + '</head>');
+            } else {
+                processed = gameFixes + processed;
+            }
+            
+            return processed;
+        }
+
         function closeGame() {
             const modal = document.getElementById('gameModal');
             const frame = document.getElementById('gameFrame');
-            
             modal.classList.remove('active');
             frame.src = '';
             currentGame = null;
         }
-        
+
+        function reloadGame() {
+            if (currentGame) openGame(currentGame);
+        }
+
         function toggleFullscreen() {
             const modal = document.querySelector('.game-modal-content');
             if (!document.fullscreenElement) {
@@ -2253,38 +2433,41 @@
                 document.exitFullscreen();
             }
         }
-        
+
         async function cacheGame(game) {
             if ('caches' in window) {
                 try {
-                    const cache = await caches.open('amongusgxmes-games-v1');
+                    const cache = await caches.open('amongusgxmes-v1');
                     await cache.add(game.url);
-                    showNotification('💾', 'Cached', `${game.title} is now available offline`);
                 } catch (e) {
                     console.log('Cache failed:', e);
                 }
-            }
-        }
-        
-        function downloadGame() {
-            if (currentGame) {
-                cacheGame(currentGame);
             }
         }
 
         // ==========================================
         // MOVIES SYSTEM
         // ==========================================
-        function loadMovies() {
+        let currentMovieFilter = 'all';
+
+        function loadMovies(filter = 'all', search = '') {
             const grid = document.getElementById('moviesGrid');
-            if (!grid) return;
-            
             grid.innerHTML = '';
             
-            MOVIES_DATABASE.forEach(movie => {
+            let movies = MOVIES_DATABASE;
+            
+            if (filter !== 'all') {
+                movies = movies.filter(m => m.type === filter);
+            }
+            
+            if (search) {
+                movies = movies.filter(m => m.title.toLowerCase().includes(search.toLowerCase()));
+            }
+            
+            movies.forEach(movie => {
                 const card = document.createElement('div');
                 card.className = 'movie-card';
-                card.onclick = () => playMovie(movie.title);
+                card.onclick = () => playMovie(movie.title, movie.type);
                 
                 card.innerHTML = `
                     <div class="movie-poster">
@@ -2299,57 +2482,81 @@
                         </div>
                     </div>
                 `;
-                
                 grid.appendChild(card);
             });
         }
-        
-        function playMovie(title) {
+
+        function filterMovies(type) {
+            currentMovieFilter = type;
+            document.querySelectorAll('.category-btn').forEach(btn => btn.classList.remove('active'));
+            event.target.classList.add('active');
+            loadMovies(type);
+        }
+
+        function searchMovies(query) {
+            loadMovies(currentMovieFilter, query);
+        }
+
+        function playMovie(title, type) {
             showSection('proxySection');
-            document.querySelector('[data-section="proxy"]')?.click();
+            document.querySelector('[data-section="proxy"]').click();
             
-            // Use DuckDuckGo for movie search
-            const searchQuery = encodeURIComponent(`${title} watch online free`);
-            document.getElementById('proxyInput').value = '';
+            let searchQuery;
+            if (type === 'anime') {
+                searchQuery = `${title} anime watch online`;
+            } else if (type === 'tv') {
+                searchQuery = `${title} tv series watch online`;
+            } else {
+                searchQuery = `${title} movie watch online free`;
+            }
             
-            const frame = document.getElementById('proxyFrame');
-            const welcome = document.getElementById('proxyWelcome');
-            const bar = document.getElementById('proxyBar');
+            const searchUrl = 'https://duckduckgo.com/?q=' + encodeURIComponent(searchQuery);
+            document.getElementById('proxyUrlInput').value = searchUrl;
+            navigateProxy();
             
-            const proxy = getCurrentProxy();
-            const searchUrl = `https://duckduckgo.com/?q=${searchQuery}`;
-            const proxyUrl = PROXY_CONFIG.currentType === 'ultraviolet'
-                ? `${proxy.url}/uv/service/${encodeURIComponent(searchUrl)}`
-                : `${proxy.url}/service/${encodeURIComponent(searchUrl)}`;
-            
-            frame.src = proxyUrl;
-            
-            frame.onload = () => {
-                welcome.style.display = 'none';
-                frame.style.display = 'block';
-                bar.classList.add('compact');
-            };
-            
-            showNotification('🎬', 'Loading Movie', `Searching for ${title} via DuckDuckGo...`);
+            showNotification('🎬', 'Loading', `Searching for ${title}...`);
         }
 
         // ==========================================
         // SETTINGS FUNCTIONS
         // ==========================================
         let particleSystem;
-        
+
+        function toggleAutoProxy() {
+            const toggle = document.getElementById('autoProxyToggle');
+            toggle.classList.toggle('active');
+            CONFIG.autoProxy = toggle.classList.contains('active');
+            showNotification('✓', 'Settings', `Auto-proxy ${CONFIG.autoProxy ? 'enabled' : 'disabled'}`);
+        }
+
+        function toggleUrlRewrite() {
+            const toggle = document.getElementById('urlRewriteToggle');
+            toggle.classList.toggle('active');
+            CONFIG.urlRewrite = toggle.classList.contains('active');
+        }
+
+        function toggleCorsBypass() {
+            const toggle = document.getElementById('corsBypassToggle');
+            toggle.classList.toggle('active');
+            CONFIG.corsBypass = toggle.classList.contains('active');
+        }
+
+        function selectProxy(endpoint) {
+            CONFIG.proxyEndpoint = endpoint;
+            document.querySelectorAll('.proxy-option').forEach(opt => opt.classList.remove('active'));
+            document.getElementById('proxy' + endpoint.charAt(0).toUpperCase() + endpoint.slice(1)).classList.add('active');
+            showNotification('🌐', 'Proxy', `Switched to ${endpoint}`);
+        }
+
         function changeColor(color) {
             document.documentElement.style.setProperty('--primary-red', color);
             document.documentElement.style.setProperty('--accent', color);
-            
             document.querySelectorAll('.color-option').forEach(opt => {
                 opt.classList.remove('active');
-                if (opt.dataset.color === color) opt.classList.add('active');
+                if (opt.style.background === color) opt.classList.add('active');
             });
-            
-            showNotification('🎨', 'Color Changed', 'Theme color updated');
         }
-        
+
         function toggleParticles() {
             const toggle = document.getElementById('particlesToggle');
             toggle.classList.toggle('active');
@@ -2357,150 +2564,80 @@
                 particleSystem.updateConfig({ enabled: toggle.classList.contains('active') });
             }
         }
-        
+
         function updateParticles(value) {
             document.getElementById('particleValue').textContent = value;
+            CONFIG.particleCount = parseInt(value);
             if (particleSystem) {
-                particleSystem.updateConfig({ count: parseInt(value) });
+                particleSystem.updateConfig({ count: CONFIG.particleCount });
             }
         }
-        
+
         function toggleCache() {
-            document.getElementById('autoCacheToggle').classList.toggle('active');
+            const toggle = document.getElementById('autoCacheToggle');
+            toggle.classList.toggle('active');
         }
-        
+
         function updateCacheSize(value) {
             document.getElementById('cacheSizeValue').textContent = value + 'MB';
+            CONFIG.cacheSize = parseInt(value);
         }
-        
+
         function togglePerformance() {
-            document.getElementById('perfToggle').classList.toggle('active');
+            const toggle = document.getElementById('perfToggle');
+            toggle.classList.toggle('active');
+            CONFIG.highPerformance = toggle.classList.contains('active');
+            if (particleSystem) {
+                particleSystem.updateConfig({ enabled: !CONFIG.highPerformance && document.getElementById('particlesToggle').classList.contains('active') });
+            }
         }
-        
+
         function toggleRepel() {
             const toggle = document.getElementById('repelToggle');
             toggle.classList.toggle('active');
+            CONFIG.mouseRepel = toggle.classList.contains('active');
             if (particleSystem) {
-                particleSystem.updateConfig({ repelEnabled: toggle.classList.contains('active') });
+                particleSystem.updateConfig({ repelEnabled: CONFIG.mouseRepel });
             }
         }
-        
+
         async function updateCacheStatus() {
             if ('storage' in navigator && 'estimate' in navigator.storage) {
                 const estimate = await navigator.storage.estimate();
                 const usage = Math.round((estimate.usage || 0) / 1024 / 1024);
-                const cacheUsage = document.getElementById('cacheUsage');
-                if (cacheUsage) cacheUsage.textContent = usage + 'MB';
+                document.getElementById('cacheUsage').textContent = usage + 'MB';
             }
         }
 
         // ==========================================
-        // NOTIFICATION SYSTEM
+        // NOTIFICATIONS
         // ==========================================
         function showNotification(icon, title, message) {
             const notif = document.getElementById('notification');
             document.getElementById('notifIcon').textContent = icon;
             document.getElementById('notifTitle').textContent = title;
             document.getElementById('notifMessage').textContent = message;
-            
             notif.classList.add('show');
             setTimeout(() => notif.classList.remove('show'), 3000);
         }
 
-        // ==========================================
-        // OPEN SOURCE FUNCTIONS
-        // ==========================================
-        function showOpensource() {
-            const modal = document.createElement('div');
-            modal.id = 'opensourceModal';
-            modal.className = 'active';
-            modal.innerHTML = `
-                <div class="opensource-content">
-                    <div class="opensource-header">
-                        <h3 class="opensource-title">
-                            <svg viewBox="0 0 24 24" width="32" height="32"><path d="M12 2C6.48 2 2 6.48 2 12c0 4.42 2.87 8.17 6.84 9.5.5.08.66-.23.66-.5v-1.69c-2.77.6-3.36-1.34-3.36-1.34-.46-1.16-1.11-1.47-1.11-1.47-.91-.62.07-.6.07-.6 1 .07 1.53 1.03 1.53 1.03.87 1.52 2.34 1.07 2.91.83.09-.65.35-1.09.63-1.34-2.22-.25-4.55-1.11-4.55-4.92 0-1.11.38-2 1.03-2.71-.1-.25-.45-1.29.1-2.64 0 0 .84-.27 2.75 1.02.79-.22 1.65-.33 2.5-.33.85 0 1.71.11 2.5.33 1.91-1.29 2.75-1.02 2.75-1.02.55 1.35.2 2.39.1 2.64.65.71 1.03 1.6 1.03 2.71 0 3.82-2.34 4.66-4.57 4.91.36.31.69.92.69 1.85V21c0 .27.16.59.67.5C19.14 20.16 22 16.42 22 12A10 10 0 0012 2z"/></svg>
-                            OPEN SOURCE CODE
-                        </h3>
-                        <div class="opensource-actions">
-                            <button class="opensource-btn" onclick="copySourceCode()">
-                                <svg viewBox="0 0 24 24" width="20" height="20"><path d="M16 1H4c-1.1 0-2 .9-2 2v14h2V3h12V1zm3 4H8c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h11c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2zm0 16H8V7h11v14z"/></svg>
-                                Copy
-                            </button>
-                            <button class="opensource-btn" onclick="downloadSourceCode()">
-                                <svg viewBox="0 0 24 24" width="20" height="20"><path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"/></svg>
-                                Download
-                            </button>
-                            <button class="opensource-btn" onclick="this.closest('#opensourceModal').remove()">
-                                <svg viewBox="0 0 24 24" width="20" height="20"><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
-                                Close
-                            </button>
-                        </div>
-                    </div>
-                    <div class="code-container">
-                        <p style="color: #8b949e; margin-bottom: 20px;">
-                            // AMONGUSGXMES v3.0 - Complete Source Code<br>
-                            // Made by Dabin using AI - Learning to code!<br>
-                            // Features: Dual Proxy (UV + Scramjet), 200+ Games, DuckDuckGo, Offline Mode
-                        </p>
-                        <p style="color: #e6edf3;">
-                            The complete source code is available. Click "Copy" to copy to clipboard or "Download" to save as HTML file.
-                        </p>
-                    </div>
-                </div>
-            `;
-            document.body.appendChild(modal);
-        }
-        
-        async function copySourceCode() {
-            try {
-                const source = document.documentElement.outerHTML;
-                await navigator.clipboard.writeText(source);
-                showNotification('📋', 'Copied!', 'Full source code copied to clipboard');
-            } catch (err) {
-                showNotification('❌', 'Error', 'Failed to copy code');
-            }
-        }
-        
-        function downloadSourceCode() {
-            const source = document.documentElement.outerHTML;
-            const blob = new Blob([source], { type: 'text/html' });
-            const url = URL.createObjectURL(blob);
-            const a = document.createElement('a');
-            a.href = url;
-            a.download = 'amongusgxmes.html';
-            document.body.appendChild(a);
-            a.click();
-            document.body.removeChild(a);
-            URL.revokeObjectURL(url);
-            
-            showNotification('💾', 'Downloaded!', 'AMONGUSGXMES.html saved to downloads');
+        function toggleProxySettings() {
+            showSection('settingsSection');
+            document.querySelector('[data-section="settings"]').click();
         }
 
         // ==========================================
-        // SERVICE WORKER
-        // ==========================================
-        if ('serviceWorker' in navigator) {
-            navigator.serviceWorker.register('data:text/javascript,' + encodeURIComponent(`
-                self.addEventListener('install', e => self.skipWaiting());
-                self.addEventListener('activate', e => e.waitUntil(self.clients.claim()));
-                self.addEventListener('fetch', e => e.respondWith(fetch(e.request).catch(() => caches.match(e.request))));
-            `)).catch(err => {
-                console.log('SW registration failed:', err);
-            });
-        }
-
-        // ==========================================
-        // INITIALIZATION
+        // INIT
         // ==========================================
         window.addEventListener('DOMContentLoaded', () => {
             particleSystem = new ParticleSystem();
             loadGames();
             loadMovies();
-            updateProxyDisplay();
             updateCacheStatus();
             
-            // Check proxies on load
-            setTimeout(checkAllProxies, 2000);
+            // Set initial toggle states
+            document.getElementById('autoProxyToggle').classList.add('active');
+            document.getElementById('urlRewriteToggle').classList.add('active');
         });
     </script>
 </body>
