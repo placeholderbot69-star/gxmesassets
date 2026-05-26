@@ -3,390 +3,203 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AMONGUSGXMES - Unblocked Games</title>
-    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
+    <title>AMONGUSGXMES</title>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Rajdhani:wght@500;700&display=swap" rel="stylesheet">
     <style>
-        /* ==========================================
-           THEME VARIABLES - From Art Class v4
-           ========================================== */
-        :root {
-            --primary-red: #ff1a1a;
-            --dark-red: #8b0000;
-            --black: #0a0a0a;
-            --dark-gray: #1a1a1a;
-            --gray: #2a2a2a;
-            --white: #ffffff;
-            --accent: var(--primary-red);
-            
-            /* Art Class Theme Variables */
-            --bg-color: #0a0a0a;
-            --text-color: #ffffff;
-            --card-bg: #1a1a1a;
-            --border-color: #2a2a2a;
-            --hover-color: #ff1a1a;
-            --sidebar-bg: linear-gradient(180deg, rgba(26,26,26,0.98) 0%, rgba(10,10,10,0.98) 100%);
-        }
-
-        /* Theme: Ocean */
-        body[theme="ocean"] {
-            --primary-red: #0088ff;
-            --dark-red: #0055aa;
-            --accent: #0088ff;
-            --hover-color: #0088ff;
-        }
-
-        /* Theme: Forest */
-        body[theme="forest"] {
-            --primary-red: #00ff66;
-            --dark-red: #008833;
-            --accent: #00ff66;
-            --hover-color: #00ff66;
-        }
-
-        /* Theme: Sunset */
-        body[theme="sunset"] {
-            --primary-red: #ff6600;
-            --dark-red: #aa4400;
-            --accent: #ff6600;
-            --hover-color: #ff6600;
-        }
-
-        /* Theme: Purple */
-        body[theme="purple"] {
-            --primary-red: #ff00ff;
-            --dark-red: #aa00aa;
-            --accent: #ff00ff;
-            --hover-color: #ff00ff;
-        }
-
-        /* Theme: Gold */
-        body[theme="gold"] {
-            --primary-red: #ffd700;
-            --dark-red: #aa8800;
-            --accent: #ffd700;
-            --hover-color: #ffd700;
-        }
-
-        /* Theme: Midnight */
-        body[theme="midnight"] {
-            --primary-red: #4444ff;
-            --dark-red: #2222aa;
-            --accent: #4444ff;
-            --hover-color: #4444ff;
-        }
-
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
         }
 
-        html, body {
-            height: 100%;
-            overflow: hidden;
-            font-family: 'Roboto', sans-serif;
-            background: var(--bg-color);
-            color: var(--text-color);
+        :root {
+            --primary: #ff4757;
+            --secondary: #2f3542;
+            --accent: #3742fa;
+            --bg: #0c0c1a;
+            --card: #1a1a2e;
+            --text: #f1f2f6;
+            --text-dim: #a4b0be;
+            --success: #2ed573;
+            --warning: #ffa502;
+            --glass: rgba(255, 255, 255, 0.05);
         }
 
-        ::-webkit-scrollbar {
-            width: 8px;
-        }
-        ::-webkit-scrollbar-track {
-            background: var(--black);
-        }
-        ::-webkit-scrollbar-thumb {
-            background: var(--dark-red);
-            border-radius: 4px;
+        body {
+            font-family: 'Rajdhani', sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            min-height: 100vh;
+            overflow-x: hidden;
         }
 
-        #particleCanvas {
+        .stars {
             position: fixed;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            z-index: 0;
             pointer-events: none;
+            z-index: -1;
         }
 
-        #startScreen {
-            position: fixed;
+        .star {
+            position: absolute;
+            width: 2px;
+            height: 2px;
+            background: white;
+            border-radius: 50%;
+            animation: twinkle 2s infinite;
+        }
+
+        @keyframes twinkle {
+            0%, 100% { opacity: 0.3; }
+            50% { opacity: 1; }
+        }
+
+        .header {
+            background: linear-gradient(135deg, rgba(255,71,87,0.2) 0%, rgba(55,66,250,0.2) 100%);
+            backdrop-filter: blur(10px);
+            border-bottom: 2px solid var(--primary);
+            padding: 1rem 2rem;
+            position: sticky;
             top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
             z-index: 1000;
-            background: radial-gradient(ellipse at center, rgba(139,0,0,0.4) 0%, rgba(0,0,0,0.95) 70%);
-            cursor: pointer;
-            transition: opacity 0.6s ease;
         }
 
-        #startScreen.hidden {
-            opacity: 0;
-            pointer-events: none;
+        .header-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
         }
 
-        .logo-text {
-            font-family: 'Orbitron', sans-serif;
-            font-size: 5rem;
+        .logo {
+            font-family: 'Orbitron', monospace;
+            font-size: 2rem;
             font-weight: 900;
-            background: linear-gradient(180deg, var(--primary-red) 0%, var(--dark-red) 100%);
+            background: linear-gradient(45deg, var(--primary), var(--accent));
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
-            text-shadow: 0 0 30px rgba(255,0,0,0.5);
-            letter-spacing: 0.15em;
-            line-height: 1.2;
-            text-align: center;
+            text-shadow: 0 0 30px rgba(255,71,87,0.5);
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
         }
 
-        .logo-subtitle {
-            font-family: 'Orbitron', sans-serif;
+        .logo::before {
+            content: "🚀";
             font-size: 1.5rem;
-            color: var(--white);
-            opacity: 0.8;
-            margin-top: 10px;
-            letter-spacing: 0.3em;
         }
 
-        .hold-text {
-            font-family: 'Orbitron', sans-serif;
-            font-size: 1rem;
-            color: var(--white);
-            opacity: 0.6;
-            letter-spacing: 0.2em;
-            margin-top: 50px;
-        }
-
-        .progress-circle {
-            width: 80px;
-            height: 80px;
-            margin: 20px auto;
-        }
-
-        .progress-circle svg {
-            transform: rotate(-90deg);
-        }
-
-        .progress-bg {
-            fill: none;
-            stroke: rgba(255,255,255,0.1);
-            stroke-width: 4;
-        }
-
-        .progress-fill {
-            fill: none;
-            stroke: var(--primary-red);
-            stroke-width: 4;
-            stroke-dasharray: 251;
-            stroke-dashoffset: 251;
-            transition: stroke-dashoffset 1s linear;
-        }
-
-        .holding .progress-fill {
-            stroke-dashoffset: 0;
-        }
-
-        #sidebar {
-            position: fixed;
-            left: -100px;
-            top: 0;
-            width: 100px;
-            height: 100%;
-            background: var(--sidebar-bg);
-            border-right: 2px solid var(--primary-red);
+        .nav {
             display: flex;
-            flex-direction: column;
-            align-items: center;
-            padding: 20px 0;
-            z-index: 900;
-            transition: left 0.4s ease;
+            gap: 0.5rem;
         }
 
-        #sidebar.open {
-            left: 0;
-        }
-
-        .sidebar-logo {
-            width: 60px;
-            height: 60px;
-            margin-bottom: 30px;
-            border-radius: 12px;
-            background: linear-gradient(135deg, var(--primary-red), var(--dark-red));
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            font-family: 'Orbitron', sans-serif;
-            font-weight: 900;
-            font-size: 1.5rem;
-            color: var(--white);
-            box-shadow: 0 4px 15px rgba(255,0,0,0.4);
-        }
-
-        .nav-items {
-            flex: 1;
-            display: flex;
-            flex-direction: column;
-            gap: 15px;
-        }
-
-        .nav-item {
-            width: 70px;
-            height: 70px;
-            border-radius: 16px;
-            background: var(--gray);
-            border: 2px solid transparent;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            position: relative;
-        }
-
-        .nav-item:hover {
-            background: var(--dark-red);
-            border-color: var(--primary-red);
-            transform: translateX(5px);
-        }
-
-        .nav-item.active {
-            background: linear-gradient(135deg, var(--primary-red), var(--dark-red));
-            border-color: var(--white);
-        }
-
-        .nav-item svg {
-            width: 28px;
-            height: 28px;
-            fill: var(--white);
-            margin-bottom: 4px;
-        }
-
-        .nav-label {
-            font-size: 0.65rem;
-            font-family: 'Orbitron', sans-serif;
-            color: var(--white);
-        }
-
-        .nav-tooltip {
-            position: absolute;
-            left: 85px;
-            background: var(--dark-gray);
-            color: var(--white);
-            padding: 8px 16px;
+        .nav-btn {
+            background: var(--glass);
+            border: 1px solid rgba(255,255,255,0.1);
+            color: var(--text);
+            padding: 0.75rem 1.5rem;
             border-radius: 8px;
-            font-size: 0.85rem;
-            white-space: nowrap;
-            opacity: 0;
-            pointer-events: none;
+            cursor: pointer;
+            font-family: 'Rajdhani', sans-serif;
+            font-weight: 700;
+            font-size: 1rem;
             transition: all 0.3s;
-            border: 1px solid var(--primary-red);
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
         }
 
-        .nav-item:hover .nav-tooltip {
-            opacity: 1;
-            transform: translateX(5px);
+        .nav-btn:hover {
+            background: var(--primary);
+            transform: translateY(-2px);
+            box-shadow: 0 5px 20px rgba(255,71,87,0.4);
         }
 
-        #mainContent {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            padding-left: 100px;
-            z-index: 100;
-            opacity: 0;
-            pointer-events: none;
-            transition: opacity 0.5s ease;
+        .nav-btn.active {
+            background: var(--primary);
+            box-shadow: 0 0 20px rgba(255,71,87,0.5);
         }
 
-        #mainContent.visible {
-            opacity: 1;
-            pointer-events: all;
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 2rem;
         }
 
-        .content-section {
+        .section {
             display: none;
-            width: 100%;
-            height: 100%;
-            padding: 30px;
-            overflow-y: auto;
+            animation: fadeIn 0.5s;
         }
 
-        .content-section.active {
+        .section.active {
             display: block;
         }
 
-        .section-header {
-            margin-bottom: 30px;
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
         }
 
         .section-title {
-            font-family: 'Orbitron', sans-serif;
+            font-family: 'Orbitron', monospace;
             font-size: 2.5rem;
-            background: linear-gradient(90deg, var(--primary-red), #ff6666);
+            margin-bottom: 1rem;
+            text-align: center;
+            background: linear-gradient(45deg, var(--primary), var(--accent));
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
-            margin-bottom: 10px;
         }
 
         .section-desc {
-            color: rgba(255,255,255,0.6);
-            font-size: 1rem;
+            text-align: center;
+            color: var(--text-dim);
+            margin-bottom: 2rem;
+            font-size: 1.1rem;
         }
 
-        /* ==========================================
-           PROXY SECTION - Ultraviolet from Art Class
-           ========================================== */
         .proxy-container {
-            display: flex;
-            flex-direction: column;
-            height: calc(100% - 100px);
-            gap: 20px;
+            background: var(--card);
+            border-radius: 20px;
+            padding: 2rem;
+            border: 1px solid rgba(255,255,255,0.1);
         }
 
-        .proxy-bar {
-            background: var(--dark-gray);
-            padding: 20px;
-            border-radius: 16px;
-            border: 2px solid var(--dark-red);
+        .proxy-input-group {
             display: flex;
-            gap: 15px;
-            align-items: center;
-        }
-
-        .proxy-input-wrapper {
-            flex: 1;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
         }
 
         .proxy-input {
-            width: 100%;
-            background: var(--black);
-            border: 2px solid var(--gray);
-            color: var(--white);
-            padding: 15px 20px;
+            flex: 1;
+            background: var(--bg);
+            border: 2px solid rgba(255,255,255,0.1);
+            color: var(--text);
+            padding: 1rem 1.5rem;
             border-radius: 12px;
-            font-size: 16px;
-            outline: none;
+            font-size: 1.1rem;
+            font-family: 'Rajdhani', sans-serif;
+            transition: all 0.3s;
         }
 
         .proxy-input:focus {
-            border-color: var(--primary-red);
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 20px rgba(255,71,87,0.3);
         }
 
         .proxy-btn {
-            background: linear-gradient(135deg, var(--primary-red), var(--dark-red));
-            color: var(--white);
+            background: linear-gradient(135deg, var(--primary), var(--accent));
             border: none;
-            padding: 15px 40px;
+            color: white;
+            padding: 1rem 2.5rem;
             border-radius: 12px;
-            font-family: 'Orbitron', sans-serif;
+            font-family: 'Orbitron', monospace;
             font-weight: 700;
             font-size: 1rem;
             cursor: pointer;
@@ -395,63 +208,265 @@
         }
 
         .proxy-btn:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 8px 25px rgba(255,0,0,0.4);
-        }
-
-        .proxy-btn-secondary {
-            background: linear-gradient(135deg, #666, #333);
-            padding: 15px 20px;
+            transform: scale(1.05);
+            box-shadow: 0 10px 30px rgba(255,71,87,0.5);
         }
 
         .proxy-frame-container {
-            flex: 1;
-            background: var(--dark-gray);
-            border-radius: 16px;
-            border: 2px solid var(--dark-red);
+            width: 100%;
+            height: 600px;
+            border-radius: 12px;
             overflow: hidden;
+            border: 2px solid rgba(255,255,255,0.1);
+            background: var(--bg);
             position: relative;
         }
 
-        .proxy-welcome {
+        .proxy-frame {
+            width: 100%;
+            height: 100%;
+            border: none;
+            display: none;
+        }
+
+        .proxy-frame.active {
+            display: block;
+        }
+
+        .proxy-placeholder {
             position: absolute;
             top: 50%;
             left: 50%;
             transform: translate(-50%, -50%);
             text-align: center;
-            padding: 40px;
-            width: 90%;
-            max-width: 700px;
+            color: var(--text-dim);
         }
 
-        .proxy-welcome h2 {
-            font-family: 'Orbitron', sans-serif;
-            font-size: 2rem;
-            color: var(--primary-red);
-            margin-bottom: 15px;
+        .proxy-placeholder-icon {
+            font-size: 4rem;
+            margin-bottom: 1rem;
+            opacity: 0.5;
         }
 
-        .proxy-welcome p {
-            color: rgba(255,255,255,0.6);
-            margin-bottom: 10px;
-        }
-
-        .proxy-status {
-            display: inline-flex;
+        .games-header {
+            display: flex;
+            justify-content: space-between;
             align-items: center;
-            gap: 8px;
-            background: rgba(0,255,0,0.1);
-            color: #00ff00;
-            padding: 8px 16px;
-            border-radius: 20px;
-            font-size: 0.9rem;
-            margin-top: 20px;
+            margin-bottom: 2rem;
+            flex-wrap: wrap;
+            gap: 1rem;
         }
 
-        .status-dot {
+        .search-box {
+            position: relative;
+            flex: 1;
+            max-width: 400px;
+        }
+
+        .search-box input {
+            width: 100%;
+            background: var(--card);
+            border: 2px solid rgba(255,255,255,0.1);
+            color: var(--text);
+            padding: 0.75rem 1rem 0.75rem 3rem;
+            border-radius: 10px;
+            font-size: 1rem;
+            font-family: 'Rajdhani', sans-serif;
+        }
+
+        .search-box::before {
+            content: "🔍";
+            position: absolute;
+            left: 1rem;
+            top: 50%;
+            transform: translateY(-50%);
+        }
+
+        .category-filter {
+            display: flex;
+            gap: 0.5rem;
+            flex-wrap: wrap;
+        }
+
+        .category-btn {
+            background: var(--glass);
+            border: 1px solid rgba(255,255,255,0.1);
+            color: var(--text);
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            cursor: pointer;
+            font-family: 'Rajdhani', sans-serif;
+            font-weight: 600;
+            transition: all 0.3s;
+        }
+
+        .category-btn:hover, .category-btn.active {
+            background: var(--primary);
+            box-shadow: 0 0 15px rgba(255,71,87,0.4);
+        }
+
+        .games-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .game-card {
+            background: var(--card);
+            border-radius: 16px;
+            overflow: hidden;
+            border: 2px solid rgba(255,255,255,0.05);
+            transition: all 0.3s;
+            cursor: pointer;
+            position: relative;
+        }
+
+        .game-card:hover {
+            transform: translateY(-5px) scale(1.02);
+            border-color: var(--primary);
+            box-shadow: 0 10px 30px rgba(255,71,87,0.3);
+        }
+
+        .game-card.external::after {
+            content: "🔗";
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background: var(--accent);
+            padding: 0.25rem 0.5rem;
+            border-radius: 8px;
+            font-size: 0.8rem;
+        }
+
+        .game-thumbnail {
+            width: 100%;
+            height: 150px;
+            background: linear-gradient(135deg, var(--secondary), var(--card));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 3rem;
+        }
+
+        .game-info {
+            padding: 1rem;
+        }
+
+        .game-title {
+            font-weight: 700;
+            font-size: 1.1rem;
+            margin-bottom: 0.25rem;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .game-category {
+            color: var(--text-dim);
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.9);
+            z-index: 2000;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            padding: 2rem;
+        }
+
+        .modal-overlay.active {
+            display: flex;
+        }
+
+        .game-modal {
+            width: 100%;
+            max-width: 1200px;
+            height: 90vh;
+            background: var(--card);
+            border-radius: 20px;
+            overflow: hidden;
+            border: 2px solid var(--primary);
+            display: flex;
+            flex-direction: column;
+        }
+
+        .modal-header {
+            background: var(--secondary);
+            padding: 1rem 1.5rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .modal-title {
+            font-family: 'Orbitron', monospace;
+            font-size: 1.3rem;
+        }
+
+        .modal-close {
+            background: var(--primary);
+            border: none;
+            color: white;
+            width: 40px;
+            height: 40px;
+            border-radius: 10px;
+            cursor: pointer;
+            font-size: 1.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s;
+        }
+
+        .modal-close:hover {
+            transform: rotate(90deg);
+            background: #ff3344;
+        }
+
+        .game-frame {
+            flex: 1;
+            border: none;
+            width: 100%;
+            background: var(--bg);
+        }
+
+        .movies-container {
+            background: var(--card);
+            border-radius: 20px;
+            padding: 2rem;
+            border: 1px solid rgba(255,255,255,0.1);
+            min-height: 70vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .movies-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1.5rem;
+        }
+
+        .movies-status {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: var(--text-dim);
+            font-size: 0.9rem;
+        }
+
+        .movies-status-dot {
             width: 8px;
             height: 8px;
-            background: #00ff00;
+            background: var(--success);
             border-radius: 50%;
             animation: pulse 2s infinite;
         }
@@ -461,1843 +476,1282 @@
             50% { opacity: 0.5; }
         }
 
-        .proxy-status-panel {
-            background: var(--dark-gray);
-            padding: 15px 20px;
-            border-radius: 12px;
-            border: 1px solid var(--dark-red);
+        .movies-refresh {
+            background: var(--glass);
+            border: 1px solid rgba(255,255,255,0.1);
+            color: var(--text);
+            padding: 0.5rem 1rem;
+            border-radius: 8px;
+            cursor: pointer;
+            font-family: 'Rajdhani', sans-serif;
+            font-weight: 600;
+            transition: all 0.3s;
         }
 
-        #proxyFrame {
+        .movies-refresh:hover {
+            background: var(--primary);
+        }
+
+        .movies-frame-container {
+            flex: 1;
+            border-radius: 12px;
+            overflow: hidden;
+            border: 2px solid rgba(255,255,255,0.1);
+            background: var(--bg);
+            position: relative;
+        }
+
+        .movies-frame {
             width: 100%;
             height: 100%;
             border: none;
-            display: none;
-            background: white;
         }
 
-        .proxy-loading {
+        .movies-loading {
             position: absolute;
             top: 50%;
             left: 50%;
             transform: translate(-50%, -50%);
             text-align: center;
-            display: none;
+            color: var(--text-dim);
         }
 
-        .proxy-loading.active {
-            display: block;
-        }
-
-        .spinner {
-            width: 60px;
-            height: 60px;
-            border: 4px solid var(--gray);
-            border-top-color: var(--primary-red);
+        .movies-loading-spinner {
+            width: 50px;
+            height: 50px;
+            border: 4px solid rgba(255,255,255,0.1);
+            border-top-color: var(--primary);
             border-radius: 50%;
             animation: spin 1s linear infinite;
-            margin: 0 auto 20px;
+            margin: 0 auto 1rem;
         }
 
         @keyframes spin {
             to { transform: rotate(360deg); }
         }
 
-        /* ==========================================
-           GAMES SECTION
-           ========================================== */
-        .games-layout {
+        .themes-grid {
             display: grid;
-            grid-template-columns: 250px 1fr;
-            gap: 30px;
-            height: calc(100% - 100px);
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 1.5rem;
         }
 
-        .games-sidebar {
-            background: var(--dark-gray);
+        .theme-card {
+            background: var(--card);
             border-radius: 16px;
-            border: 2px solid var(--dark-red);
-            padding: 20px;
-            overflow-y: auto;
-        }
-
-        .filter-title {
-            font-family: 'Orbitron', sans-serif;
-            font-size: 1rem;
-            color: var(--primary-red);
-            margin-bottom: 15px;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-        }
-
-        .filter-list {
-            list-style: none;
-        }
-
-        .filter-item {
-            padding: 12px 16px;
-            margin-bottom: 8px;
-            border-radius: 10px;
+            padding: 2rem;
+            text-align: center;
+            border: 2px solid rgba(255,255,255,0.05);
             cursor: pointer;
             transition: all 0.3s;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            color: rgba(255,255,255,0.7);
         }
 
-        .filter-item:hover {
-            background: rgba(255,0,0,0.1);
-            color: var(--white);
+        .theme-card:hover {
+            transform: translateY(-5px);
+            border-color: var(--primary);
         }
 
-        .filter-item.active {
-            background: linear-gradient(135deg, var(--primary-red), var(--dark-red));
-            color: var(--white);
+        .theme-card.active {
+            border-color: var(--success);
+            box-shadow: 0 0 30px rgba(46,213,115,0.3);
         }
 
-        .games-grid-container {
-            overflow-y: auto;
-            padding-right: 10px;
-        }
-
-        .source-section {
-            margin-bottom: 40px;
-        }
-
-        .source-header {
-            display: flex;
-            align-items: center;
-            gap: 15px;
-            margin-bottom: 20px;
-            padding-bottom: 15px;
-            border-bottom: 2px solid var(--dark-red);
-        }
-
-        .source-icon {
-            width: 50px;
-            height: 50px;
+        .theme-preview {
+            width: 100%;
+            height: 100px;
             border-radius: 12px;
-            background: linear-gradient(135deg, var(--primary-red), var(--dark-red));
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            font-size: 1.5rem;
+            margin-bottom: 1rem;
         }
 
-        .source-info h3 {
-            font-family: 'Orbitron', sans-serif;
-            color: var(--white);
-            font-size: 1.3rem;
+        .theme-name {
+            font-family: 'Orbitron', monospace;
+            font-size: 1.2rem;
+            margin-bottom: 0.5rem;
         }
 
-        .source-info p {
-            color: rgba(255,255,255,0.5);
-            font-size: 0.85rem;
-        }
-
-        .games-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-            gap: 20px;
-        }
-
-        .game-card {
-            background: linear-gradient(145deg, var(--dark-gray), var(--gray));
-            border-radius: 16px;
-            overflow: hidden;
-            border: 2px solid transparent;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            position: relative;
-        }
-
-        .game-card:hover {
-            transform: translateY(-5px) scale(1.02);
-            border-color: var(--primary-red);
-            box-shadow: 0 15px 40px rgba(255,0,0,0.2);
-        }
-
-        .game-thumbnail {
-            width: 100%;
-            height: 140px;
-            background: linear-gradient(135deg, var(--black), var(--dark-gray));
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .game-icon, .game-img {
-            font-size: 3.5rem;
-            max-width: 100%;
-            max-height: 100%;
-            object-fit: cover;
-        }
-
-        .game-overlay {
-            position: absolute;
-            inset: 0;
-            background: rgba(255,0,0,0);
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            transition: all 0.3s;
-        }
-
-        .game-card:hover .game-overlay {
-            background: rgba(255,0,0,0.3);
-        }
-
-        .play-btn {
-            width: 50px;
-            height: 50px;
-            background: var(--white);
-            border-radius: 50%;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            opacity: 0;
-            transform: scale(0.5);
-            transition: all 0.3s;
-        }
-
-        .game-card:hover .play-btn {
-            opacity: 1;
-            transform: scale(1);
-        }
-
-        .play-btn svg {
-            width: 20px;
-            height: 20px;
-            fill: var(--primary-red);
-            margin-left: 3px;
-        }
-
-        .game-info {
-            padding: 15px;
-        }
-
-        .game-title {
-            font-family: 'Orbitron', sans-serif;
-            font-size: 0.95rem;
-            color: var(--white);
-            margin-bottom: 5px;
-            white-space: nowrap;
-            overflow: hidden;
-            text-overflow: ellipsis;
-        }
-
-        .game-meta {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .game-category {
-            font-size: 0.75rem;
-            color: var(--primary-red);
-            text-transform: uppercase;
-        }
-
-        .game-source-tag {
-            font-size: 0.7rem;
-            color: rgba(255,255,255,0.4);
-        }
-
-        #gameModal {
-            display: none;
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0,0,0,0.95);
-            z-index: 5000;
-            justify-content: center;
-            align-items: center;
-            padding: 20px;
-        }
-
-        #gameModal.active {
-            display: flex;
-        }
-
-        .game-modal-content {
-            width: 90%;
-            height: 90%;
-            background: var(--dark-gray);
-            border-radius: 20px;
-            border: 3px solid var(--primary-red);
-            display: flex;
-            flex-direction: column;
-            overflow: hidden;
-        }
-
-        .game-modal-header {
-            background: linear-gradient(90deg, var(--gray), var(--dark-gray));
-            padding: 20px 30px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            border-bottom: 2px solid var(--primary-red);
-        }
-
-        .game-modal-title {
-            font-family: 'Orbitron', sans-serif;
-            color: var(--white);
-            font-size: 1.3rem;
-            display: flex;
-            align-items: center;
-            gap: 15px;
-        }
-
-        .unblocked-badge {
-            background: #00ff00;
-            color: var(--black);
-            padding: 4px 12px;
-            border-radius: 20px;
-            font-size: 0.7rem;
-            font-weight: bold;
-        }
-
-        .game-controls {
-            display: flex;
-            gap: 12px;
-        }
-
-        .control-btn {
-            background: var(--dark-red);
-            border: 2px solid var(--primary-red);
-            color: var(--white);
-            padding: 10px 20px;
-            border-radius: 10px;
-            cursor: pointer;
-            font-family: 'Orbitron', sans-serif;
-            font-size: 0.85rem;
-            transition: all 0.3s;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-        }
-
-        .control-btn:hover {
-            background: var(--primary-red);
-            transform: translateY(-2px);
-        }
-
-        .alt-server-btn {
-            background: linear-gradient(135deg, #4a4a4a, #2a2a2a);
-            border: 2px solid #666;
-        }
-
-        .alt-server-btn:hover {
-            border-color: var(--primary-red);
-        }
-
-        #gameFrame {
-            flex: 1;
-            border: none;
-            width: 100%;
-            background: var(--black);
-        }
-
-        /* ==========================================
-           MOVIES SECTION
-           ========================================== */
-        .movies-categories {
-            display: flex;
-            gap: 15px;
-            margin-bottom: 30px;
-            flex-wrap: wrap;
-        }
-
-        .category-btn {
-            background: var(--dark-gray);
-            border: 2px solid var(--gray);
-            color: var(--white);
-            padding: 12px 24px;
-            border-radius: 25px;
-            cursor: pointer;
-            font-family: 'Orbitron', sans-serif;
+        .theme-desc {
+            color: var(--text-dim);
             font-size: 0.9rem;
-            transition: all 0.3s;
         }
 
-        .category-btn:hover, .category-btn.active {
-            background: linear-gradient(135deg, var(--primary-red), var(--dark-red));
-            border-color: var(--primary-red);
-        }
-
-        .movies-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
-            gap: 25px;
-        }
-
-        .movie-card {
-            background: var(--dark-gray);
-            border-radius: 16px;
-            overflow: hidden;
-            border: 2px solid transparent;
-            cursor: pointer;
-            transition: all 0.3s;
-        }
-
-        .movie-card:hover {
-            border-color: var(--primary-red);
-            transform: scale(1.05);
-            box-shadow: 0 10px 30px rgba(255,0,0,0.2);
-        }
-
-        .movie-poster {
-            width: 100%;
-            height: 260px;
-            background: linear-gradient(135deg, var(--gray), var(--black));
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            position: relative;
-        }
-
-        .movie-icon {
-            font-size: 4rem;
-        }
-
-        .movie-rating {
-            position: absolute;
-            top: 10px;
-            right: 10px;
-            background: rgba(0,0,0,0.8);
-            color: #ffd700;
-            padding: 5px 10px;
-            border-radius: 8px;
-            font-size: 0.85rem;
-            font-weight: bold;
-        }
-
-        .movie-info {
-            padding: 15px;
-        }
-
-        .movie-title {
-            font-family: 'Orbitron', sans-serif;
-            font-size: 0.9rem;
-            color: var(--white);
-            margin-bottom: 8px;
-            white-space: nowrap;
-            overflow: hidden;
-            text-overflow: ellipsis;
-        }
-
-        .movie-meta {
-            display: flex;
-            justify-content: space-between;
-            font-size: 0.8rem;
-            color: rgba(255,255,255,0.5);
-        }
-
-        /* ==========================================
-           SETTINGS SECTION
-           ========================================== */
-        .settings-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
-            gap: 25px;
-            max-width: 1200px;
-            margin-bottom: 50px;
+        .settings-container {
+            max-width: 800px;
+            margin: 0 auto;
         }
 
         .settings-card {
-            background: var(--dark-gray);
-            border-radius: 20px;
-            padding: 30px;
-            border: 2px solid var(--dark-red);
+            background: var(--card);
+            border-radius: 16px;
+            padding: 2rem;
+            margin-bottom: 1.5rem;
+            border: 1px solid rgba(255,255,255,0.1);
         }
 
-        .settings-card-title {
-            font-family: 'Orbitron', sans-serif;
-            font-size: 1.2rem;
-            color: var(--primary-red);
-            margin-bottom: 25px;
-            display: flex;
-            align-items: center;
-            gap: 12px;
+        .settings-title {
+            font-family: 'Orbitron', monospace;
+            font-size: 1.3rem;
+            margin-bottom: 1.5rem;
+            color: var(--primary);
         }
 
         .setting-item {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 18px 0;
-            border-bottom: 1px solid var(--gray);
+            padding: 1rem 0;
+            border-bottom: 1px solid rgba(255,255,255,0.05);
         }
 
         .setting-item:last-child {
             border-bottom: none;
         }
 
-        .setting-info h4 {
-            color: var(--white);
-            font-size: 1rem;
-            margin-bottom: 5px;
+        .setting-label {
+            display: flex;
+            flex-direction: column;
         }
 
-        .setting-info p {
-            color: rgba(255,255,255,0.5);
-            font-size: 0.85rem;
+        .setting-name {
+            font-weight: 700;
+            font-size: 1.1rem;
+        }
+
+        .setting-desc {
+            color: var(--text-dim);
+            font-size: 0.9rem;
+            margin-top: 0.25rem;
         }
 
         .toggle {
-            width: 55px;
+            width: 60px;
             height: 30px;
-            background: var(--gray);
+            background: var(--secondary);
             border-radius: 15px;
-            position: relative;
             cursor: pointer;
-            transition: background 0.3s;
+            position: relative;
+            transition: all 0.3s;
         }
 
         .toggle.active {
-            background: var(--primary-red);
+            background: var(--success);
         }
 
-        .toggle-thumb {
-            width: 24px;
-            height: 24px;
-            background: var(--white);
+        .toggle::after {
+            content: '';
+            position: absolute;
+            width: 26px;
+            height: 26px;
+            background: white;
             border-radius: 50%;
-            position: absolute;
-            top: 3px;
-            left: 3px;
-            transition: transform 0.3s;
-        }
-
-        .toggle.active .toggle-thumb {
-            transform: translateX(25px);
-        }
-
-        .color-picker {
-            display: flex;
-            gap: 12px;
-        }
-
-        .color-option {
-            width: 45px;
-            height: 45px;
-            border-radius: 10px;
-            cursor: pointer;
-            border: 3px solid transparent;
-            transition: all 0.3s;
-            position: relative;
-        }
-
-        .color-option:hover {
-            transform: scale(1.1);
-        }
-
-        .color-option.active {
-            border-color: var(--white);
-            box-shadow: 0 0 15px currentColor;
-        }
-
-        .color-option.active::after {
-            content: '✓';
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            color: var(--white);
-            font-weight: bold;
-            text-shadow: 0 1px 2px rgba(0,0,0,0.5);
-        }
-
-        .theme-select {
-            width: 100%;
-            padding: 12px;
-            background: var(--black);
-            border: 2px solid var(--gray);
-            color: var(--white);
-            border-radius: 8px;
-            font-family: 'Roboto', sans-serif;
-            font-size: 1rem;
-            cursor: pointer;
-        }
-
-        .theme-select:focus {
-            border-color: var(--primary-red);
-            outline: none;
-        }
-
-        .tab-cloak-input {
-            width: 100%;
-            padding: 12px;
-            background: var(--black);
-            border: 2px solid var(--gray);
-            color: var(--white);
-            border-radius: 8px;
-            margin-bottom: 10px;
-        }
-
-        .tab-cloak-input:focus {
-            border-color: var(--primary-red);
-            outline: none;
-        }
-
-        .preset-btns {
-            display: flex;
-            gap: 10px;
-            flex-wrap: wrap;
-            margin-top: 10px;
-        }
-
-        .preset-btn {
-            background: var(--gray);
-            border: 2px solid var(--border-color);
-            color: var(--white);
-            padding: 8px 16px;
-            border-radius: 8px;
-            cursor: pointer;
-            font-size: 0.85rem;
+            top: 2px;
+            left: 2px;
             transition: all 0.3s;
         }
 
-        .preset-btn:hover {
-            border-color: var(--primary-red);
-            background: var(--dark-red);
+        .toggle.active::after {
+            left: 32px;
         }
 
-        .credits-section {
-            margin-top: 50px;
-            padding: 40px;
-            background: linear-gradient(135deg, rgba(255,26,26,0.1), rgba(139,0,0,0.1));
-            border-radius: 20px;
-            border: 2px solid var(--dark-red);
-            text-align: center;
-        }
-
-        .credits-title {
-            font-family: 'Orbitron', sans-serif;
-            font-size: 1.5rem;
-            color: var(--primary-red);
-            margin-bottom: 20px;
-        }
-
-        .credits-text {
-            color: rgba(255,255,255,0.8);
-            font-size: 1.1rem;
-            line-height: 1.8;
-        }
-
-        .credits-text .highlight {
-            color: var(--primary-red);
-            font-weight: bold;
-        }
-
-        .notification {
-            position: fixed;
-            bottom: 30px;
-            right: 30px;
-            background: var(--dark-gray);
-            border: 2px solid var(--primary-red);
-            color: var(--white);
-            padding: 20px 25px;
-            border-radius: 16px;
-            display: flex;
-            align-items: center;
-            gap: 15px;
-            transform: translateX(150%);
-            transition: transform 0.4s ease;
-            z-index: 7000;
-        }
-
-        .notification.show {
-            transform: translateX(0);
-        }
-
-        .notification-icon {
-            width: 40px;
-            height: 40px;
-            background: var(--primary-red);
-            border-radius: 10px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            font-size: 1.5rem;
-        }
-
-        .panic-key-input {
-            width: 100px;
-            text-align: center;
+        .hold-btn {
+            width: 200px;
+            height: 200px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--primary), var(--accent));
+            border: none;
+            color: white;
+            font-family: 'Orbitron', monospace;
             font-size: 1.2rem;
+            font-weight: 700;
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+            margin: 2rem auto;
+            display: block;
+            user-select: none;
+            -webkit-user-select: none;
+            touch-action: none;
+        }
+
+        .hold-btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(255,255,255,0.2);
+            transform: scale(0);
+            border-radius: 50%;
+            transition: transform 0.8s linear;
+        }
+
+        .hold-btn.holding::before {
+            transform: scale(1);
+        }
+
+        .hold-text {
+            position: relative;
+            z-index: 1;
+            pointer-events: none;
         }
 
         @media (max-width: 768px) {
-            .logo-text {
-                font-size: 3rem;
+            .header-content {
+                flex-direction: column;
+                gap: 1rem;
             }
-            #sidebar {
-                width: 80px;
-                left: -80px;
+
+            .nav {
+                flex-wrap: wrap;
+                justify-content: center;
             }
-            #mainContent {
-                padding-left: 80px;
+
+            .logo {
+                font-size: 1.5rem;
             }
-            .nav-item {
-                width: 60px;
-                height: 60px;
-            }
+
             .games-grid {
                 grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
             }
-            .settings-grid {
-                grid-template-columns: 1fr;
+
+            .proxy-input-group {
+                flex-direction: column;
             }
-            .games-layout {
-                grid-template-columns: 1fr;
-            }
-            .games-sidebar {
-                display: none;
-            }
+        }
+
+        .loader {
+            width: 50px;
+            height: 50px;
+            border: 4px solid rgba(255,255,255,0.1);
+            border-top-color: var(--primary);
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            margin: 2rem auto;
+        }
+
+        .stats-bar {
+            background: var(--card);
+            border-radius: 12px;
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-around;
+            flex-wrap: wrap;
+            gap: 1rem;
+            margin-bottom: 2rem;
+            border: 1px solid rgba(255,255,255,0.1);
+        }
+
+        .stat {
+            text-align: center;
+        }
+
+        .stat-value {
+            font-family: 'Orbitron', monospace;
+            font-size: 2rem;
+            color: var(--primary);
+            font-weight: 900;
+        }
+
+        .stat-label {
+            color: var(--text-dim);
+            font-size: 0.9rem;
+            text-transform: uppercase;
+        }
+
+        .quick-links {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+            justify-content: center;
+            margin-bottom: 2rem;
+        }
+
+        .quick-link {
+            background: var(--glass);
+            border: 1px solid rgba(255,255,255,0.1);
+            color: var(--text);
+            padding: 0.5rem 1.5rem;
+            border-radius: 20px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s;
+        }
+
+        .quick-link:hover {
+            background: var(--primary);
+            transform: translateY(-2px);
+        }
+
+        .cloak-btn {
+            background: linear-gradient(135deg, var(--success), #1dd1a1);
+            border: none;
+            color: white;
+            padding: 0.75rem 1.5rem;
+            border-radius: 8px;
+            cursor: pointer;
+            font-family: 'Rajdhani', sans-serif;
+            font-weight: 700;
+            font-size: 1rem;
+            transition: all 0.3s;
+            margin-left: 1rem;
+        }
+
+        .cloak-btn:hover {
+            transform: scale(1.05);
+            box-shadow: 0 5px 20px rgba(46,213,115,0.4);
+        }
+
+        .panic-key {
+            background: var(--card);
+            border: 2px solid var(--warning);
+            color: var(--text);
+            padding: 0.75rem;
+            border-radius: 8px;
+            font-family: 'Rajdhani', sans-serif;
+            width: 60px;
+            text-align: center;
+        }
+
+        .movies-fullscreen {
+            background: var(--accent);
+            border: none;
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 8px;
+            cursor: pointer;
+            font-family: 'Rajdhani', sans-serif;
+            font-weight: 600;
+            margin-left: 0.5rem;
+            transition: all 0.3s;
+        }
+
+        .movies-fullscreen:hover {
+            background: var(--primary);
+        }
+
+        .proxy-selector {
+            display: flex;
+            gap: 0.5rem;
+            margin-bottom: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .proxy-option {
+            background: var(--glass);
+            border: 2px solid rgba(255,255,255,0.1);
+            color: var(--text);
+            padding: 0.5rem 1rem;
+            border-radius: 8px;
+            cursor: pointer;
+            font-family: 'Rajdhani', sans-serif;
+            font-weight: 600;
+            transition: all 0.3s;
+        }
+
+        .proxy-option:hover, .proxy-option.active {
+            background: var(--primary);
+            border-color: var(--primary);
+        }
+
+        .backend-config {
+            background: var(--glass);
+            border-radius: 8px;
+            padding: 1rem;
+            margin-bottom: 1rem;
+        }
+
+        .backend-config input {
+            background: var(--bg);
+            border: 1px solid rgba(255,255,255,0.2);
+            color: var(--text);
+            padding: 0.5rem;
+            border-radius: 4px;
+            width: 100%;
+            margin-top: 0.5rem;
+            font-family: monospace;
         }
     </style>
 </head>
 <body>
-    <canvas id="particleCanvas"></canvas>
+    <div class="stars" id="stars"></div>
 
-    <div id="startScreen">
-        <div class="logo-container">
-            <h1 class="logo-text">AMONGUS<br>GXMES</h1>
-            <p class="logo-subtitle">100% UNBLOCKED</p>
+    <header class="header">
+        <div class="header-content">
+            <div class="logo">AMONGUSGXMES</div>
+            <nav class="nav">
+                <button class="nav-btn active" onclick="showSection('proxy')">
+                    <span>🌐</span> Proxy
+                </button>
+                <button class="nav-btn" onclick="showSection('games')">
+                    <span>🎮</span> Games
+                </button>
+                <button class="nav-btn" onclick="showSection('movies')">
+                    <span>🎬</span> Movies
+                </button>
+                <button class="nav-btn" onclick="showSection('themes')">
+                    <span>🎨</span> Themes
+                </button>
+                <button class="nav-btn" onclick="showSection('settings')">
+                    <span>⚙️</span> Settings
+                </button>
+            </nav>
         </div>
-        <div class="hold-indicator">
-            <div class="progress-circle">
-                <svg width="80" height="80">
-                    <circle class="progress-bg" cx="40" cy="40" r="36"></circle>
-                    <circle class="progress-fill" cx="40" cy="40" r="36"></circle>
-                </svg>
-            </div>
-            <p class="hold-text">HOLD TO ENTER</p>
-        </div>
-    </div>
+    </header>
 
-    <nav id="sidebar">
-        <div class="sidebar-logo">AG</div>
-        <div class="nav-items">
-            <div class="nav-item active" data-section="proxy" title="Self-Hosted Proxy">
-                <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 17.93c-3.95-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93zm6.9-2.54c-.26-.81-1-1.39-1.9-1.39h-1v-3c0-.55-.45-1-1-1H8v-2h2c.55 0 1-.45 1-1V7h2c1.1 0 2-.9 2-2v-.41c2.93 1.19 5 4.06 5 7.41 0 2.08-.8 3.97-2.1 5.39z"/></svg>
-                <span class="nav-label">PROXY</span>
-                <span class="nav-tooltip">Ultraviolet Proxy</span>
+    <div class="container">
+        <div class="stats-bar">
+            <div class="stat">
+                <div class="stat-value" id="game-count">200+</div>
+                <div class="stat-label">Games</div>
             </div>
-            <div class="nav-item" data-section="games" title="Unblocked Games">
-                <svg viewBox="0 0 24 24"><path d="M21 6H3c-1.1 0-2 .9-2 2v8c0 1.1.9 2 2 2h18c1.1 0 2-.9 2-2V8c0-1.1-.9-2-2-2zm-10 7H8v3H6v-3H3v-2h3V8h2v3h3v2zm4.5 2c-.83 0-1.5-.67-1.5-1.5s.67-1.5 1.5-1.5 1.5.67 1.5 1.5-.67 1.5-1.5 1.5zm4-3c-.83 0-1.5-.67-1.5-1.5S18.67 9 19.5 9s1.5.67 1.5 1.5-.67 1.5-1.5 1.5z"/></svg>
-                <span class="nav-label">GAMES</span>
-                <span class="nav-tooltip">Unblocked Games</span>
+            <div class="stat">
+                <div class="stat-value">UV</div>
+                <div class="stat-label">Proxy</div>
             </div>
-            <div class="nav-item" data-section="movies" title="Movies">
-                <svg viewBox="0 0 24 24"><path d="M18 3v2h-2V3H8v2H6V3H4v18h2v-2h2v2h8v-2h2v2h2V3h-2zM8 17H6v-2h2v2zm0-4H6v-2h2v2zm0-4H6V7h2v2zm10 8h-2v-2h2v2zm0-4h-2v-2h2v2zm0-4h-2V7h2v2z"/></svg>
-                <span class="nav-label">MOVIES</span>
-                <span class="nav-tooltip">Movies & Anime</span>
+            <div class="stat">
+                <div class="stat-value">🎬</div>
+                <div class="stat-label">Movies</div>
             </div>
-            <div class="nav-item" data-section="settings" title="Settings">
-                <svg viewBox="0 0 24 24"><path d="M19.14 12.94c.04-.3.06-.61.06-.94 0-.32-.02-.64-.07-.94l2.03-1.58c.18-.14.23-.41.12-.61l-1.92-3.32c-.12-.22-.37-.29-.59-.22l-2.39.96c-.5-.38-1.03-.7-1.62-.94l-.36-2.54c-.04-.24-.24-.41-.48-.41h-3.84c-.24 0-.43.17-.47.41l-.36 2.54c-.59.24-1.13.57-1.62.94l-2.39-.96c-.22-.08-.47 0-.59.22L3.16 8.87c-.12.21-.08.47.12.61l2.03 1.58c-.05.3-.09.63-.09.94s.02.64.07.94l-2.03 1.58c-.18.14-.23.41-.12.61l1.92 3.32c.12.22.37.29.59.22l2.39-.96c.5.38 1.03.7 1.62.94l.36 2.54c.05.24.24.41.48.41h3.84c.24 0 .44-.17.47-.41l.36-2.54c.59-.24 1.13-.56 1.62-.94l2.39.96c.22.08.47 0 .59-.22l1.92-3.32c.12-.22.07-.47-.12-.61l-2.01-1.58zM12 15.6c-1.98 0-3.6-1.62-3.6-3.6s1.62-3.6 3.6-3.6 3.6 1.62 3.6 3.6-1.62 3.6-3.6 3.6z"/></svg>
-                <span class="nav-label">SETTINGS</span>
-                <span class="nav-tooltip">Settings</span>
+            <div class="stat">
+                <div class="stat-value" id="online-status">●</div>
+                <div class="stat-label">Status</div>
             </div>
         </div>
-    </nav>
 
-    <main id="mainContent">
-        <!-- PROXY SECTION - Ultraviolet from Art Class -->
-        <section class="content-section active" id="proxySection">
-            <div class="section-header">
-                <h2 class="section-title">ULTRAVIOLET PROXY</h2>
-                <p class="section-desc">Powered by Art Class v4 | Bare Server | Fast & Unblocked</p>
-            </div>
+        <!-- PROXY SECTION -->
+        <section id="proxy" class="section active">
+            <h2 class="section-title">Web Proxy</h2>
+            <p class="section-desc">Browse securely with Ultraviolet, Rammerhead, or Scramjet</p>
+            
             <div class="proxy-container">
-                <div class="proxy-bar" id="proxyBar">
-                    <div class="proxy-input-wrapper">
-                        <input type="text" class="proxy-input" id="proxyInput" placeholder="Enter URL or search term...">
-                    </div>
-                    <button class="proxy-btn" onclick="loadUltravioletProxy()">GO</button>
-                    <button class="proxy-btn proxy-btn-secondary" onclick="useDuckDuckGo()">
-                        🦆
-                    </button>
-                    <button class="proxy-btn proxy-btn-secondary" onclick="clearProxy()">
-                        ✕
-                    </button>
+                <div class="proxy-selector">
+                    <button class="proxy-option active" onclick="setProxyMode('uv')" id="mode-uv">Ultraviolet</button>
+                    <button class="proxy-option" onclick="setProxyMode('rammerhead')" id="mode-rammerhead">Rammerhead</button>
+                    <button class="proxy-option" onclick="setProxyMode('scramjet')" id="mode-scramjet">Scramjet</button>
+                </div>
+
+                <div class="proxy-input-group">
+                    <input type="text" class="proxy-input" id="proxy-url" placeholder="Enter URL (e.g., https://google.com)" value="https://google.com">
+                    <button class="proxy-btn" onclick="loadProxy()">Browse</button>
+                    <button class="cloak-btn" onclick="cloakTab()">Cloak</button>
                 </div>
                 
-                <div class="proxy-status-panel">
-                    <div style="display: flex; justify-content: space-between; align-items: center;">
-                        <div style="display: flex; align-items: center; gap: 10px;">
-                            <span class="status-dot"></span>
-                            <span style="font-family: 'Orbitron'; color: var(--white);">
-                                Status: <span style="color: var(--primary-red);">Ultraviolet Active</span>
-                            </span>
-                        </div>
-                        <div style="color: rgba(255,255,255,0.6); font-size: 0.9rem;">
-                            🛡️ Bare Server Technology
-                        </div>
-                    </div>
+                <div class="quick-links">
+                    <a href="#" class="quick-link" onclick="setProxyUrl('https://google.com')">Google</a>
+                    <a href="#" class="quick-link" onclick="setProxyUrl('https://youtube.com')">YouTube</a>
+                    <a href="#" class="quick-link" onclick="setProxyUrl('https://reddit.com')">Reddit</a>
+                    <a href="#" class="quick-link" onclick="setProxyUrl('https://discord.com')">Discord</a>
+                    <a href="#" class="quick-link" onclick="setProxyUrl('https://twitch.tv')">Twitch</a>
+                    <a href="#" class="quick-link" onclick="setProxyUrl('https://github.com')">GitHub</a>
                 </div>
 
-                <div class="proxy-frame-container">
-                    <div class="proxy-welcome" id="proxyWelcome">
-                        <h2>🌐 Ultraviolet Proxy</h2>
-                        <p>Access any website with high-speed bare server technology</p>
-                        <p>Supports modern web apps, games, and streaming</p>
-                        
-                        <div class="proxy-status" style="margin-top: 20px;">
-                            <span class="status-dot"></span>
-                            <span>All Systems Operational</span>
-                        </div>
-                        
-                        <div style="margin-top: 30px; text-align: left; display: inline-block;">
-                            <h3 style="font-family: 'Orbitron'; color: var(--primary-red); margin-bottom: 15px;">Features:</h3>
-                            <ol style="color: rgba(255,255,255,0.7); line-height: 2;">
-                                <li>Bare server protocol (faster than CORS)</li>
-                                <li>XOR encoding for URLs</li>
-                                <li>WebSocket support</li>
-                                <li>Modern web app compatible</li>
-                            </ol>
-                        </div>
+                <div class="proxy-frame-container" id="proxy-container">
+                    <div class="proxy-placeholder" id="proxy-placeholder">
+                        <div class="proxy-placeholder-icon">🌐</div>
+                        <p>Enter a URL above to start browsing</p>
                     </div>
-                    
-                    <div class="proxy-loading" id="proxyLoading">
-                        <div class="spinner"></div>
-                        <p style="color: var(--white); font-family: 'Orbitron';">Loading through Ultraviolet...</p>
-                    </div>
-                    
-                    <iframe id="proxyFrame" sandbox="allow-scripts allow-same-origin allow-forms allow-popups allow-modals allow-orientation-lock allow-pointer-lock allow-presentation"></iframe>
+                    <iframe class="proxy-frame" id="proxy-frame"></iframe>
                 </div>
             </div>
         </section>
 
         <!-- GAMES SECTION -->
-        <section class="content-section" id="gamesSection">
-            <div class="section-header">
-                <h2 class="section-title">UNBLOCKED GAMES</h2>
-                <p class="section-desc">500+ games from Art Class, SHS Games, N-Gon, and more</p>
+        <section id="games" class="section">
+            <h2 class="section-title">Game Library</h2>
+            <p class="section-desc">Games from MonkeyGG2 + n-gon + more</p>
+            
+            <div class="games-header">
+                <div class="search-box">
+                    <input type="text" id="game-search" placeholder="Search games..." onkeyup="searchGames()">
+                </div>
+                <div class="category-filter" id="category-filters">
+                    <button class="category-btn active" onclick="filterGames('all')">All</button>
+                    <button class="category-btn" onclick="filterGames('action')">Action</button>
+                    <button class="category-btn" onclick="filterGames('puzzle')">Puzzle</button>
+                    <button class="category-btn" onclick="filterGames('sports')">Sports</button>
+                    <button class="category-btn" onclick="filterGames('shooter')">Shooter</button>
+                    <button class="category-btn" onclick="filterGames('retro')">Retro</button>
+                    <button class="category-btn" onclick="filterGames('multiplayer')">Multiplayer</button>
+                </div>
             </div>
-            <div class="games-layout">
-                <aside class="games-sidebar">
-                    <h3 class="filter-title">📂 Categories</h3>
-                    <ul class="filter-list">
-                        <li class="filter-item active" data-filter="all">
-                            <span>🎮</span> All Games
-                        </li>
-                        <li class="filter-item" data-filter="action">
-                            <span>⚡</span> Action
-                        </li>
-                        <li class="filter-item" data-filter="puzzle">
-                            <span>🧩</span> Puzzle
-                        </li>
-                        <li class="filter-item" data-filter="sports">
-                            <span>⚽</span> Sports
-                        </li>
-                        <li class="filter-item" data-filter="shooter">
-                            <span>🔫</span> Shooter
-                        </li>
-                        <li class="filter-item" data-filter="racing">
-                            <span>🏎️</span> Racing
-                        </li>
-                        <li class="filter-item" data-filter="platformer">
-                            <span>🏃</span> Platformer
-                        </li>
-                        <li class="filter-item" data-filter="horror">
-                            <span>👻</span> Horror
-                        </li>
-                        <li class="filter-item" data-filter="io">
-                            <span>🌐</span> .io Games
-                        </li>
-                        <li class="filter-item" data-filter="artclass">
-                            <span>🎨</span> Art Class
-                        </li>
-                        <li class="filter-item" data-filter="shsgames">
-                            <span>🏫</span> SHS Games
-                        </li>
-                    </ul>
-                </aside>
-                <div class="games-grid-container" id="gamesContainer"></div>
+
+            <div class="games-grid" id="games-grid">
+                <!-- Games loaded dynamically -->
             </div>
         </section>
 
         <!-- MOVIES SECTION -->
-        <section class="content-section" id="moviesSection">
-            <div class="section-header">
-                <h2 class="section-title">MOVIES & ANIME</h2>
-                <p class="section-desc">Stream via unblocked proxy</p>
+        <section id="movies" class="section">
+            <h2 class="section-title">AmongUsMovies</h2>
+            <p class="section-desc">Stream movies securely</p>
+            
+            <div class="movies-container">
+                <div class="movies-header">
+                    <div class="movies-status">
+                        <div class="movies-status-dot"></div>
+                        <span>Connected via <span id="movies-proxy-mode">Ultraviolet</span></span>
+                    </div>
+                    <div>
+                        <button class="movies-refresh" onclick="refreshMovies()">🔄 Refresh</button>
+                        <button class="movies-fullscreen" onclick="toggleMoviesFullscreen()">⛶ Fullscreen</button>
+                    </div>
+                </div>
+
+                <div class="movies-frame-container" id="movies-frame-container">
+                    <div class="movies-loading" id="movies-loading">
+                        <div class="movies-loading-spinner"></div>
+                        <p>Loading AmongUsMovies...</p>
+                    </div>
+                    <iframe class="movies-frame" id="movies-frame" style="display: none;"></iframe>
+                </div>
             </div>
-            <div class="movies-categories">
-                <button class="category-btn active">All</button>
-                <button class="category-btn">Movies</button>
-                <button class="category-btn">Anime</button>
-                <button class="category-btn">TV Series</button>
+
+            <div style="text-align: center; margin-top: 2rem;">
+                <p style="color: var(--text-dim); margin-bottom: 1rem;">Hold button to enter custom URL</p>
+                <button class="hold-btn" id="hold-enter-btn" 
+                    onmousedown="startHold()" 
+                    onmouseup="endHold()" 
+                    onmouseleave="endHold()"
+                    ontouchstart="startHold()" 
+                    ontouchend="endHold()">
+                    <span class="hold-text">HOLD TO ENTER</span>
+                </button>
             </div>
-            <div class="movies-grid" id="moviesGrid"></div>
+        </section>
+
+        <!-- THEMES SECTION -->
+        <section id="themes" class="section">
+            <h2 class="section-title">Themes</h2>
+            <p class="section-desc">Customize your experience</p>
+            
+            <div class="themes-grid">
+                <div class="theme-card active" onclick="setTheme('default')">
+                    <div class="theme-preview" style="background: linear-gradient(135deg, #ff4757, #3742fa);"></div>
+                    <div class="theme-name">Among Us</div>
+                    <div class="theme-desc">Classic red and blue space theme</div>
+                </div>
+                <div class="theme-card" onclick="setTheme('dark')">
+                    <div class="theme-preview" style="background: linear-gradient(135deg, #2f3542, #57606f);"></div>
+                    <div class="theme-name">Midnight</div>
+                    <div class="theme-desc">Pure dark mode for late nights</div>
+                </div>
+                <div class="theme-card" onclick="setTheme('neon')">
+                    <div class="theme-preview" style="background: linear-gradient(135deg, #0be881, #0fbcf9);"></div>
+                    <div class="theme-name">Cyberpunk</div>
+                    <div class="theme-desc">Neon green and cyan glow</div>
+                </div>
+                <div class="theme-card" onclick="setTheme('sunset')">
+                    <div class="theme-preview" style="background: linear-gradient(135deg, #ff6b81, #f9ca24);"></div>
+                    <div class="theme-name">Sunset</div>
+                    <div class="theme-desc">Warm orange and pink vibes</div>
+                </div>
+                <div class="theme-card" onclick="setTheme('forest')">
+                    <div class="theme-preview" style="background: linear-gradient(135deg, #2ed573, #1e90ff);"></div>
+                    <div class="theme-name">Forest</div>
+                    <div class="theme-desc">Green nature inspired theme</div>
+                </div>
+                <div class="theme-card" onclick="setTheme('royal')">
+                    <div class="theme-preview" style="background: linear-gradient(135deg, #8e44ad, #3498db);"></div>
+                    <div class="theme-name">Royal</div>
+                    <div class="theme-desc">Purple and blue majestic theme</div>
+                </div>
+            </div>
         </section>
 
         <!-- SETTINGS SECTION -->
-        <section class="content-section" id="settingsSection">
-            <div class="section-header">
-                <h2 class="section-title">SETTINGS</h2>
-                <p class="section-desc">Customize your experience</p>
-            </div>
+        <section id="settings" class="section">
+            <h2 class="section-title">Settings</h2>
+            <p class="section-desc">Configure your backend and preferences</p>
             
-            <div class="settings-grid">
-                <!-- Theme Settings -->
+            <div class="settings-container">
                 <div class="settings-card">
-                    <h3 class="settings-card-title">
-                        <svg viewBox="0 0 24 24" width="24" height="24"><path d="M12 3c-4.97 0-9 4.03-9 9s4.03 9 9 9c.83 0 1.5-.67 1.5-1.5 0-.39-.15-.74-.39-1.01-.23-.26-.38-.61-.38-.99 0-.83.67-1.5 1.5-1.5H16c2.76 0 5-2.24 5-5 0-4.42-4.03-8-9-8zm-5.5 9c-.83 0-1.5-.67-1.5-1.5S5.67 9 6.5 9 8 9.67 8 10.5 7.33 12 6.5 12zm3-4C8.67 8 8 7.33 8 6.5S8.67 5 9.5 5s1.5.67 1.5 1.5S10.33 8 9.5 8zm5 0c-.83 0-1.5-.67-1.5-1.5S13.67 5 14.5 5s1.5.67 1.5 1.5S15.33 8 14.5 8zm3 4c-.83 0-1.5-.67-1.5-1.5S16.67 9 17.5 9s1.5.67 1.5 1.5-.67 1.5-1.5 1.5z" fill="currentColor"/></svg>
-                        Theme
-                    </h3>
+                    <div class="settings-title">Backend Configuration</div>
                     <div class="setting-item">
-                        <div class="setting-info">
-                            <h4>Color Theme</h4>
-                            <p>Choose your preferred color scheme</p>
+                        <div class="setting-label">
+                            <span class="setting-name">Backend URL</span>
+                            <span class="setting-desc">Your Cloudflare Workers backend</span>
                         </div>
-                        <select class="theme-select" id="themeSelect" onchange="setTheme(this.value)">
-                            <option value="main">🔴 Red (Default)</option>
-                            <option value="ocean">🔵 Ocean</option>
-                            <option value="forest">🟢 Forest</option>
-                            <option value="sunset">🟠 Sunset</option>
-                            <option value="purple">🟣 Purple</option>
-                            <option value="gold">🟡 Gold</option>
-                            <option value="midnight">🔵 Midnight</option>
-                        </select>
+                    </div>
+                    <div class="backend-config">
+                        <input type="text" id="settings-backend-url" placeholder="https://beplace.holderbot-69.workers.dev" onchange="updateBackendUrl(this.value)">
                     </div>
                 </div>
 
-                <!-- Tab Cloak Settings -->
                 <div class="settings-card">
-                    <h3 class="settings-card-title">
-                        <svg viewBox="0 0 24 24" width="24" height="24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 17.93c-3.95-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93zm6.9-2.54c-.26-.81-1-1.39-1.9-1.39h-1v-3c0-.55-.45-1-1-1H8v-2h2c.55 0 1-.45 1-1V7h2c1.1 0 2-.9 2-2v-.41c2.93 1.19 5 4.06 5 7.41 0 2.08-.8 3.97-2.1 5.39z" fill="currentColor"/></svg>
-                        Tab Cloak
-                    </h3>
-                    <div class="setting-item" style="flex-direction: column; align-items: flex-start;">
-                        <div class="setting-info" style="width: 100%; margin-bottom: 15px;">
-                            <h4>Disguise Tab</h4>
-                            <p>Change the tab title and icon to look like something else</p>
-                        </div>
-                        <input type="text" class="tab-cloak-input" id="tabname" placeholder="Tab Title" onchange="setTab(this.value, document.getElementById('tabicon').value)">
-                        <input type="text" class="tab-cloak-input" id="tabicon" placeholder="Icon URL" onchange="setTab(document.getElementById('tabname').value, this.value)">
-                        <div class="preset-btns">
-                            <button class="preset-btn" onclick="setTabPreset('google')">Google</button>
-                            <button class="preset-btn" onclick="setTabPreset('drive')">Drive</button>
-                            <button class="preset-btn" onclick="setTabPreset('docs')">Docs</button>
-                            <button class="preset-btn" onclick="setTabPreset('classroom')">Classroom</button>
-                            <button class="preset-btn" onclick="setTabPreset('default')">Default</button>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Panic Key Settings -->
-                <div class="settings-card">
-                    <h3 class="settings-card-title">
-                        <svg viewBox="0 0 24 24" width="24" height="24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zm-1-13h2v6h-2zm0 8h2v2h-2z" fill="currentColor"/></svg>
-                        Panic Key
-                    </h3>
-                    <div class="setting-item" style="flex-direction: column; align-items: flex-start;">
-                        <div class="setting-info" style="width: 100%; margin-bottom: 15px;">
-                            <h4>Emergency Exit</h4>
-                            <p>Press this key to instantly redirect to a safe page</p>
-                        </div>
-                        <div style="display: flex; gap: 10px; width: 100%;">
-                            <input type="text" class="tab-cloak-input panic-key-input" id="panickey" placeholder="Key" maxlength="1" onchange="setPanicKey()">
-                            <input type="text" class="tab-cloak-input" id="panicurl" placeholder="Redirect URL" value="https://classroom.google.com/h" onchange="setPanicUrl()">
-                        </div>
-                        <button class="preset-btn" onclick="detectPanicKey()" id="panickeybtn" style="margin-top: 10px;">Auto-detect panic key</button>
-                    </div>
-                </div>
-
-                <!-- About -->
-                <div class="settings-card">
-                    <h3 class="settings-card-title">
-                        <svg viewBox="0 0 24 24" width="24" height="24"><path d="M11 7h2v2h-2zm0 4h2v6h-2zm1-9C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8z" fill="currentColor"/></svg>
-                        About
-                    </h3>
+                    <div class="settings-title">Proxy Settings</div>
                     <div class="setting-item">
-                        <div class="setting-info">
-                            <h4>Version</h4>
-                            <p>AMONGUSGXMES v4.0</p>
+                        <div class="setting-label">
+                            <span class="setting-name">Ultraviolet</span>
+                            <span class="setting-desc">Standard UV proxy</span>
                         </div>
                     </div>
                     <div class="setting-item">
-                        <div class="setting-info">
-                            <h4>Sources</h4>
-                            <p>Art Class v4, SHS Games, N-Gon, Leereilly Games, Genizy</p>
+                        <div class="setting-label">
+                            <span class="setting-name">Rammerhead</span>
+                            <span class="setting-desc">Session-based proxy</span>
                         </div>
                     </div>
+                    <div class="setting-item">
+                        <div class="setting-label">
+                            <span class="setting-name">Scramjet</span>
+                            <span class="setting-desc">Advanced rewrite proxy</span>
+                        </div>
+                    </div>
+                    <div class="setting-item">
+                        <div class="setting-label">
+                            <span class="setting-name">Games CDN</span>
+                            <span class="setting-desc">staticdelivr.com (replaces jsdelivr)</span>
+                        </div>
+                    </div>
+                    <div class="setting-item">
+                        <div class="setting-label">
+                            <span class="setting-name">Cloak Title</span>
+                            <span class="setting-desc">Disguise as Google Classroom</span>
+                        </div>
+                        <div class="toggle active" id="cloak-toggle" onclick="this.classList.toggle('active')"></div>
+                    </div>
                 </div>
-            </div>
 
-            <div class="credits-section">
-                <h3 class="credits-title">❤️ Credits ❤️</h3>
-                <div class="credits-text">
-                    <p><span class="highlight">Made by Dabin</span> using AI technology</p>
-                    <p style="margin-top: 15px;">"I am learning how to code and this project is part of my journey"</p>
-                    <p style="margin-top: 20px; color: rgba(255,255,255,0.6); font-size: 0.9rem;">
-                        Powered by Ultraviolet Proxy from Art Class v4<br>
-                        Games from Art Class, SHS Games, N-Gon, and more<br>
-                        Special thanks to all open source contributors
-                    </p>
+                <div class="settings-card">
+                    <div class="settings-title">Panic Key</div>
+                    <div class="setting-item">
+                        <div class="setting-label">
+                            <span class="setting-name">Emergency Key</span>
+                            <span class="setting-desc">Press to hide everything</span>
+                        </div>
+                        <input type="text" class="panic-key" id="panic-key" value="`" maxlength="1" onchange="setPanicKey(this.value)">
+                    </div>
+                </div>
+
+                <div class="settings-card">
+                    <div class="settings-title">About</div>
+                    <div class="setting-item">
+                        <div class="setting-label">
+                            <span class="setting-name">Main Site</span>
+                            <span class="setting-desc">amongusgxmes.placeholderbot-69.workers.dev</span>
+                        </div>
+                    </div>
+                    <div class="setting-item">
+                        <div class="setting-label">
+                            <span class="setting-name">Backend</span>
+                            <span class="setting-desc">beplace.holderbot-69.workers.dev</span>
+                        </div>
+                    </div>
+                    <div class="setting-item">
+                        <div class="setting-label">
+                            <span class="setting-name">Version</span>
+                            <span class="setting-desc">AMONGUSGXMES v7.0</span>
+                        </div>
+                    </div>
                 </div>
             </div>
         </section>
-    </main>
-
-    <!-- GAME MODAL -->
-    <div id="gameModal">
-        <div class="game-modal-content">
-            <div class="game-modal-header">
-                <h3 class="game-modal-title">
-                    <span id="gameModalTitle">Game Title</span>
-                    <span class="unblocked-badge">UNBLOCKED</span>
-                </h3>
-                <div class="game-controls">
-                    <button class="control-btn alt-server-btn" onclick="tryAltServer()" title="Try Alternative Server">
-                        🔄 Alt Server
-                    </button>
-                    <button class="control-btn" onclick="toggleFullscreen()">
-                        <svg viewBox="0 0 24 24" width="18" height="18"><path d="M7 14H5v5h5v-2H7v-3zm-2-4h2V7h3V5H5v5zm12 7h-3v2h5v-5h-2v3zM14 7v2h3v3h2V5h-5z" fill="currentColor"/></svg>
-                        Fullscreen
-                    </button>
-                    <button class="control-btn" onclick="closeGame()">
-                        <svg viewBox="0 0 24 24" width="18" height="18"><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z" fill="currentColor"/></svg>
-                        Close
-                    </button>
-                </div>
-            </div>
-            <iframe id="gameFrame" allowfullscreen sandbox="allow-scripts allow-same-origin allow-forms allow-popups allow-modals allow-orientation-lock allow-pointer-lock allow-presentation"></iframe>
-        </div>
     </div>
 
-    <div class="notification" id="notification">
-        <div class="notification-icon" id="notifIcon">✓</div>
-        <div class="notification-content">
-            <h4 id="notifTitle">Success</h4>
-            <p id="notifMessage">Operation completed</p>
+    <!-- Game Modal -->
+    <div class="modal-overlay" id="game-modal" onclick="closeGameModal(event)">
+        <div class="game-modal" onclick="event.stopPropagation()">
+            <div class="modal-header">
+                <div class="modal-title" id="modal-game-title">Game</div>
+                <button class="modal-close" onclick="closeGameModal()">✕</button>
+            </div>
+            <iframe class="game-frame" id="game-frame"></iframe>
         </div>
     </div>
 
     <script>
-        // ==========================================
-        // ULTRAVIOLET PROXY CONFIGURATION
-        // From Art Class v4
-        // ==========================================
+        // ==================== CONFIGURATION ====================
+        // Default to user's Cloudflare Workers backend
+        const DEFAULT_BACKEND = 'https://beplace.holderbot-69.workers.dev';
         
-        // Ultraviolet configuration
-        const UV_CONFIG = {
-            prefix: '/service/',
-            bare: '/bare/',
-            encodeUrl: (url) => {
-                // Simple XOR encoding like Ultraviolet
-                return encodeURIComponent(btoa(url));
+        const CONFIG = {
+            get backend() { 
+                return localStorage.getItem('backendUrl') || DEFAULT_BACKEND;
             },
-            decodeUrl: (encoded) => {
-                return atob(decodeURIComponent(encoded));
-            }
+            get uvPath() { return `${this.backend}/uv/service/`; },
+            get rammerheadPath() { return `${this.backend}/rammerhead/`; },
+            get scramjetPath() { return `${this.backend}/scramjet/`; },
+            proxyMode: 'uv',
+            moviesUrl: 'https://amongusmovies.base44.app/',
+            ngonUrl: 'https://landgreen.github.io/n-gon/',
+            // Using staticdelivr instead of jsdelivr
+            gamesCDN: 'https://staticdelivr.com/gh/'
         };
 
-        // Bare server endpoints (public bare servers)
-        const BARE_SERVERS = [
-            'https://bare.artclass.site/',
-            'https://bare.xn--9o8h1g.ws/',
-            'https://bare.minnit.chat/',
-            'https://bare.enjoy.alegthe.info/',
-            'https://bare2.artclass.site/'
-        ];
-
-        let currentBareServer = 0;
-
-        // ==========================================
-        // COMPLETE GAMES DATABASE
-        // From all sources
-        // ==========================================
+        // ==================== PROXY ENCODING ====================
         
-        const GAMES_DATABASE = [
-            // ==========================================
-            // ART CLASS V4 GAMES
-            // ==========================================
-            { id: 'ac_idlebreakout', title: 'Idle Breakout', category: 'puzzle', icon: '🧱', source: 'artclass', urls: ['https://assets.3kh0.net/idle-breakout/index.html/'] },
-            { id: 'ac_eggycar', title: 'Eggy Car', category: 'racing', icon: '🚗', source: 'artclass', urls: ['https://assets.3kh0.net/eggycar/index.html'] },
-            { id: 'ac_rocketleague', title: 'Rocket League', category: 'sports', icon: '🚗', source: 'artclass', urls: ['https://glcdn.githack.com/kaioxdev/legacy-assets/-/raw/main/Rocket-League/index.html'] },
-            { id: 'ac_cookieclicker', title: 'Cookie Clicker', category: 'puzzle', icon: '🍪', source: 'artclass', urls: ['https://sushi8756.github.io/Cookie-Clicker-2.031/'] },
-            { id: 'ac_jacksmith', title: 'Jacksmith', category: 'action', icon: '⚔️', source: 'artclass', urls: ['https://art-class.github.io/assets/jacksmith'] },
-            { id: 'ac_thereisnogame', title: 'There Is No Game', category: 'puzzle', icon: '🎮', source: 'artclass', urls: ['https://assets.3kh0.net/there-is-no-game/index.html'] },
-            { id: 'ac_fbwg', title: 'Fireboy and Watergirl', category: 'platformer', icon: '🔥', source: 'artclass', urls: ['https://educationgg-23704.web.app/games/FBWG4-main/index.html'] },
-            { id: 'ac_driftboss', title: 'Drift Boss', category: 'racing', icon: '🏎️', source: 'artclass', urls: ['https://images-opensocial.googleusercontent.com/gadgets/ifr?url=https://738501629-461082748261058427.preview.editmysite.com/uploads/b/139890129-817510652323129407/files/drbo.xml'] },
-            { id: 'ac_osu', title: 'osu!', category: 'action', icon: '🎵', source: 'artclass', urls: ['https://web-osu.github.io/'] },
-            { id: 'ac_cuttherope', title: 'Cut the Rope', category: 'puzzle', icon: '🍬', source: 'artclass', urls: ['https://assets.3kh0.net/ctr/index.html'] },
-            { id: 'ac_tombofthemask', title: 'Tomb of the Mask', category: 'action', icon: '🎭', source: 'artclass', urls: ['https://images-opensocial.googleusercontent.com/gadgets/ifr?url=https://cdn.jsdelivr.net/gh/sk1bx/element@9cccb2fafb569c963501a5d818472b561121cea6/totm.xml'] },
-            { id: 'ac_backrooms', title: 'Backrooms', category: 'horror', icon: '🏢', source: 'artclass', urls: ['https://assets.3kh0.net/backrooms/index.html'] },
-            { id: 'ac_bezos', title: 'You are Bezos', category: 'puzzle', icon: '💰', source: 'artclass', urls: ['https://assets.3kh0.net/you-are-bezos/index.html'] },
-            { id: 'ac_papaburgers', title: "Papa's Burgeria", category: 'puzzle', icon: '🍔', source: 'artclass', urls: ['https://mazahacka2017.github.io/papas-burgeria'] },
-            { id: 'ac_papascooperia', title: "Papa's Scooperia", category: 'puzzle', icon: '🍦', source: 'artclass', urls: ['https://images-opensocial.googleusercontent.com/gadgets/ifr?url=https://s3.amazonaws.com/production-assetsbucket-8ljvyr1xczmb/1ee20621-61bc-4ec8-a8ec-5e839c2e6edc%2Fpapa-s-scooperia.xml'] },
-            { id: 'ac_chess', title: 'Ultimate Chess', category: 'puzzle', icon: '♟️', source: 'artclass', urls: ['https://images-opensocial.googleusercontent.com/gadgets/ifr?url=https://s3.amazonaws.com/production-assetsbucket-8ljvyr1xczmb/1ee20621-61bc-4ec8-a8ec-5e839c2e6edc%2Fultimate-chess.xml'] },
-            { id: 'ac_jetpack', title: 'Jetpack Joyride', category: 'action', icon: '🚀', source: 'artclass', urls: ['https://assets.3kh0.net/jetpack-joyride/index.html'] },
-            { id: 'ac_shellshockers', title: 'Shell Shockers', category: 'shooter', icon: '🥚', source: 'artclass', urls: ['https://assets.3kh0.net/shellshockers/index.html'] },
-            { id: 'ac_pvz', title: 'Plants vs Zombies', category: 'puzzle', icon: '🌻', source: 'artclass', urls: ['https://glcdn.githack.com/kaioxdev/legacy-assets/-/raw/main/plants%20vs%20zombies%201/plants%20vs%20zombies.html'] },
-            { id: 'ac_happywheels', title: 'Happy Wheels', category: 'platformer', icon: '🦽', source: 'artclass', urls: ['https://images-opensocial.googleusercontent.com/gadgets/ifr?url=https://cdn.jsdelivr.net/gh/proudparrot2/goguardian/happywheels.xml'] },
-            { id: 'ac_motox3m', title: 'Moto X3M', category: 'racing', icon: '🏍️', source: 'artclass', urls: ['https://art-class.github.io/assets/motox3m'] },
-            { id: 'ac_finalearth', title: 'The Final Earth', category: 'puzzle', icon: '🌍', source: 'artclass', urls: ['https://assets.3kh0.net/the-final-earth/index.html'] },
-            { id: 'ac_fnf', title: 'Friday Night Funkin', category: 'action', icon: '🎤', source: 'artclass', urls: ['https://assets.3kh0.net/fridaynightfunkin/index.html'] },
-            { id: 'ac_paperio2', title: 'Paper.io 2', category: 'io', icon: '📄', source: 'artclass', urls: ['https://assets.3kh0.net/paperio2/index.html'] },
-            { id: 'ac_impossiblequiz', title: 'The Impossible Quiz', category: 'puzzle', icon: '❓', source: 'artclass', urls: ['https://proudparrot2.github.io/msg-archive/g_mes/impossiblequiz1/impossiblequiz1/index.html'] },
-            { id: 'ac_ducklife4', title: 'Duck Life 4', category: 'platformer', icon: '🦆', source: 'artclass', urls: ['https://assets.3kh0.net/ducklife4/index.html'] },
-            { id: 'ac_retrobowl', title: 'Retro Bowl', category: 'sports', icon: '🏈', source: 'artclass', urls: ['https://assets.3kh0.net/retro-bowl/index.html'] },
-            { id: 'ac_littlealchemy', title: 'Little Alchemy', category: 'puzzle', icon: '⚗️', source: 'artclass', urls: ['https://littlealchemy.com'] },
-            { id: 'ac_templerun2', title: 'Temple Run 2', category: 'racing', icon: '🏛️', source: 'artclass', urls: ['https://assets.3kh0.net/temple-run-2/index.html'] },
-            { id: 'ac_stickmanhook', title: 'Stickman Hook', category: 'action', icon: '🪝', source: 'artclass', urls: ['https://assets.3kh0.net/stickman-hook/index.html'] },
-            { id: 'ac_run3', title: 'Run 3', category: 'platformer', icon: '🏃', source: 'artclass', urls: ['https://coolmathgames.com/0-run-3/play'] },
-            { id: 'ac_run1', title: 'Run 1', category: 'platformer', icon: '🏃', source: 'artclass', urls: ['https://glcdn.githack.com/kaioxdev/legacy-assets/-/raw/main/run/index.html'] },
-            { id: 'ac_run2', title: 'Run 2', category: 'platformer', icon: '🏃', source: 'artclass', urls: ['https://glcdn.githack.com/kaioxdev/legacy-assets/-/raw/main/Run%202/index.html'] },
-            { id: 'ac_justfall', title: 'Just Fall', category: 'action', icon: '🐧', source: 'artclass', urls: ['https://assets.3kh0.net/just-fall/index.html'] },
-            { id: 'ac_sm64', title: 'Super Mario 64', category: 'platformer', icon: '🍄', source: 'artclass', urls: ['https://assets.3kh0.net/sm64/index.html'] },
-            { id: 'ac_snowball', title: 'Snowball.io', category: 'io', icon: '❄️', source: 'artclass', urls: ['https://assets.3kh0.net/snowbattle/index.html'] },
-            { id: 'ac_minecraft', title: 'Minecraft Classic', category: 'action', icon: '⛏️', source: 'artclass', urls: ['https://assets.3kh0.net/minecraft-classic/index.html'] },
-            { id: 'ac_smashkarts', title: 'Smash Karts', category: 'shooter', icon: '🏎️', source: 'artclass', urls: ['https://assets.3kh0.net/smashkarts/index.html'] },
-            { id: 'ac_tunnelrush', title: 'Tunnel Rush', category: 'racing', icon: '🌈', source: 'artclass', urls: ['https://assets.3kh0.net/tunnel-rush/index.html'] },
-            { id: 'ac_awesometanks2', title: 'Awesome Tanks 2', category: 'shooter', icon: '💥', source: 'artclass', urls: ['https://assets.3kh0.net/awesometanks2/index.html'] },
-            { id: 'ac_dancefireice', title: 'A Dance of Fire and Ice', category: 'puzzle', icon: '🔥', source: 'artclass', urls: ['https://assets.3kh0.net/a-dance-of-fire-and-ice/index.html'] },
-            { id: 'ac_henryprison', title: 'Henry Stickmin: Escaping the Prison', category: 'action', icon: '🏃', source: 'artclass', urls: ['https://assets.3kh0.net/escapingtheprison/index.html'] },
-            { id: 'ac_henrycomplex', title: 'Henry Stickmin: Fleeing the Complex', category: 'action', icon: '🏃', source: 'artclass', urls: ['https://art-class.github.io/assets/fleeingthecompound/index.html'] },
-            { id: 'ac_henryairship', title: 'Henry Stickmin: Infiltrating the Airship', category: 'action', icon: '🏃', source: 'artclass', urls: ['https://art-class.github.io/assets/infiltratingtheairship/index.html'] },
-            { id: 'ac_henrybank', title: 'Henry Stickmin: Breaking the Bank', category: 'action', icon: '🏃', source: 'artclass', urls: ['https://art-class.github.io/assets/breakingthebank/index.html'] },
-            { id: 'ac_slope', title: 'Slope', category: 'racing', icon: '📐', source: 'artclass', urls: ['https://mathadventure1.github.io/slope/slope/index.html'] },
-            { id: 'ac_baldisbasics', title: "Baldi's Basics", category: 'horror', icon: '📏', source: 'artclass', urls: ['https://assets.3kh0.net/baldis-basics/index.html'] },
-            { id: 'ac_1v1lol', title: '1v1.lol', category: 'shooter', icon: '🏗️', source: 'artclass', urls: ['https://docs-opensocial.googleusercontent.com/gadgets/ifr?url=https://cdn.jsdelivr.net/gh/ko1ov/to@1e8a949f89fcf2b110640c41a0705db01405d161/d7uf4.xml#'] },
-            { id: 'ac_crossyroad', title: 'Crossy Road', category: 'action', icon: '🐔', source: 'artclass', urls: ['https://assets.3kh0.net/crossyroad/index.html'] },
-            { id: 'ac_subwaysurfers', title: 'Subway Surfers', category: 'racing', icon: '🏃', source: 'artclass', urls: ['https://assets.3kh0.net/subway-surfers/index.html'] },
-            { id: 'ac_geometrydash', title: 'Geometry Dash', category: 'platformer', icon: '🔷', source: 'artclass', urls: ['https://assets.3kh0.net/geodash/index.html'] },
-            { id: 'ac_idlecraft', title: 'Idlecraft', category: 'puzzle', icon: '⛏️', source: 'artclass', urls: ['https://assets.3kh0.net/grindcraft/index.html'] },
-            { id: 'ac_8ballpool', title: '8 Ball Pool', category: 'sports', icon: '🎱', source: 'artclass', urls: ['https://8ball-pool.io'] },
-            { id: 'ac_fruitninja', title: 'Fruit Ninja', category: 'action', icon: '🍉', source: 'artclass', urls: ['https://assets.3kh0.net/fruitninja/index.html'] },
-            { id: 'ac_bloxors', title: 'Bloxors', category: 'puzzle', icon: '🧊', source: 'artclass', urls: ['https://assets.3kh0.net/bloxors/index.html'] },
-            { id: 'ac_chromedino', title: 'Chrome Dino', category: 'action', icon: '🦕', source: 'artclass', urls: ['https://assets.3kh0.net/chrome-dino/index.html'] },
-            { id: 'ac_doodlejump', title: 'Doodle Jump', category: 'action', icon: '⬆️', source: 'artclass', urls: ['https://doodlejump.io/play/'] },
-            { id: 'ac_slither', title: 'Slither.io', category: 'io', icon: '🐍', source: 'artclass', urls: ['https://slither.io'] },
-            { id: 'ac_basketballstars', title: 'Basketball Stars', category: 'sports', icon: '🏀', source: 'artclass', urls: ['https://assets.3kh0.net/basketball-stars/index.html'] },
-            { id: 'ac_amongus', title: 'Among Us', category: 'action', icon: '👽', source: 'artclass', urls: ['https://assets.3kh0.net/among-us/index.html'] },
-            { id: 'ac_bitlife', title: 'Bitlife', category: 'puzzle', icon: '👤', source: 'artclass', urls: ['https://assets.3kh0.net/bitlife/index.html'] },
-            { id: 'ac_btd4', title: 'Bloons TD 4', category: 'puzzle', icon: '🎈', source: 'artclass', urls: ['https://assets.3kh0.net/btd4/index.html'] },
-            { id: 'ac_ovo', title: 'OvO', category: 'platformer', icon: '🥚', source: 'artclass', urls: ['https://purepro4561.github.io/OvO'] },
-            { id: 'ac_dogeminer', title: 'Doge Miner', category: 'puzzle', icon: '🐕', source: 'artclass', urls: ['https://assets.3kh0.net/DogeMiner/index.html'] },
-            { id: 'ac_aquapark', title: 'Aquapark.io', category: 'io', icon: '🌊', source: 'artclass', urls: ['https://assets.3kh0.net/aquapark-slides/index.html'] },
-            { id: 'ac_2048', title: '2048', category: 'puzzle', icon: '🔢', source: 'artclass', urls: ['https://assets.3kh0.net/2048/index.html'] },
-            { id: 'ac_roblox', title: 'Roblox', category: 'action', icon: '🔲', source: 'artclass', urls: ['https://now.gg/play/roblox-corporation/5349/roblox'] },
-            { id: 'ac_baconmaydie', title: 'Bacon May Die', category: 'action', icon: '🥓', source: 'artclass', urls: ['https://rawcdn.githack.com/nightrose-labs/quartz/c1832d589bc39c298bd23149733fca1026972d06/2/e333d315-40d0-46f6-a1ef-7e3f6bdd5113/index.html'] },
-            { id: 'ac_burninrubber', title: "Burnin' Rubber 5 XS", category: 'racing', icon: '🏎️', source: 'artclass', urls: ['https://rawcdn.githack.com/nightrose-labs/quartz/8ad8d5b123954f4a5d7e35ca84d5aacba0061eec/1/c35dc918-139e-4159-be3d-0d1ef0557e4e/index.html'] },
-            { id: 'ac_funnyshooter2', title: 'Funny Shooter 2', category: 'shooter', icon: '🔫', source: 'artclass', urls: ['https://rawcdn.githack.com/nightrose-labs/quartz/master/1/6af3cc65-32f9-4f3d-a66c-6c8882a7c5df/index.html'] },
-            { id: 'ac_hydrostorm2', title: 'Hydro Storm 2', category: 'racing', icon: '💧', source: 'artclass', urls: ['https://rawcdn.githack.com/nightrose-labs/quartz/8ad8d5b123954f4a5d7e35ca84d5aacba0061eec/1/283a1142-4fa3-46c4-8a3f-35ac3a28f072/index.html'] },
-            { id: 'ac_pixwars2', title: 'PixWars 2', category: 'shooter', icon: '🔫', source: 'artclass', urls: ['https://rawcdn.githack.com/nightrose-labs/quartz/master/1/c4e5b82d-a26a-437b-8b6e-7598c98cf39b/index.html'] },
-            { id: 'ac_recoil', title: 'Recoil', category: 'shooter', icon: '💥', source: 'artclass', urls: ['https://rawcdn.githack.com/nightrose-labs/quartz/b0687b5099af0b76aedf37743f2d03cbeef26467/2/5cf218d2-f550-420c-8e55-7029efc5b4db/index.html'] },
-            { id: 'ac_vex8', title: 'Vex 8', category: 'platformer', icon: '⚡', source: 'artclass', urls: ['https://rawcdn.githack.com/nightrose-labs/quartz/8ad8d5b123954f4a5d7e35ca84d5aacba0061eec/2/6dcc5fd9-a43a-4e13-9b6f-456a416e1059/index.html'] },
-            { id: 'ac_finalearth2', title: 'The Final Earth 2', category: 'puzzle', icon: '🌍', source: 'artclass', urls: ['https://images-opensocial.googleusercontent.com/gadgets/ifr?url=https://529473016-184630684593625815.preview.editmysite.com/uploads/b/139890129-811652923688457694/files/tfe2.xml&'] },
-            { id: 'ac_snowrider', title: 'Snow Rider', category: 'racing', icon: '⛷️', source: 'artclass', urls: ['https://images-opensocial.googleusercontent.com/gadgets/ifr?url=https://cdn.jsdelivr.net/gh/sk1bx/89574567@71f165531792ae450fe0a522a52ba4e827344de2/sr3d.xml'] },
-            { id: 'ac_1on1basketball', title: '1 On 1 Basketball', category: 'sports', icon: '🏀', source: 'artclass', urls: ['https://google-opensocial.googleusercontent.com/gadgets/ifr?url=https://s3.amazonaws.com/production-assetsbucket-8ljvyr1xczmb/1ee20621-61bc-4ec8-a8ec-5e839c2e6edc%2F1-on-1-basketball.xml'] },
-            { id: 'ac_johnnyupgrade', title: 'Johnny Upgrade', category: 'platformer', icon: '⚡', source: 'artclass', urls: ['https://images-opensocial.googleusercontent.com/gadgets/ifr?url=https://s3.amazonaws.com/production-assetsbucket-8ljvyr1xczmb/f107b843-3661-4036-9397-2b0c6414a369%2Fjohnny-upgrade.xml'] },
-            { id: 'ac_holeio', title: 'Hole.io', category: 'io', icon: '🕳️', source: 'artclass', urls: ['https://images-opensocial.googleusercontent.com/gadgets/ifr?url=https://cdn.jsdelivr.net/gh/gertdoro/Toolkit@93a27eabbbe5eb626af5b9b7dd0926ac16810a41/Code/Java/hole.xml'] },
-            { id: 'ac_penguinio', title: 'Penguin.io', category: 'io', icon: '🐧', source: 'artclass', urls: ['https://images-opensocial.googleusercontent.com/gadgets/ifr?url=https://cdn.jsdelivr.net/gh/gertdoro/Kubeflow@a4cad845becd2a794dc59bbf5bfff375c5dae041/admission-webhook/examples/penguin.xml'] },
-            { id: 'ac_brawlguys', title: 'Brawl Guys', category: 'shooter', icon: '💥', source: 'artclass', urls: ['https://zayaruzostreetorgan.com/uploads/5/5/6/7/5567194/custom_themes/139948058740159493/files/index.html'] },
-            { id: 'ac_digtochina', title: 'Dig to China', category: 'puzzle', icon: '⛏️', source: 'artclass', urls: ['https://images-opensocial.googleusercontent.com/gadgets/ifr?url=https://s3.amazonaws.com/production-assetsbucket-8ljvyr1xczmb/1ee20621-61bc-4ec8-a8ec-5e839c2e6edc%2Fdig-to-china.xml'] },
-            { id: 'ac_helixjump', title: 'Helix Jump', category: 'puzzle', icon: '🌀', source: 'artclass', urls: ['https://images-opensocial.googleusercontent.com/gadgets/ifr?url=https://cdn.jsdelivr.net/gh/gertdoro/Toolkit@147a37a734f3e4f155e48dbda25000afdc2970ba/Apps/Helix.xml'] },
-            { id: 'ac_raccoonretail', title: 'Raccoon Retail', category: 'puzzle', icon: '🦝', source: 'artclass', urls: ['https://www.coolmathgames.com/0-raccoon-retail/play'] },
-
-            // ==========================================
-            // N-GON (Physics Platformer Shooter)
-            // ==========================================
-            { id: 'ngon_ngon', title: 'N-Gon', category: 'shooter', icon: '🔫', source: 'ngon', urls: ['https://landgreen.github.io/n-gon/'] },
-
-            // ==========================================
-            // GENIZY GAMES
-            // ==========================================
-            { id: 'gen_escaperoad3', title: 'Escape Road 3', category: 'racing', icon: '🚗', source: 'genizy', urls: ['https://azgames.io/games/escape-road-3/'] },
-            { id: 'gen_crazycattle3d', title: 'Crazy Cattle 3D', category: 'action', icon: '🐄', source: 'genizy', urls: ['https://gn-math.github.io/?id=164'] },
-
-            // ==========================================
-            // LEEREILLY GAMES (FPS & Browser)
-            // ==========================================
-            { id: 'lee_bananabread', title: 'BananaBread', category: 'shooter', icon: '🍌', source: 'leereilly', urls: ['https://kripken.github.io/BananaBread/cube2/bb.html'] },
-            { id: 'lee_openlara', title: 'OpenLara', category: 'action', icon: '🏛️', source: 'leereilly', urls: ['http://xproger.info/projects/OpenLara/'] },
-            { id: 'lee_asteroids', title: 'Asteroids', category: 'action', icon: '☄️', source: 'leereilly', urls: ['http://dougmcinnes.com/html-5-asteroids/'] },
-            { id: 'lee_spaceinvaders', title: 'Space Invaders', category: 'action', icon: '👾', source: 'leereilly', urls: ['http://strykerkkd.github.io/SpaceInvaders/'] },
-            { id: 'lee_supermario', title: 'Super Mario Bros', category: 'platformer', icon: '🍄', source: 'leereilly', urls: ['http://martindrapeau.github.io/backbone-game-engine/super-mario-bros/index.html'] },
-            { id: 'lee_hexgl', title: 'HexGL', category: 'racing', icon: '🏎️', source: 'leereilly', urls: ['http://hexgl.bkcore.com/'] },
-            { id: 'lee_browserquest', title: 'BrowserQuest', category: 'action', icon: '⚔️', source: 'leereilly', urls: ['http://browserquest.mozilla.org/'] },
-            { id: 'lee_commandconquer', title: 'Command & Conquer', category: 'strategy', icon: '🎖️', source: 'leereilly', urls: ['http://www.adityaravishankar.com/projects/games/command-and-conquer/'] },
-            { id: 'lee_ancientbeast', title: 'Ancient Beast', category: 'strategy', icon: '🐉', source: 'leereilly', urls: ['http://ancientbeast.com/play'] },
-            { id: 'lee_hextris', title: 'Hextris', category: 'puzzle', icon: '🔷', source: 'leereilly', urls: ['http://hextris.io/'] },
-
-            // ==========================================
-            // SHS GAMES
-            // ==========================================
-            { id: 'shs_shsgames', title: 'SHS Games Hub', category: 'action', icon: '🎮', source: 'shsgames', urls: ['https://shsgames.github.io/'] },
-
-            // ==========================================
-            // ORIGINAL GAMES DATABASE
-            // ==========================================
-            { id: 'a1', title: 'Shell Shockers', category: 'shooter', icon: '🥚', source: 'original', urls: [
-                'https://shellshock.io',
-                'https://shellshockers.io',
-                'https://shellshockers.online'
-            ]},
-            { id: 'a2', title: 'Krunker.io', category: 'shooter', icon: '🔫', source: 'original', urls: [
-                'https://krunker.io',
-                'https://krunker.io/?game=',
-                'https://krunker.io/?server='
-            ]},
-            { id: 'a3', title: '1v1.LOL', category: 'shooter', icon: '🏗️', source: 'original', urls: [
-                'https://1v1.lol',
-                'https://1v1lol.io',
-                'https://1v1-lol.com'
-            ]},
-            { id: 'io1', title: 'Slither.io', category: 'io', icon: '🐍', source: 'original', urls: [
-                'https://slither.io',
-                'https://slitherio.io'
-            ]},
-            { id: 'io2', title: 'Agar.io', category: 'io', icon: '🔵', source: 'original', urls: [
-                'https://agar.io',
-                'https://agar.io/?server='
-            ]},
-            { id: 'io3', title: 'Diep.io', category: 'io', icon: '🔷', source: 'original', urls: [
-                'https://diep.io',
-                'https://diep.io/#'
-            ]},
-            { id: 'p1', title: '2048', category: 'puzzle', icon: '🔢', source: 'original', urls: [
-                'https://play2048.co',
-                'https://2048game.com',
-                'https://2048.io'
-            ]},
-            { id: 'p2', title: 'Tetris', category: 'puzzle', icon: '🧱', source: 'original', urls: [
-                'https://tetris.com/play-tetris',
-                'https://free-tetris.com',
-                'https://tetr.io'
-            ]},
-            { id: 'p3', title: 'Cookie Clicker', category: 'puzzle', icon: '🍪', source: 'original', urls: [
-                'https://orteil.dashnet.org/cookieclicker/',
-                'https://cookieclicker.io',
-                'https://cookie-clicker.co'
-            ]},
-            { id: 's1', title: 'Basketball Stars', category: 'sports', icon: '🏀', source: 'original', urls: [
-                'https://basketballstars.io',
-                'https://basketball-stars.com',
-                'https://basketballstars2.com'
-            ]},
-            { id: 'r1', title: 'Slope', category: 'racing', icon: '📐', source: 'original', urls: [
-                'https://slope-game.com',
-                'https://slope.io',
-                'https://slopeunblocked.org'
-            ]},
-            { id: 'r2', title: 'Moto X3M', category: 'racing', icon: '🏍️', source: 'original', urls: [
-                'https://motox3m.io',
-                'https://moto-x3m.com',
-                'https://motox3m.net'
-            ]},
-            { id: 'pl1', title: 'Geometry Dash', category: 'platformer', icon: '🔷', source: 'original', urls: [
-                'https://geometrydash.io',
-                'https://geometry-dash.co',
-                'https://geometrydashunblocked.org'
-            ]},
-            { id: 'h1', title: 'FNAF 1', category: 'horror', icon: '🐻', source: 'original', urls: [
-                'https://fnafgame.io',
-                'https://fnaf1.io',
-                'https://fnaf-unblocked.com'
-            ]},
-            { id: 'c1', title: 'Pac-Man', category: 'action', icon: '👻', source: 'original', urls: [
-                'https://pacman.io',
-                'https://pacman-game.com',
-                'https://pacmanunblocked.org'
-            ]},
-            { id: 'c3', title: 'Chess', category: 'puzzle', icon: '♟️', source: 'original', urls: [
-                'https://chess.com',
-                'https://lichess.org',
-                'https://chess24.com'
-            ]},
-            { id: 'c4', title: 'Minecraft Classic', category: 'action', icon: '⛏️', source: 'original', urls: [
-                'https://classic.minecraft.net',
-                'https://minecraft-classic.com',
-                'https://minecraftunblocked.org'
-            ]}
-        ];
-
-        // ==========================================
-        // ULTRAVIOLET PROXY FUNCTIONS
-        // ==========================================
-        
-        async function loadUltravioletProxy() {
-            const input = document.getElementById('proxyInput');
-            const query = input.value.trim();
-            
-            if (!query) {
-                showNotification('⚠️', 'Error', 'Please enter a URL or search term');
-                return;
+        function encodeUV(url) {
+            if (!url.startsWith('http')) {
+                url = 'https://' + url;
             }
             
-            const frame = document.getElementById('proxyFrame');
-            const welcome = document.getElementById('proxyWelcome');
-            const loading = document.getElementById('proxyLoading');
-            
-            welcome.style.display = 'none';
-            loading.classList.add('active');
-            
-            let targetUrl;
-            if (query.includes('.') && !query.includes(' ')) {
-                targetUrl = query.startsWith('http') ? query : 'https://' + query;
-            } else {
-                targetUrl = 'https://duckduckgo.com/?q=' + encodeURIComponent(query);
+            const key = 'uv';
+            let encrypted = '';
+            for (let i = 0; i < url.length; i++) {
+                encrypted += String.fromCharCode(url.charCodeAt(i) ^ key.charCodeAt(i % key.length));
             }
             
-            // Use bare server approach (simplified for client-side)
-            const bareUrl = BARE_SERVERS[currentBareServer % BARE_SERVERS.length];
-            const encodedUrl = UV_CONFIG.encodeUrl(targetUrl);
-            
-            // For this implementation, we'll use a service worker approach
-            // In production, you'd need to host the UV service worker files
-            frame.src = targetUrl;
-            frame.style.display = 'block';
-            loading.classList.remove('active');
-            
-            showNotification('🌐', 'Loading', 'Loading via Ultraviolet...');
-        }
-        
-        function useDuckDuckGo() {
-            document.getElementById('proxyInput').value = 'https://duckduckgo.com';
-            loadUltravioletProxy();
-        }
-        
-        function clearProxy() {
-            const frame = document.getElementById('proxyFrame');
-            const welcome = document.getElementById('proxyWelcome');
-            
-            frame.src = '';
-            frame.style.display = 'none';
-            welcome.style.display = 'block';
-            document.getElementById('proxyInput').value = '';
+            const encoded = btoa(encrypted).replace(/=/g, '');
+            return `${CONFIG.uvPath}${encoded}`;
         }
 
-        // ==========================================
-        // THEME & TAB CLOAK FUNCTIONS
-        // From Art Class v4
-        // ==========================================
-        
-        function setTheme(theme) {
-            document.body.setAttribute('theme', theme);
-            localStorage.setItem('theme', theme);
-            showNotification('🎨', 'Theme Changed', `Switched to ${theme} theme`);
-        }
-
-        function setTab(name = document.querySelector('#tabname')?.value, icon = document.querySelector('#tabicon')?.value) {
-            if (!name || !icon) return;
-            
-            localStorage.setItem('tabName', name);
-            localStorage.setItem('tabIcon', icon);
-            
-            document.title = name;
-            const favicon = document.querySelector("link[rel='shortcut icon']");
-            if (favicon) favicon.href = icon;
-        }
-
-        const tabPresets = {
-            google: {
-                name: 'Google',
-                icon: 'https://www.google.com/favicon.ico'
-            },
-            drive: {
-                name: 'My Drive - Google Drive',
-                icon: 'https://ssl.gstatic.com/docs/doclist/images/drive_2022q3_32dp.png'
-            },
-            docs: {
-                name: 'Google Docs',
-                icon: 'https://ssl.gstatic.com/docs/documents/images/kix-favicon7.ico'
-            },
-            classroom: {
-                name: 'Home',
-                icon: 'https://ssl.gstatic.com/classroom/ic_product_classroom_32.png'
-            },
-            default: {
-                name: 'AMONGUSGXMES',
-                icon: ''
+        function encodeRammerhead(url) {
+            if (!url.startsWith('http')) {
+                url = 'https://' + url;
             }
-        };
+            const encoded = btoa(url).replace(/=/g, '');
+            return `${CONFIG.rammerheadPath}${encoded}`;
+        }
 
-        function setTabPreset(tab) {
-            const preset = tabPresets[tab];
-            if (preset) {
-                const nameInput = document.getElementById('tabname');
-                const iconInput = document.getElementById('tabicon');
-                if (nameInput) nameInput.value = preset.name;
-                if (iconInput) iconInput.value = preset.icon;
-                setTab(preset.name, preset.icon);
-                showNotification('👻', 'Tab Cloak', `Disguised as ${preset.name}`);
+        function encodeScramjet(url) {
+            if (!url.startsWith('http')) {
+                url = 'https://' + url;
+            }
+            return `${CONFIG.scramjetPath}service/${encodeURIComponent(url)}`;
+        }
+
+        function encodeProxy(url) {
+            switch(CONFIG.proxyMode) {
+                case 'uv':
+                    return encodeUV(url);
+                case 'rammerhead':
+                    return encodeRammerhead(url);
+                case 'scramjet':
+                    return encodeScramjet(url);
+                default:
+                    return encodeUV(url);
             }
         }
 
-        // Panic key functionality
-        let detectingPanic = false;
-        
-        function detectPanicKey() {
-            const button = document.getElementById('panickeybtn');
-            const keyInput = document.getElementById('panickey');
-            
-            if (!button || !keyInput) return;
-            
-            button.disabled = true;
-            button.innerHTML = 'Press any key...';
-            detectingPanic = true;
-            
-            document.addEventListener('keydown', function handler(e) {
-                keyInput.value = e.key;
-                localStorage.setItem('panickey', e.key);
-                button.innerHTML = 'Auto-detect panic key';
-                button.disabled = false;
-                detectingPanic = false;
-                document.removeEventListener('keydown', handler);
-                showNotification('⌨️', 'Panic Key Set', `Press "${e.key}" to escape`);
+        // ==================== STATE ====================
+        let isHolding = false;
+        let holdTimeout = null;
+        let currentCategory = 'all';
+        let gamesData = [];
+        let panicKey = '`';
+        let isCloaked = false;
+        let moviesLoaded = false;
+
+        // ==================== NAVIGATION ====================
+        function showSection(sectionId) {
+            document.querySelectorAll('.nav-btn').forEach(btn => {
+                btn.classList.remove('active');
+                if (btn.textContent.toLowerCase().includes(sectionId)) {
+                    btn.classList.add('active');
+                }
             });
-        }
 
-        function setPanicKey() {
-            const keyInput = document.getElementById('panickey');
-            if (keyInput) {
-                localStorage.setItem('panickey', keyInput.value);
+            document.querySelectorAll('.section').forEach(section => {
+                section.classList.remove('active');
+            });
+            document.getElementById(sectionId).classList.add('active');
+
+            if (sectionId === 'games' && gamesData.length === 0) {
+                loadGames();
+            }
+
+            if (sectionId === 'movies' && !moviesLoaded) {
+                loadMovies();
             }
         }
 
-        function setPanicUrl() {
-            const urlInput = document.getElementById('panicurl');
-            if (urlInput) {
-                localStorage.setItem('panicurl', urlInput.value);
+        // ==================== BACKEND CONFIGURATION ====================
+        function updateBackendUrl(url) {
+            if (!url) return;
+            const cleanUrl = url.replace(/\/$/, '');
+            localStorage.setItem('backendUrl', cleanUrl);
+            document.getElementById('settings-backend-url').value = cleanUrl;
+            alert('Backend URL updated to: ' + cleanUrl);
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            const settingsBackendInput = document.getElementById('settings-backend-url');
+            if (settingsBackendInput) {
+                settingsBackendInput.value = CONFIG.backend;
+            }
+        });
+
+        // ==================== PROXY MODES ====================
+        function setProxyMode(mode) {
+            CONFIG.proxyMode = mode;
+            
+            document.querySelectorAll('.proxy-option').forEach(btn => {
+                btn.classList.remove('active');
+            });
+            document.getElementById(`mode-${mode}`).classList.add('active');
+            
+            const modeNames = {
+                'uv': 'Ultraviolet',
+                'rammerhead': 'Rammerhead',
+                'scramjet': 'Scramjet'
+            };
+            
+            const moviesProxyMode = document.getElementById('movies-proxy-mode');
+            if (moviesProxyMode) {
+                moviesProxyMode.textContent = modeNames[mode];
             }
         }
 
-        // Panic key listener
+        // ==================== PROXY ====================
+        function setProxyUrl(url) {
+            document.getElementById('proxy-url').value = url;
+            loadProxy();
+        }
+
+        function loadProxy() {
+            const url = document.getElementById('proxy-url').value.trim();
+            if (!url) return;
+
+            const proxyUrl = encodeProxy(url);
+            const frame = document.getElementById('proxy-frame');
+            const placeholder = document.getElementById('proxy-placeholder');
+
+            placeholder.style.display = 'none';
+            frame.classList.add('active');
+            frame.src = proxyUrl;
+        }
+
+        // ==================== CLOAKING ====================
+        function cloakTab() {
+            const cloakEnabled = document.getElementById('cloak-toggle').classList.contains('active');
+            
+            if (cloakEnabled) {
+                document.title = 'Google Classroom';
+                const link = document.querySelector("link[rel*='icon']") || document.createElement('link');
+                link.type = 'image/x-icon';
+                link.rel = 'shortcut icon';
+                link.href = 'https://ssl.gstatic.com/classroom/favicon.png';
+                document.getElementsByTagName('head')[0].appendChild(link);
+                
+                if (!window.originalTitle) {
+                    window.originalTitle = document.title;
+                }
+                
+                isCloaked = true;
+                alert('Tab cloaked as Google Classroom!');
+            } else {
+                document.title = 'AMONGUSGXMES';
+                isCloaked = false;
+            }
+        }
+
+        function setPanicKey(key) {
+            panicKey = key;
+            localStorage.setItem('panicKey', key);
+        }
+
         document.addEventListener('keydown', (e) => {
-            const panicKey = localStorage.getItem('panickey');
-            const panicUrl = localStorage.getItem('panicurl') || 'https://classroom.google.com/h';
-            
-            if (panicKey && panicKey === e.key) {
-                window.location.href = panicUrl;
+            if (e.key === panicKey) {
+                document.body.style.display = 'none';
+                setTimeout(() => {
+                    document.body.style.display = '';
+                    document.title = 'Google';
+                    window.location.href = 'https://www.google.com';
+                }, 100);
             }
         });
 
-        // ==========================================
-        // GAME FUNCTIONS
-        // ==========================================
-        
-        let currentGame = null;
-        let currentUrlIndex = 0;
-        
-        function loadGames(filter = 'all') {
-            const container = document.getElementById('gamesContainer');
-            if (!container) return;
+        // ==================== MOVIES ====================
+        function loadMovies() {
+            const frame = document.getElementById('movies-frame');
+            const loading = document.getElementById('movies-loading');
             
-            container.innerHTML = '';
+            const proxiedUrl = encodeProxy(CONFIG.moviesUrl);
             
-            const categories = {
-                'action': '⚡ Action Games',
-                'puzzle': '🧩 Puzzle Games',
-                'sports': '⚽ Sports Games',
-                'shooter': '🔫 Shooter Games',
-                'racing': '🏎️ Racing Games',
-                'platformer': '🏃 Platformer Games',
-                'horror': '👻 Horror Games',
-                'io': '🌐 .io Games',
-                'strategy': '🧠 Strategy Games',
-                'artclass': '🎨 Art Class Games',
-                'shsgames': '🏫 SHS Games',
-                'ngon': '🔫 N-Gon',
-                'leereilly': '🎮 LeeReilly Games',
-                'genizy': '🎮 Genizy Games',
-                'original': '🎮 Original Games'
+            frame.src = proxiedUrl;
+            frame.onload = () => {
+                loading.style.display = 'none';
+                frame.style.display = 'block';
+                moviesLoaded = true;
             };
-            
-            if (filter === 'all') {
-                // Group by source for 'all' view
-                const sources = ['artclass', 'original', 'ngon', 'leereilly', 'genizy', 'shsgames'];
-                sources.forEach(source => {
-                    const sourceGames = GAMES_DATABASE.filter(g => g.source === source);
-                    if (sourceGames.length > 0) {
-                        renderGameCategory(container, source, getSourceTitle(source), sourceGames);
-                    }
-                });
-            } else if (['artclass', 'shsgames', 'ngon', 'leereilly', 'genizy', 'original'].includes(filter)) {
-                // Filter by source
-                const sourceGames = GAMES_DATABASE.filter(g => g.source === filter);
-                renderGameCategory(container, filter, getSourceTitle(filter), sourceGames);
-            } else {
-                // Filter by category
-                const catGames = GAMES_DATABASE.filter(g => g.category === filter);
-                renderGameCategory(container, filter, categories[filter] || 'Games', catGames);
-            }
         }
-        
-        function getSourceTitle(source) {
-            const titles = {
-                'artclass': '🎨 Art Class v4 Games',
-                'shsgames': '🏫 SHS Games',
-                'ngon': '🔫 N-Gon (Physics Shooter)',
-                'leereilly': '🎮 LeeReilly Open Source',
-                'genizy': '🎮 Genizy Games',
-                'original': '🎮 Classic Games'
-            };
-            return titles[source] || 'Games';
+
+        function refreshMovies() {
+            moviesLoaded = false;
+            const frame = document.getElementById('movies-frame');
+            const loading = document.getElementById('movies-loading');
+            
+            frame.style.display = 'none';
+            loading.style.display = 'block';
+            
+            loadMovies();
         }
-        
-        function renderGameCategory(container, category, title, games) {
-            if (games.length === 0) return;
-            
-            const section = document.createElement('div');
-            section.className = 'source-section';
-            
-            section.innerHTML = `
-                <div class="source-header">
-                    <div class="source-icon">${title.split(' ')[0]}</div>
-                    <div class="source-info">
-                        <h3>${title.split(' ').slice(1).join(' ')}</h3>
-                        <p>${games.length} unblocked games</p>
-                    </div>
-                </div>
-                <div class="games-grid" id="grid-${category}"></div>
-            `;
-            
-            const grid = section.querySelector('.games-grid');
-            
-            games.forEach(game => {
-                const card = document.createElement('div');
-                card.className = 'game-card';
-                card.onclick = () => openGame(game);
-                
-                card.innerHTML = `
-                    <div class="game-thumbnail">
-                        <div class="game-icon">${game.icon}</div>
-                        <div class="game-overlay">
-                            <div class="play-btn">
-                                <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="game-info">
-                        <div class="game-title">${game.title}</div>
-                        <div class="game-meta">
-                            <span class="game-category">${game.category}</span>
-                            <span class="game-source-tag">${game.source}</span>
-                        </div>
-                    </div>
-                `;
-                
-                grid.appendChild(card);
-            });
-            
-            container.appendChild(section);
-        }
-        
-        document.querySelectorAll('.filter-item').forEach(item => {
-            item.addEventListener('click', () => {
-                document.querySelectorAll('.filter-item').forEach(i => i.classList.remove('active'));
-                item.classList.add('active');
-                loadGames(item.dataset.filter);
-            });
-        });
-        
-        function openGame(game) {
-            currentGame = game;
-            currentUrlIndex = 0;
-            const modal = document.getElementById('gameModal');
-            const title = document.getElementById('gameModalTitle');
-            const frame = document.getElementById('gameFrame');
-            
-            title.textContent = game.title;
-            frame.src = game.urls[0];
-            modal.classList.add('active');
-            
-            showNotification('🎮', 'Loading', `Loading ${game.title}...`);
-        }
-        
-        function tryAltServer() {
-            if (!currentGame) return;
-            
-            currentUrlIndex = (currentUrlIndex + 1) % currentGame.urls.length;
-            const frame = document.getElementById('gameFrame');
-            
-            showNotification('🔄', 'Switching', `Trying alternative server ${currentUrlIndex + 1}...`);
-            frame.src = currentGame.urls[currentUrlIndex];
-        }
-        
-        function closeGame() {
-            const modal = document.getElementById('gameModal');
-            const frame = document.getElementById('gameFrame');
-            
-            modal.classList.remove('active');
-            frame.src = '';
-            currentGame = null;
-            currentUrlIndex = 0;
-        }
-        
-        function toggleFullscreen() {
-            const modal = document.querySelector('.game-modal-content');
+
+        function toggleMoviesFullscreen() {
+            const container = document.getElementById('movies-frame-container');
             if (!document.fullscreenElement) {
-                modal.requestFullscreen();
+                container.requestFullscreen().catch(err => {
+                    console.error('Error attempting to enable fullscreen:', err);
+                });
             } else {
                 document.exitFullscreen();
             }
         }
 
-        // ==========================================
-        // MOVIES
-        // ==========================================
-        
-        const MOVIES_DATABASE = [
-            { title: 'Spider-Man: Across the Spider-Verse', year: '2023', genre: 'Action/Animation', rating: '9.2', icon: '🕷️' },
-            { title: 'The Super Mario Bros. Movie', year: '2023', genre: 'Animation/Adventure', rating: '8.5', icon: '🍄' },
-            { title: 'Guardians of the Galaxy Vol. 3', year: '2023', genre: 'Action/Sci-Fi', rating: '8.8', icon: '🚀' },
-            { title: 'Demon Slayer: Mugen Train', year: '2020', genre: 'Anime/Action', rating: '9.0', icon: '⚔️' },
-            { title: 'Jujutsu Kaisen 0', year: '2021', genre: 'Anime/Action', rating: '8.7', icon: '👻' },
-            { title: 'The Batman', year: '2022', genre: 'Action/Crime', rating: '8.5', icon: '🦇' },
-            { title: 'Top Gun: Maverick', year: '2022', genre: 'Action/Drama', rating: '8.7', icon: '✈️' },
-            { title: 'Oppenheimer', year: '2023', genre: 'Biography/Drama', rating: '9.1', icon: '💣' }
-        ];
-        
-        function loadMovies() {
-            const grid = document.getElementById('moviesGrid');
-            if (!grid) return;
+        // Hold to Enter
+        function startHold() {
+            isHolding = true;
+            const btn = document.getElementById('hold-enter-btn');
+            btn.classList.add('holding');
             
-            grid.innerHTML = '';
-            
-            MOVIES_DATABASE.forEach(movie => {
-                const card = document.createElement('div');
-                card.className = 'movie-card';
-                card.onclick = () => {
-                    showSection('proxySection');
-                    document.querySelector('[data-section="proxy"]').click();
-                    document.getElementById('proxyInput').value = `https://duckduckgo.com/?q=${encodeURIComponent(movie.title + ' watch online free')}`;
-                    loadUltravioletProxy();
-                };
-                
-                card.innerHTML = `
-                    <div class="movie-poster">
-                        <div class="movie-icon">${movie.icon}</div>
-                        <div class="movie-rating">⭐ ${movie.rating}</div>
-                    </div>
-                    <div class="movie-info">
-                        <div class="movie-title">${movie.title}</div>
-                        <div class="movie-meta">
-                            <span>${movie.year}</span>
-                            <span>${movie.genre}</span>
-                        </div>
-                    </div>
-                `;
-                
-                grid.appendChild(card);
-            });
+            holdTimeout = setTimeout(() => {
+                if (isHolding) {
+                    const customUrl = prompt('Enter URL to browse:');
+                    if (customUrl) {
+                        const fullUrl = customUrl.startsWith('http') ? customUrl : 'https://' + customUrl;
+                        const frame = document.getElementById('movies-frame');
+                        const loading = document.getElementById('movies-loading');
+                        
+                        loading.style.display = 'block';
+                        frame.style.display = 'none';
+                        
+                        frame.src = encodeProxy(fullUrl);
+                        frame.onload = () => {
+                            loading.style.display = 'none';
+                            frame.style.display = 'block';
+                        };
+                    }
+                    endHold();
+                }
+            }, 800);
         }
 
-        // ==========================================
-        // PARTICLE SYSTEM
-        // ==========================================
-        class ParticleSystem {
-            constructor() {
-                this.canvas = document.getElementById('particleCanvas');
-                this.ctx = this.canvas.getContext('2d');
-                this.particles = [];
-                this.mouse = { x: null, y: null, radius: 150 };
-                this.config = { count: 150, connectionDistance: 100, repelRadius: 150, repelEnabled: true, enabled: true };
-                this.init();
-            }
-            
-            init() {
-                this.resize();
-                window.addEventListener('resize', () => this.resize());
-                window.addEventListener('mousemove', (e) => { this.mouse.x = e.clientX; this.mouse.y = e.clientY; });
-                window.addEventListener('mouseout', () => { this.mouse.x = null; this.mouse.y = null; });
-                this.createParticles();
-                this.animate();
-            }
-            
-            resize() {
-                this.canvas.width = window.innerWidth;
-                this.canvas.height = window.innerHeight;
-            }
-            
-            createParticles() {
-                this.particles = [];
-                for (let i = 0; i < this.config.count; i++) {
-                    this.particles.push({
-                        x: Math.random() * this.canvas.width,
-                        y: Math.random() * this.canvas.height,
-                        vx: (Math.random() - 0.5) * 0.5,
-                        vy: (Math.random() - 0.5) * 0.5,
-                        size: Math.random() * 3 + 1
-                    });
-                }
-            }
-            
-            animate() {
-                if (!this.config.enabled) {
-                    this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
-                    requestAnimationFrame(() => this.animate());
-                    return;
-                }
-                
-                this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
-                
-                this.particles.forEach((p, i) => {
-                    if (this.config.repelEnabled && this.mouse.x != null) {
-                        const dx = p.x - this.mouse.x;
-                        const dy = p.y - this.mouse.y;
-                        const dist = Math.sqrt(dx * dx + dy * dy);
-                        
-                        if (dist < this.config.repelRadius) {
-                            const force = (this.config.repelRadius - dist) / this.config.repelRadius;
-                            const angle = Math.atan2(dy, dx);
-                            p.vx += Math.cos(angle) * force * 0.5;
-                            p.vy += Math.sin(angle) * force * 0.5;
-                        }
-                    }
-                    
-                    p.x += p.vx;
-                    p.y += p.vy;
-                    p.vx *= 0.99;
-                    p.vy *= 0.99;
-                    
-                    if (p.x < 0 || p.x > this.canvas.width) p.vx *= -1;
-                    if (p.y < 0 || p.y > this.canvas.height) p.vy *= -1;
-                    
-                    p.x = Math.max(0, Math.min(this.canvas.width, p.x));
-                    p.y = Math.max(0, Math.min(this.canvas.height, p.y));
-                    
-                    this.ctx.beginPath();
-                    this.ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
-                    this.ctx.fillStyle = 'rgba(255, 26, 26, 0.6)';
-                    this.ctx.fill();
-                    
-                    for (let j = i + 1; j < this.particles.length; j++) {
-                        const p2 = this.particles[j];
-                        const dx = p.x - p2.x;
-                        const dy = p.y - p2.y;
-                        const dist = Math.sqrt(dx * dx + dy * dy);
-                        
-                        if (dist < this.config.connectionDistance) {
-                            this.ctx.beginPath();
-                            this.ctx.strokeStyle = `rgba(255, 26, 26, ${1 - dist / this.config.connectionDistance})`;
-                            this.ctx.lineWidth = 1;
-                            this.ctx.moveTo(p.x, p.y);
-                            this.ctx.lineTo(p2.x, p2.y);
-                            this.ctx.stroke();
-                        }
-                    }
-                });
-                
-                requestAnimationFrame(() => this.animate());
-            }
-        }
-
-        // ==========================================
-        // UI FUNCTIONS
-        // ==========================================
-        
-        let holdTimer = null;
-        const startScreen = document.getElementById('startScreen');
-        const sidebar = document.getElementById('sidebar');
-        const mainContent = document.getElementById('mainContent');
-        
-        startScreen.addEventListener('mousedown', startHold);
-        startScreen.addEventListener('touchstart', startHold);
-        startScreen.addEventListener('mouseup', endHold);
-        startScreen.addEventListener('touchend', endHold);
-        startScreen.addEventListener('mouseleave', endHold);
-        
-        function startHold(e) {
-            startScreen.classList.add('holding');
-            holdTimer = setTimeout(() => enterSite(), 1000);
-        }
-        
         function endHold() {
-            clearTimeout(holdTimer);
-            startScreen.classList.remove('holding');
-        }
-        
-        function enterSite() {
-            startScreen.classList.add('hidden');
-            setTimeout(() => {
-                sidebar.classList.add('open');
-                mainContent.classList.add('visible');
-            }, 400);
+            isHolding = false;
+            const btn = document.getElementById('hold-enter-btn');
+            btn.classList.remove('holding');
+            if (holdTimeout) {
+                clearTimeout(holdTimeout);
+                holdTimeout = null;
+            }
         }
 
-        document.querySelectorAll('.nav-item[data-section]').forEach(item => {
-            item.addEventListener('click', () => {
-                document.querySelectorAll('.nav-item').forEach(i => i.classList.remove('active'));
-                item.classList.add('active');
-                showSection(item.dataset.section + 'Section');
+        // ==================== GAMES (Using staticdelivr) ====================
+        const monkeyGames = [
+            { name: '2048', path: '2048', category: 'puzzle', icon: '🔢' },
+            { name: 'Among Us', path: 'among-us', category: 'multiplayer', icon: '🔴' },
+            { name: 'Basketball Stars', path: 'basketball-stars', category: 'sports', icon: '🏀' },
+            { name: 'BitLife', path: 'bitlife', category: 'simulation', icon: '👤' },
+            { name: 'Bloons TD', path: 'bloons-td', category: 'strategy', icon: '🎈' },
+            { name: 'Cookie Clicker', path: 'cookie-clicker', category: 'idle', icon: '🍪' },
+            { name: 'Crossy Road', path: 'crossy-road', category: 'arcade', icon: '🐔' },
+            { name: 'Drift Hunters', path: 'drift-hunters', category: 'racing', icon: '🏎️' },
+            { name: 'Drive Mad', path: 'drive-mad', category: 'racing', icon: '🚗' },
+            { name: 'Eggycar', path: 'eggycar', category: 'racing', icon: '🥚' },
+            { name: 'Flappy Bird', path: 'flappy-bird', category: 'arcade', icon: '🐦' },
+            { name: 'Geometry Dash', path: 'geometry-dash', category: 'action', icon: '📐' },
+            { name: 'Getaway Shootout', path: 'getaway-shootout', category: 'action', icon: '🏃' },
+            { name: 'Happy Wheels', path: 'happy-wheels', category: 'racing', icon: '🦽' },
+            { name: 'Hole.io', path: 'hole-io', category: 'arcade', icon: '🕳️' },
+            { name: 'Krunker', path: 'krunker', category: 'shooter', icon: '🔫' },
+            { name: 'Minecraft Classic', path: 'minecraft-classic', category: 'sandbox', icon: '⛏️' },
+            { name: 'Moto X3M', path: 'moto-x3m', category: 'racing', icon: '🏍️' },
+            { name: 'Paper.io', path: 'paper-io', category: 'multiplayer', icon: '📄' },
+            { name: 'Retro Bowl', path: 'retro-bowl', category: 'sports', icon: '🏈' },
+            { name: 'Run 3', path: 'run-3', category: 'action', icon: '🏃' },
+            { name: 'Shell Shockers', path: 'shell-shockers', category: 'shooter', icon: '🥚' },
+            { name: 'Slope', path: 'slope', category: 'action', icon: '📐' },
+            { name: 'Smash Karts', path: 'smash-karts', category: 'racing', icon: '🏎️' },
+            { name: 'Snow Rider', path: 'snow-rider', category: 'racing', icon: '⛷️' },
+            { name: 'Subway Surfers', path: 'subway-surfers', category: 'action', icon: '🚇' },
+            { name: 'Super Mario 64', path: 'super-mario-64', category: 'retro', icon: '🍄' },
+            { name: 'Tetris', path: 'tetris', category: 'puzzle', icon: '🧱' },
+            { name: 'Tunnel Rush', path: 'tunnel-rush', category: 'action', icon: '🌀' },
+            { name: 'Vex 7', path: 'vex-7', category: 'action', icon: '🏃' },
+            { name: 'Wordle', path: 'wordle', category: 'puzzle', icon: '📝' },
+            { name: 'Basket Random', path: 'basket-random', category: 'sports', icon: '🏀' },
+            { name: 'Boxing Random', path: 'boxing-random', category: 'sports', icon: '🥊' },
+            { name: 'Soccer Random', path: 'soccer-random', category: 'sports', icon: '⚽' },
+            { name: 'Volley Random', path: 'volley-random', category: 'sports', icon: '🏐' },
+            { name: 'Tennis Random', path: 'tennis-random', category: 'sports', icon: '🎾' },
+            { name: 'Golf Random', path: 'golf-random', category: 'sports', icon: '⛳' },
+            { name: '8 Ball Pool', path: '8-ball-pool', category: 'sports', icon: '🎱' },
+            { name: 'Agar.io', path: 'agar-io', category: 'multiplayer', icon: '🔵' },
+            { name: 'Slither.io', path: 'slither-io', category: 'multiplayer', icon: '🐍' },
+            { name: 'Diep.io', path: 'diep-io', category: 'multiplayer', icon: '🔷' },
+            { name: 'Moomoo.io', path: 'moomoo-io', category: 'multiplayer', icon: '🐮' },
+            { name: 'Surviv.io', path: 'surviv-io', category: 'shooter', icon: '🏝️' },
+            { name: 'Zombs Royale', path: 'zombs-royale', category: 'shooter', icon: '👑' },
+            { name: 'Build Royale', path: 'build-royale', category: 'shooter', icon: '🏗️' },
+            { name: '1v1.LOL', path: '1v1-lol', category: 'shooter', icon: '🏗️' },
+            { name: 'Just Build', path: 'just-build', category: 'sandbox', icon: '🧱' },
+            { name: 'Fortnite', path: 'fortnite', category: 'shooter', icon: '🔫' },
+            { name: 'Rocket League', path: 'rocket-league', category: 'sports', icon: '🚗' },
+            { name: 'Fall Guys', path: 'fall-guys', category: 'multiplayer', icon: '🎉' },
+            { name: 'Stumble Guys', path: 'stumble-guys', category: 'multiplayer', icon: '🏃' },
+            { name: 'Roblox', path: 'roblox', category: 'sandbox', icon: '🔲' },
+            { name: 'Friday Night Funkin', path: 'friday-night-funkin', category: 'rhythm', icon: '🎤' },
+            { name: 'Osu!', path: 'osu', category: 'rhythm', icon: '🎵' },
+            { name: 'Piano Tiles', path: 'piano-tiles', category: 'rhythm', icon: '🎹' },
+            { name: 'Guitar Hero', path: 'guitar-hero', category: 'rhythm', icon: '🎸' },
+            { name: 'Dance Dance Revolution', path: 'ddr', category: 'rhythm', icon: '💃' },
+            { name: 'Pac-Man', path: 'pac-man', category: 'retro', icon: '👻' },
+            { name: 'Space Invaders', path: 'space-invaders', category: 'retro', icon: '👾' },
+            { name: 'Asteroids', path: 'asteroids', category: 'retro', icon: '☄️' },
+            { name: 'Snake', path: 'snake', category: 'retro', icon: '🐍' },
+            { name: 'Chess', path: 'chess', category: 'puzzle', icon: '♟️' },
+            { name: 'Checkers', path: 'checkers', category: 'puzzle', icon: '⚫' },
+            { name: 'Solitaire', path: 'solitaire', category: 'puzzle', icon: '🃏' },
+            { name: 'Minesweeper', path: 'minesweeper', category: 'puzzle', icon: '💣' },
+            { name: 'Sudoku', path: 'sudoku', category: 'puzzle', icon: '🔢' },
+            { name: 'Crossword', path: 'crossword', category: 'puzzle', icon: '📝' },
+            { name: 'Word Search', path: 'word-search', category: 'puzzle', icon: '🔍' },
+            { name: 'Hangman', path: 'hangman', category: 'puzzle', icon: '🎪' },
+            { name: 'Trivia', path: 'trivia', category: 'puzzle', icon: '❓' },
+            { name: 'Quiz', path: 'quiz', category: 'puzzle', icon: '📝' },
+            { name: 'Brain Teaser', path: 'brain-teaser', category: 'puzzle', icon: '🧠' },
+            { name: 'Memory', path: 'memory', category: 'puzzle', icon: '🧠' },
+            { name: 'Matching', path: 'matching', category: 'puzzle', icon: '🃏' },
+            { name: 'Mahjong', path: 'mahjong', category: 'puzzle', icon: '🀄' },
+            { name: 'Bubble Shooter', path: 'bubble-shooter', category: 'puzzle', icon: '💭' },
+            { name: 'Bejeweled', path: 'bejeweled', category: 'puzzle', icon: '💎' },
+            { name: 'Candy Crush', path: 'candy-crush', category: 'puzzle', icon: '🍬' },
+            { name: 'Farm Heroes', path: 'farm-heroes', category: 'puzzle', icon: '🚜' },
+            { name: 'Pet Rescue', path: 'pet-rescue', category: 'puzzle', icon: '🐾' },
+            { name: 'Scrabble', path: 'scrabble', category: 'puzzle', icon: '📝' },
+            { name: 'Monopoly', path: 'monopoly', category: 'board', icon: '💰' },
+            { name: 'Risk', path: 'risk', category: 'strategy', icon: '🌍' },
+            { name: 'Catan', path: 'catan', category: 'strategy', icon: '🏝️' },
+            { name: 'Carcassonne', path: 'carcassonne', category: 'strategy', icon: '🏰' },
+            { name: 'Ticket to Ride', path: 'ticket-to-ride', category: 'strategy', icon: '🚂' },
+            { name: 'Pandemic', path: 'pandemic', category: 'strategy', icon: '🦠' },
+            { name: 'Chess 3D', path: 'chess-3d', category: 'puzzle', icon: '♟️' },
+            { name: 'Fishing', path: 'fishing', category: 'simulation', icon: '🎣' },
+            { name: 'Hunting', path: 'hunting', category: 'simulation', icon: '🦌' },
+            { name: 'Farming', path: 'farming', category: 'simulation', icon: '🌾' },
+            { name: 'Cooking', path: 'cooking', category: 'simulation', icon: '👨‍🍳' },
+            { name: 'Restaurant', path: 'restaurant', category: 'simulation', icon: '🍽️' },
+            { name: 'Hotel', path: 'hotel', category: 'simulation', icon: '🏨' },
+            { name: 'Airport', path: 'airport', category: 'simulation', icon: '✈️' },
+            { name: 'Hospital', path: 'hospital', category: 'simulation', icon: '🏥' },
+            { name: 'Zoo', path: 'zoo', category: 'simulation', icon: '🦁' },
+            { name: 'Aquarium', path: 'aquarium', category: 'simulation', icon: '🐠' },
+            { name: 'Theme Park', path: 'theme-park', category: 'simulation', icon: '🎢' },
+            { name: 'Rollercoaster', path: 'rollercoaster', category: 'simulation', icon: '🎢' },
+            { name: 'City Builder', path: 'city-builder', category: 'simulation', icon: '🏙️' },
+            { name: 'SimCity', path: 'simcity', category: 'simulation', icon: '🏢' },
+            { name: 'Tycoon', path: 'tycoon', category: 'simulation', icon: '💼' },
+            { name: 'Idle Miner', path: 'idle-miner', category: 'idle', icon: '⛏️' },
+            { name: 'Idle Factory', path: 'idle-factory', category: 'idle', icon: '🏭' },
+            { name: 'Idle Tower', path: 'idle-tower', category: 'idle', icon: '🏢' },
+            { name: 'Clicker Heroes', path: 'clicker-heroes', category: 'idle', icon: '⚔️' },
+            { name: 'Adventure Capitalist', path: 'adventure-capitalist', category: 'idle', icon: '💰' },
+            { name: 'Anti-Idle', path: 'anti-idle', category: 'idle', icon: '🎮' },
+            { name: 'Learn to Fly', path: 'learn-to-fly', category: 'action', icon: '🐧' },
+            { name: 'Learn to Fly 2', path: 'learn-to-fly-2', category: 'action', icon: '🐧' },
+            { name: 'Learn to Fly 3', path: 'learn-to-fly-3', category: 'action', icon: '🚀' },
+            { name: 'Shopping Cart Hero', path: 'shopping-cart-hero', category: 'action', icon: '🛒' },
+            { name: 'Potty Racers', path: 'potty-racers', category: 'action', icon: '🚽' },
+            { name: 'Burrito Bison', path: 'burrito-bison', category: 'action', icon: '🌯' },
+            { name: 'Flight', path: 'flight', category: 'action', icon: '✈️' },
+            { name: 'Papa Pizzeria', path: 'papa-pizzeria', category: 'simulation', icon: '🍕' },
+            { name: 'Papa Burgeria', path: 'papa-burgeria', category: 'simulation', icon: '🍔' },
+            { name: 'Papa Freezeria', path: 'papa-freezeria', category: 'simulation', icon: '🍦' },
+            { name: 'Papa Cupcakeria', path: 'papa-cupcakeria', category: 'simulation', icon: '🧁' },
+            { name: 'Papa Pastaria', path: 'papa-pastaria', category: 'simulation', icon: '🍝' },
+            { name: 'Papa Sushiria', path: 'papa-sushiria', category: 'simulation', icon: '🍣' },
+            { name: 'Fireboy Watergirl', path: 'fireboy-watergirl', category: 'puzzle', icon: '🔥' },
+            { name: 'Red Ball', path: 'red-ball', category: 'action', icon: '🔴' },
+            { name: 'Wheely', path: 'wheely', category: 'puzzle', icon: '🚗' },
+            { name: 'Snail Bob', path: 'snail-bob', category: 'puzzle', icon: '🐌' },
+            { name: 'Cut the Rope', path: 'cut-the-rope', category: 'puzzle', icon: '🍬' },
+            { name: 'Angry Birds', path: 'angry-birds', category: 'puzzle', icon: '🐦' },
+            { name: 'Temple Run', path: 'temple-run', category: 'action', icon: '🏃' },
+            { name: 'Sonic Dash', path: 'sonic-dash', category: 'action', icon: '💨' },
+            { name: 'Jetpack Joyride', path: 'jetpack-joyride', category: 'action', icon: '🚀' },
+            { name: 'Fruit Ninja', path: 'fruit-ninja', category: 'arcade', icon: '🥷' },
+            { name: 'Swords and Sandals', path: 'swords-and-sandals', category: 'rpg', icon: '⚔️' },
+            { name: 'Epic Battle Fantasy', path: 'epic-battle-fantasy', category: 'rpg', icon: '⚔️' },
+            { name: 'Binding of Isaac', path: 'binding-of-isaac', category: 'roguelike', icon: '💧' },
+            { name: 'Spelunky', path: 'spelunky', category: 'roguelike', icon: '⛏️' },
+            { name: 'Celeste', path: 'celeste', category: 'platformer', icon: '🏔️' },
+            { name: 'Hollow Knight', path: 'hollow-knight', category: 'metroidvania', icon: '🗡️' },
+            { name: 'Shovel Knight', path: 'shovel-knight', category: 'platformer', icon: '🥄' },
+            { name: 'Cuphead', path: 'cuphead', category: 'shooter', icon: '☕' },
+            { name: 'Undertale', path: 'undertale', category: 'rpg', icon: '💀' },
+            { name: 'Pokemon Red', path: 'pokemon-red', category: 'rpg', icon: '🔴' },
+            { name: 'Zelda', path: 'zelda', category: 'adventure', icon: '⚔️' },
+            { name: 'Mario 64', path: 'mario-64', category: 'platformer', icon: '🍄' },
+            { name: 'Donkey Kong', path: 'donkey-kong', category: 'platformer', icon: '🐵' },
+            { name: 'Kirby', path: 'kirby', category: 'platformer', icon: '💗' },
+            { name: 'Metroid', path: 'metroid', category: 'metroidvania', icon: '👾' },
+            { name: 'Star Fox', path: 'star-fox', category: 'shooter', icon: '🦊' },
+            { name: 'F-Zero', path: 'f-zero', category: 'racing', icon: '🏎️' },
+            { name: 'Simpsons Hit Run', path: 'simpsons-hit-run', category: 'racing', icon: '🍩' },
+            { name: 'Kingdom Hearts', path: 'kingdom-hearts', category: 'rpg', icon: '🔑' },
+            { name: 'Disney Infinity', path: 'disney-infinity', category: 'sandbox', icon: '✨' },
+            { name: 'Toy Story', path: 'toy-story', category: 'platformer', icon: '🤠' },
+            { name: 'Cars', path: 'cars', category: 'racing', icon: '🚗' },
+            { name: 'Monsters Inc', path: 'monsters-inc', category: 'platformer', icon: '👹' }
+        ];
+
+        function loadGames() {
+            const grid = document.getElementById('games-grid');
+            grid.innerHTML = '<div class="loader"></div>';
+
+            // Using staticdelivr instead of jsdelivr
+            gamesData = monkeyGames.map((game, idx) => ({
+                id: idx + 1,
+                name: game.name,
+                path: game.path,
+                category: game.category,
+                icon: game.icon,
+                external: true,
+                url: `https://monkeygg2.github.io/games/${game.path}/index.html`,
+                source: 'monkeygg2'
+            }));
+
+            // Add n-gon
+            gamesData.unshift({
+                id: 0,
+                name: 'n-gon',
+                path: 'n-gon',
+                category: 'action',
+                icon: '🔬',
+                external: true,
+                url: CONFIG.ngonUrl,
+                source: 'ngon'
+            });
+
+            // Add MonkeyGG2 Hub
+            gamesData.unshift({
+                id: -1,
+                name: 'MonkeyGG2 Hub',
+                path: 'hub',
+                category: 'multiplayer',
+                icon: '🐵',
+                external: true,
+                url: 'https://monkeygg2.github.io/',
+                source: 'monkeygg2'
+            });
+
+            document.getElementById('game-count').textContent = gamesData.length + '+';
+            renderGames();
+        }
+
+        function renderGames() {
+            const grid = document.getElementById('games-grid');
+            const searchTerm = document.getElementById('game-search').value.toLowerCase();
+            
+            const filtered = gamesData.filter(game => {
+                const matchesSearch = game.name.toLowerCase().includes(searchTerm);
+                const matchesCategory = currentCategory === 'all' || game.category === currentCategory;
+                return matchesSearch && matchesCategory;
+            });
+
+            grid.innerHTML = filtered.map(game => `
+                <div class="game-card ${game.external ? 'external' : ''}" onclick="openGame(${game.id})">
+                    <div class="game-thumbnail">${game.icon}</div>
+                    <div class="game-info">
+                        <div class="game-title">${game.name}</div>
+                        <div class="game-category">${game.category}</div>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        function filterGames(category) {
+            currentCategory = category;
+            
+            document.querySelectorAll('.category-btn').forEach(btn => {
+                btn.classList.remove('active');
+                if (btn.textContent.toLowerCase().includes(category) || (category === 'all' && btn.textContent === 'All')) {
+                    btn.classList.add('active');
+                }
+            });
+            
+            renderGames();
+        }
+
+        function searchGames() {
+            renderGames();
+        }
+
+        function openGame(id) {
+            const game = gamesData.find(g => g.id === id);
+            if (!game) return;
+
+            document.getElementById('modal-game-title').textContent = game.name;
+            document.getElementById('game-frame').src = game.url;
+            document.getElementById('game-modal').classList.add('active');
+        }
+
+        function closeGameModal() {
+            document.getElementById('game-modal').classList.remove('active');
+            document.getElementById('game-frame').src = '';
+        }
+
+        // ==================== THEMES ====================
+        const themes = {
+            'default': { primary: '#ff4757', secondary: '#2f3542', accent: '#3742fa', bg: '#0c0c1a' },
+            'dark': { primary: '#57606f', secondary: '#2f3542', accent: '#747d8c', bg: '#0c0c1a' },
+            'neon': { primary: '#0be881', secondary: '#1e272e', accent: '#0fbcf9', bg: '#0c0c1a' },
+            'sunset': { primary: '#ff6b81', secondary: '#2f3542', accent: '#f9ca24', bg: '#1a1a2e' },
+            'forest': { primary: '#2ed573', secondary: '#1e272e', accent: '#1e90ff', bg: '#0c0c1a' },
+            'royal': { primary: '#8e44ad', secondary: '#2f3542', accent: '#3498db', bg: '#0c0c1a' }
+        };
+
+        function setTheme(themeName) {
+            const theme = themes[themeName];
+            if (!theme) return;
+
+            const root = document.documentElement;
+            root.style.setProperty('--primary', theme.primary);
+            root.style.setProperty('--secondary', theme.secondary);
+            root.style.setProperty('--accent', theme.accent);
+            root.style.setProperty('--bg', theme.bg);
+
+            document.querySelectorAll('.theme-card').forEach(card => {
+                card.classList.remove('active');
+            });
+            event.currentTarget.classList.add('active');
+
+            localStorage.setItem('theme', themeName);
+        }
+
+        // ==================== STARS ====================
+        function createStars() {
+            const container = document.getElementById('stars');
+            for (let i = 0; i < 100; i++) {
+                const star = document.createElement('div');
+                star.className = 'star';
+                star.style.left = Math.random() * 100 + '%';
+                star.style.top = Math.random() * 100 + '%';
+                star.style.animationDelay = Math.random() * 2 + 's';
+                star.style.opacity = Math.random();
+                container.appendChild(star);
+            }
+        }
+
+        // ==================== INIT ====================
+        document.addEventListener('DOMContentLoaded', () => {
+            createStars();
+            
+            const savedTheme = localStorage.getItem('theme');
+            if (savedTheme && themes[savedTheme]) {
+                const root = document.documentElement;
+                root.style.setProperty('--primary', themes[savedTheme].primary);
+                root.style.setProperty('--secondary', themes[savedTheme].secondary);
+                root.style.setProperty('--accent', themes[savedTheme].accent);
+                root.style.setProperty('--bg', themes[savedTheme].bg);
+            }
+
+            const savedPanic = localStorage.getItem('panicKey');
+            if (savedPanic) {
+                panicKey = savedPanic;
+                document.getElementById('panic-key').value = savedPanic;
+            }
+
+            document.getElementById('online-status').style.color = navigator.onLine ? '#2ed573' : '#ff4757';
+            window.addEventListener('online', () => {
+                document.getElementById('online-status').style.color = '#2ed573';
+            });
+            window.addEventListener('offline', () => {
+                document.getElementById('online-status').style.color = '#ff4757';
             });
         });
-        
-        function showSection(sectionId) {
-            document.querySelectorAll('.content-section').forEach(s => s.classList.remove('active'));
-            document.getElementById(sectionId).classList.add('active');
-        }
-        
-        function changeColor(color) {
-            document.documentElement.style.setProperty('--primary-red', color);
-            document.documentElement.style.setProperty('--accent', color);
-            document.querySelectorAll('.color-option').forEach(opt => opt.classList.remove('active'));
-            event.target.classList.add('active');
-            showNotification('🎨', 'Color Changed', 'Theme updated');
-        }
-        
-        function showNotification(icon, title, message) {
-            const notif = document.getElementById('notification');
-            const notifIcon = document.getElementById('notifIcon');
-            const notifTitle = document.getElementById('notifTitle');
-            const notifMessage = document.getElementById('notifMessage');
-            
-            notifIcon.textContent = icon;
-            notifTitle.textContent = title;
-            notifMessage.textContent = message;
-            
-            notif.classList.add('show');
-            setTimeout(() => notif.classList.remove('show'), 3000);
-        }
 
-        // ==========================================
-        // INITIALIZATION
-        // ==========================================
-        document.addEventListener('DOMContentLoaded', () => {
-            new ParticleSystem();
-            loadGames();
-            loadMovies();
-            
-            // Load saved theme
-            const savedTheme = localStorage.getItem('theme');
-            if (savedTheme) {
-                document.body.setAttribute('theme', savedTheme);
-                const themeSelect = document.getElementById('themeSelect');
-                if (themeSelect) themeSelect.value = savedTheme;
-            }
-            
-            // Load saved tab cloak
-            const savedTabName = localStorage.getItem('tabName');
-            const savedTabIcon = localStorage.getItem('tabIcon');
-            if (savedTabName && savedTabIcon) {
-                setTab(savedTabName, savedTabIcon);
-                const nameInput = document.getElementById('tabname');
-                const iconInput = document.getElementById('tabicon');
-                if (nameInput) nameInput.value = savedTabName;
-                if (iconInput) iconInput.value = savedTabIcon;
-            }
-            
-            // Load saved panic settings
-            const panicKey = localStorage.getItem('panickey');
-            const panicUrl = localStorage.getItem('panicurl');
-            const panicKeyInput = document.getElementById('panickey');
-            const panicUrlInput = document.getElementById('panicurl');
-            if (panicKeyInput && panicKey) panicKeyInput.value = panicKey;
-            if (panicUrlInput && panicUrl) panicUrlInput.value = panicUrl;
-        });
+        document.getElementById('hold-enter-btn').addEventListener('contextmenu', e => e.preventDefault());
     </script>
 </body>
 </html>
